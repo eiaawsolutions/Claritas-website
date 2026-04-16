@@ -22,13 +22,13 @@ const VERSION_NAMES: Record<DesignVersionId, string> = {
 };
 
 const DesignContext = createContext<DesignContextValue>({
-  version: "v8",
+  version: "v7",
   setVersion: () => {},
-  cycleName: "Atelier",
+  cycleName: "Enterprise",
 });
 
 export function DesignVersionProvider({ children }: { children: ReactNode }) {
-  const [version, setVersionState] = useState<DesignVersionId>("v8");
+  const [version, setVersionState] = useState<DesignVersionId>("v7");
 
   // Sync the data-design attribute on mount and on change
   useEffect(() => {

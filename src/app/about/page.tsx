@@ -132,14 +132,14 @@ export default function AboutPage() {
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: isV6 ? 0.6 : isV5 ? 0.6 : 0.5 }}
+            transition={{ duration: isV6 ? 0.6 : isDark ? 0.6 : 0.5 }}
             className="max-w-3xl"
           >
             {isV6 ? (
               <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-semibold tracking-wide uppercase">
                 About Us
               </span>
-            ) : isV5 ? (
+            ) : isDark ? (
               <div className="flex items-center gap-4 mb-10">
                 <motion.div
                   initial={{ width: 0 }}
@@ -160,21 +160,21 @@ export default function AboutPage() {
               className={
                 isV6
                   ? "mt-6 text-3xl md:text-5xl font-bold text-white tracking-tight"
-                  : isV5
+                  : isDark
                   ? "text-4xl md:text-6xl font-light text-white leading-[0.95] tracking-tighter"
                   : "mt-6 text-2xl font-extrabold tracking-tight text-dark-900 sm:text-3xl md:text-4xl lg:text-5xl"
               }
-              style={isV5 ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
+              style={isDark ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
             >
               {isV6 ? (
                 <>Empowering businesses with <span className="text-blue-400">smarter CRM</span></>
-              ) : isV5 ? (
+              ) : isDark ? (
                 <>Empowering businesses with <span className="text-blue-500">smarter CRM</span></>
               ) : (
                 <>Empowering businesses with{" "}<span className="text-coral-500">smarter CRM</span></>
               )}
             </h1>
-            <p className={`mt-6 text-base leading-relaxed ${isV6 ? "text-zinc-400 font-light" : isV5 ? "text-slate-500 font-light" : "text-gray-500"}`}>
+            <p className={`mt-6 text-base leading-relaxed ${isV6 ? "text-zinc-400 font-light" : isDark ? "text-slate-500 font-light" : "text-gray-500"}`}>
               Claritas&trade; is a registered trademark of Netster &mdash; a Malaysian
               technology company dedicated to building enterprise-grade customer
               relationship management solutions for the APAC market.
@@ -184,7 +184,7 @@ export default function AboutPage() {
       </section>
 
       {/* What is Claritas CRM */}
-      <section className={isV5 ? "py-24 sm:py-32 bg-[#050b1a]" : "py-16 sm:py-20"} id="what-is-crm">
+      <section className={isV6 ? "py-20 bg-white" : isDark ? "py-24 sm:py-32 bg-[#0b1121]" : "py-16 sm:py-20"} id="what-is-crm">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -192,12 +192,12 @@ export default function AboutPage() {
             viewport={{ once: true }}
           >
             <h2
-              className={isV5 ? "text-2xl sm:text-3xl font-light text-blue-500 tracking-tighter" : "text-2xl font-bold text-coral-500 sm:text-3xl"}
-              style={isV5 ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
+              className={isV6 ? "text-2xl sm:text-3xl font-bold text-blue-600 tracking-tight" : isDark ? "text-2xl sm:text-3xl font-light text-blue-500 tracking-tighter" : "text-2xl font-bold text-coral-500 sm:text-3xl"}
+              style={isDark ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
             >
               What is Claritas&trade; CRM?
             </h2>
-            <p className={`mt-4 text-base leading-relaxed ${isV5 ? "text-slate-400 font-light" : "text-gray-600"}`}>
+            <p className={`mt-4 text-base leading-relaxed ${isV6 ? "text-zinc-600" : isDark ? "text-slate-400 font-light" : "text-gray-600"}`}>
               Claritas&trade; CRM is an integrated and customer centric CRM solution that manages, tracks, and stores information related to your existing customers and new prospects. It helps companies to enhance customer experience and drive business growth to the next level by integrating technology, data, process and people to effectively organize, automate and synchronize marketing, sales and service engagements across all customer contact points.
             </p>
           </motion.div>
@@ -205,15 +205,24 @@ export default function AboutPage() {
       </section>
 
       {/* 6 Capability Cards */}
-      <section className={isV5 ? "bg-[#0a1428] py-24 sm:py-32" : "bg-gray-50 py-16 sm:py-20"}>
+      <section className={isV6 ? "bg-zinc-50 py-20" : isDark ? "bg-[#0a1428] py-24 sm:py-32" : "bg-gray-50 py-16 sm:py-20"}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className={isV5 ? "text-center mb-16" : "text-center mb-12"}
+            className={isDark ? "text-center mb-16" : "text-center mb-12"}
           >
-            {isV5 ? (
+            {isV6 ? (
+              <>
+                <span className="text-sm font-bold tracking-widest text-blue-600 uppercase">
+                  Capabilities
+                </span>
+                <h2 className="mt-4 text-3xl md:text-5xl font-bold text-zinc-950 tracking-tight">
+                  What Claritas&trade; CRM Can Do
+                </h2>
+              </>
+            ) : isDark ? (
               <>
                 <span className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-500">
                   Capabilities
@@ -232,7 +241,7 @@ export default function AboutPage() {
             )}
           </motion.div>
 
-          <div className={`grid gap-6 sm:grid-cols-2 lg:grid-cols-3 ${isV5 ? "gap-8" : ""}`}>
+          <div className={`grid gap-6 sm:grid-cols-2 lg:grid-cols-3 ${isDark ? "gap-8" : ""}`}>
             {capabilities.map((cap, i) => (
               <motion.div
                 key={cap.title}
@@ -241,20 +250,22 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
                 className={
-                  isV5
+                  isV6
+                    ? "group rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:shadow-md hover:-translate-y-1"
+                    : isDark
                     ? "border border-white/[0.06] bg-transparent p-8 transition-all hover:border-white/[0.12] hover:-translate-y-1"
                     : "group rounded-2xl border border-gray-200 bg-white p-6 shadow-[0_8px_30px_-8px_rgba(0,0,0,0.08)] transition-all hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] hover:-translate-y-1"
                 }
               >
-                <div className={isV5 ? "bg-blue-500/10 px-4 py-2 text-center" : "rounded-lg bg-coral-500 px-4 py-2 text-center"}>
-                  <h3 className={isV5 ? "text-sm font-bold text-blue-400" : "text-sm font-bold text-white"}>{cap.title}</h3>
+                <div className={isV6 ? "rounded-lg bg-blue-600 px-4 py-2 text-center" : isDark ? "bg-blue-500/10 px-4 py-2 text-center" : "rounded-lg bg-coral-500 px-4 py-2 text-center"}>
+                  <h3 className={isV6 ? "text-sm font-bold text-white" : isDark ? "text-sm font-bold text-blue-400" : "text-sm font-bold text-white"}>{cap.title}</h3>
                 </div>
-                <p className={`mt-4 text-sm leading-relaxed ${isV5 ? "text-slate-400 font-light" : "text-gray-500"}`}>
+                <p className={`mt-4 text-sm leading-relaxed ${isV6 ? "text-zinc-600" : isDark ? "text-slate-400 font-light" : "text-gray-500"}`}>
                   {cap.description}
                 </p>
                 <Link
                   href={cap.href}
-                  className={`mt-4 inline-block text-xs font-semibold ${isV5 ? "text-blue-500 hover:text-blue-400" : "text-coral-500 hover:text-coral-600"}`}
+                  className={`mt-4 inline-block text-xs font-semibold ${isV6 ? "text-blue-600 hover:text-blue-700" : isDark ? "text-blue-500 hover:text-blue-400" : "text-coral-500 hover:text-coral-600"}`}
                 >
                   Learn more &gt;
                 </Link>
@@ -265,7 +276,7 @@ export default function AboutPage() {
       </section>
 
       {/* What makes different */}
-      <section className={isV5 ? "py-24 sm:py-32 bg-[#050b1a]" : "py-16 sm:py-20"}>
+      <section className={isV6 ? "py-20 bg-white" : isDark ? "py-24 sm:py-32 bg-[#0b1121]" : "py-16 sm:py-20"}>
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -273,10 +284,12 @@ export default function AboutPage() {
             viewport={{ once: true }}
           >
             <h2
-              className={isV5 ? "text-xl sm:text-2xl font-light text-white tracking-tighter" : "text-xl font-bold text-dark-900 sm:text-2xl"}
-              style={isV5 ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
+              className={isV6 ? "text-xl sm:text-2xl font-bold text-zinc-950 tracking-tight" : isDark ? "text-xl sm:text-2xl font-light text-white tracking-tighter" : "text-xl font-bold text-dark-900 sm:text-2xl"}
+              style={isDark ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
             >
-              {isV5 ? (
+              {isV6 ? (
+                <>What makes Claritas&trade; CRM <span className="text-blue-600">different</span>?</>
+              ) : isDark ? (
                 <>What makes Claritas&trade; CRM <span className="text-blue-500">different</span>?</>
               ) : (
                 <>What makes Claritas&trade; CRM <span className="text-coral-500">different</span>?</>
@@ -289,8 +302,8 @@ export default function AboutPage() {
                 "Fast time to market with proven track record of implementation and flexibility to adapt to a variety of needs to deliver more value for money.",
                 "Established project management, implementation approach and governance methodology to ensure smooth execution of the project and ensure efficient and effective response to unforeseen changes in the implementation.",
               ].map((d, i) => (
-                <li key={i} className={`flex items-start gap-3 text-sm leading-relaxed ${isV5 ? "text-slate-400 font-light" : "text-gray-600"}`}>
-                  <span className={`mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full ${isV5 ? "bg-blue-500" : "bg-dark-900"}`} />
+                <li key={i} className={`flex items-start gap-3 text-sm leading-relaxed ${isV6 ? "text-zinc-600" : isDark ? "text-slate-400 font-light" : "text-gray-600"}`}>
+                  <span className={`mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full ${isV6 ? "bg-blue-600" : isDark ? "bg-blue-500" : "bg-dark-900"}`} />
                   {d}
                 </li>
               ))}
@@ -300,7 +313,7 @@ export default function AboutPage() {
       </section>
 
       {/* 360 View */}
-      <section className={isV5 ? "bg-[#0a1428] py-24 sm:py-32" : "bg-gray-50 py-16 sm:py-20"}>
+      <section className={isV6 ? "bg-zinc-50 py-20" : isDark ? "bg-[#0a1428] py-24 sm:py-32" : "bg-gray-50 py-16 sm:py-20"}>
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -308,12 +321,12 @@ export default function AboutPage() {
             viewport={{ once: true }}
           >
             <h2
-              className={isV5 ? "text-xl sm:text-2xl font-light text-blue-500 uppercase tracking-tighter" : "text-xl font-bold text-coral-500 uppercase sm:text-2xl"}
-              style={isV5 ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
+              className={isV6 ? "text-xl sm:text-2xl font-bold text-blue-600 uppercase tracking-tight" : isDark ? "text-xl sm:text-2xl font-light text-blue-500 uppercase tracking-tighter" : "text-xl font-bold text-coral-500 uppercase sm:text-2xl"}
+              style={isDark ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
             >
               Single 360-Degree View of Customer
             </h2>
-            <p className={`mt-4 text-base leading-relaxed ${isV5 ? "text-slate-400 font-light" : "text-gray-600"}`}>
+            <p className={`mt-4 text-base leading-relaxed ${isV6 ? "text-zinc-600" : isDark ? "text-slate-400 font-light" : "text-gray-600"}`}>
               Inadequate knowledge about a customer&apos;s information creates a shortfall when trying to serve the customer or close a deal. Claritas&trade; CRM enables a complete picture of every customer by integrating and consolidating all the key data that your organization holds on them in a single integrated CRM platform &ndash; creating a rich single 360-degree view of your customers&apos; profiles, product holdings, service subscriptions, open cases and opportunities, potential offers, service alerts, next best action (NBA) and interaction history, all in one place.
             </p>
           </motion.div>
@@ -321,10 +334,19 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className={isV5 ? "py-24 sm:py-32 bg-[#050b1a]" : "py-16 sm:py-20"}>
+      <section className={isV6 ? "py-20 bg-white" : isDark ? "py-24 sm:py-32 bg-[#0b1121]" : "py-16 sm:py-20"}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className={isV5 ? "text-center mb-16" : "text-center mb-12"}>
-            {isV5 ? (
+          <div className={isDark ? "text-center mb-16" : "text-center mb-12"}>
+            {isV6 ? (
+              <>
+                <span className="text-sm font-bold tracking-widest text-blue-600 uppercase">
+                  Our Values
+                </span>
+                <h2 className="mt-4 text-3xl md:text-5xl font-bold text-zinc-950 tracking-tight">
+                  What Drives Us
+                </h2>
+              </>
+            ) : isDark ? (
               <>
                 <span className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-500">
                   Our Values
@@ -342,7 +364,7 @@ export default function AboutPage() {
               </h2>
             )}
           </div>
-          <div className={`grid sm:grid-cols-2 lg:grid-cols-4 ${isV5 ? "gap-8" : "gap-6"}`}>
+          <div className={`grid sm:grid-cols-2 lg:grid-cols-4 ${isDark ? "gap-8" : "gap-6"}`}>
             {values.map((v, i) => (
               <motion.div
                 key={v.title}
@@ -351,18 +373,20 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 className={
-                  isV5
+                  isV6
+                    ? "rounded-2xl border border-zinc-200 bg-white p-6 text-center shadow-sm transition-all hover:shadow-md hover:-translate-y-1"
+                    : isDark
                     ? "border border-white/[0.06] bg-transparent p-8 text-center transition-all hover:border-white/[0.12] hover:-translate-y-1"
                     : "rounded-2xl border border-gray-200 bg-white p-6 text-center shadow-[0_8px_30px_-8px_rgba(0,0,0,0.08)] transition-all hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] hover:-translate-y-1"
                 }
               >
-                <div className={`mx-auto flex h-12 w-12 items-center justify-center ${isV5 ? "bg-blue-500/10 text-blue-400" : "rounded-full bg-coral-50 text-coral-500"}`}>
+                <div className={`mx-auto flex h-12 w-12 items-center justify-center ${isV6 ? "rounded-full bg-blue-50 text-blue-600" : isDark ? "bg-blue-500/10 text-blue-400" : "rounded-full bg-coral-50 text-coral-500"}`}>
                   <v.icon className="h-6 w-6" />
                 </div>
-                <h3 className={`mt-4 text-base font-bold ${isV5 ? "text-white" : "text-dark-900"}`}>
+                <h3 className={`mt-4 text-base font-bold ${isV6 ? "text-zinc-950" : isDark ? "text-white" : "text-dark-900"}`}>
                   {v.title}
                 </h3>
-                <p className={`mt-2 text-sm leading-relaxed ${isV5 ? "text-slate-400 font-light" : "text-gray-500"}`}>
+                <p className={`mt-2 text-sm leading-relaxed ${isV6 ? "text-zinc-600" : isDark ? "text-slate-400 font-light" : "text-gray-500"}`}>
                   {v.desc}
                 </p>
               </motion.div>
@@ -372,10 +396,19 @@ export default function AboutPage() {
       </section>
 
       {/* Timeline */}
-      <section className={isV5 ? "bg-[#0a1428] py-24 sm:py-32" : "bg-gray-50 py-16 sm:py-20"} id="case-studies">
+      <section className={isV6 ? "bg-zinc-50 py-20" : isDark ? "bg-[#0a1428] py-24 sm:py-32" : "bg-gray-50 py-16 sm:py-20"} id="case-studies">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className={isV5 ? "text-center mb-16" : "text-center mb-12"}>
-            {isV5 ? (
+          <div className={isDark ? "text-center mb-16" : "text-center mb-12"}>
+            {isV6 ? (
+              <>
+                <span className="text-sm font-bold tracking-widest text-blue-600 uppercase">
+                  Timeline
+                </span>
+                <h2 className="mt-4 text-3xl md:text-5xl font-bold text-zinc-950 tracking-tight">
+                  Our Journey
+                </h2>
+              </>
+            ) : isDark ? (
               <>
                 <span className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-500">
                   Timeline
@@ -393,7 +426,7 @@ export default function AboutPage() {
               </h2>
             )}
           </div>
-          <div className={`grid sm:grid-cols-2 lg:grid-cols-3 ${isV5 ? "gap-8" : "gap-6"}`}>
+          <div className={`grid sm:grid-cols-2 lg:grid-cols-3 ${isDark ? "gap-8" : "gap-6"}`}>
             {timeline.map((t, i) => (
               <motion.div
                 key={t.year}
@@ -402,18 +435,20 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
                 className={
-                  isV5
+                  isV6
+                    ? "rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:shadow-md hover:-translate-y-1"
+                    : isDark
                     ? "border border-white/[0.06] bg-transparent p-8 transition-all hover:border-white/[0.12] hover:-translate-y-1"
                     : "rounded-2xl border border-gray-200 bg-white p-6 shadow-[0_8px_30px_-8px_rgba(0,0,0,0.08)] transition-all hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] hover:-translate-y-1"
                 }
               >
-                <span className={`text-2xl font-extrabold ${isV5 ? "text-blue-500" : "text-coral-500"}`}>
+                <span className={`text-2xl font-extrabold ${isV6 ? "text-blue-600" : isDark ? "text-blue-500" : "text-coral-500"}`}>
                   {t.year}
                 </span>
-                <h3 className={`mt-2 text-base font-bold ${isV5 ? "text-white" : "text-dark-900"}`}>
+                <h3 className={`mt-2 text-base font-bold ${isV6 ? "text-zinc-950" : isDark ? "text-white" : "text-dark-900"}`}>
                   {t.title}
                 </h3>
-                <p className={`mt-2 text-sm ${isV5 ? "text-slate-400 font-light" : "text-gray-500"}`}>{t.desc}</p>
+                <p className={`mt-2 text-sm ${isV6 ? "text-zinc-600" : isDark ? "text-slate-400 font-light" : "text-gray-500"}`}>{t.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -421,31 +456,35 @@ export default function AboutPage() {
       </section>
 
       {/* Fintech CTA */}
-      <section className={isV5 ? "py-24 sm:py-32 bg-[#050b1a]" : "py-16 sm:py-20"}>
+      <section className={isV6 ? "py-20 bg-white border-t border-zinc-200" : isDark ? "py-24 sm:py-32 bg-[#0b1121]" : "py-16 sm:py-20"}>
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <h2
-            className={isV5 ? "text-2xl sm:text-3xl font-light text-white tracking-tighter" : "text-2xl font-bold text-dark-900 sm:text-3xl"}
-            style={isV5 ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
+            className={isV6 ? "text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight" : isDark ? "text-2xl sm:text-3xl font-light text-white tracking-tighter" : "text-2xl font-bold text-dark-900 sm:text-3xl"}
+            style={isDark ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
           >
-            {isV5 ? (
+            {isV6 ? (
+              <>CRM for <span className="text-blue-600">Banking & Financial Services</span></>
+            ) : isDark ? (
               <>CRM for <span className="text-blue-500">Banking & Financial Services</span></>
             ) : (
               <>CRM for <span className="text-coral-500">Banking & Financial Services</span></>
             )}
           </h2>
-          <p className={`mt-4 text-base ${isV5 ? "text-slate-500 font-light" : "text-gray-500"}`}>
+          <p className={`mt-4 text-base ${isV6 ? "text-zinc-500" : isDark ? "text-slate-500 font-light" : "text-gray-500"}`}>
             Looking for a flexible and customizable CRM solution suited to banking and financial services?
           </p>
           <Link
             href="/solutions/fintech"
             className={
-              isV5
-                ? "mt-8 inline-flex items-center gap-3 px-12 py-5 bg-white text-[#050b1a] font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-blue-600 hover:text-white transition-all duration-500"
+              isV6
+                ? "mt-8 inline-flex items-center gap-2 rounded-full bg-zinc-950 px-8 py-3 text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-zinc-800 hover:shadow-lg"
+                : isDark
+                ? "mt-8 inline-flex items-center gap-3 px-12 py-5 bg-white text-[#0b1121] font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-blue-600 hover:text-white transition-all duration-500"
                 : "mt-6 inline-flex items-center gap-2 rounded-full bg-coral-500 px-8 py-3 text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-coral-600 hover:shadow-lg hover:shadow-coral-500/25"
             }
           >
             VIEW FINTECH SOLUTION
-            <ArrowRight className={isV5 ? "h-3.5 w-3.5" : "h-4 w-4"} />
+            <ArrowRight className={isDark ? "h-3.5 w-3.5" : "h-4 w-4"} />
           </Link>
         </div>
       </section>

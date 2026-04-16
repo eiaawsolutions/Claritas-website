@@ -38,30 +38,32 @@ const pillars = [
 export default function FrameworkPage() {
   const { version } = useDesignVersion();
   const isV5 = version === "v5";
+  const isV7 = version === "v7";
+  const isDark = isV5 || isV7;
 
   return (
     <SubpageShell
       badge="Technical Architecture"
-      title={isV5 ? "Claritas Framework" : "CLARITAS FRAMEWORK"}
+      title={isDark ? "Claritas Framework" : "CLARITAS FRAMEWORK"}
       subtitle="On-demand access to your data: Seamless — Secure — Reliable"
       description="Claritas™ provides hosted applications and data storage with flexible, scalable management of operating expenses aligned to your company's growth. Built on proven Microsoft technologies, the platform delivers enterprise-grade reliability with cloud-native agility."
-      ctaTitle={isV5 ? "See it in action" : "See it in action"}
+      ctaTitle={isDark ? "See it in action" : "See it in action"}
       ctaDescription="Request a demo to experience the Claritas framework firsthand."
       ctaPrimary={{ label: "REQUEST A DEMO", href: "/contact?demo=true" }}
     >
       {/* Tech Stack */}
-      <div className={isV5 ? "mb-20" : "mb-16"}>
+      <div className={isDark ? "mb-20" : "mb-16"}>
         <h2
           className={
             isV5
               ? "text-center text-3xl md:text-5xl font-light text-white tracking-tighter mb-16"
               : "text-center text-2xl font-bold text-dark-900 sm:text-3xl"
           }
-          style={isV5 ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
+          style={isDark ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
         >
-          {isV5 ? "Technology Stack" : <>TECHNOLOGY <span className="text-coral-500">STACK</span></>}
+          {isDark ? "Technology Stack" : <>TECHNOLOGY <span className="text-coral-500">STACK</span></>}
         </h2>
-        <div className={isV5 ? "mt-10 space-y-3 max-w-4xl mx-auto" : "mt-10 space-y-3 max-w-4xl mx-auto"}>
+        <div className={isDark ? "mt-10 space-y-3 max-w-4xl mx-auto" : "mt-10 space-y-3 max-w-4xl mx-auto"}>
           {techStack.map((t) => (
             <div
               key={t.label}
@@ -71,10 +73,10 @@ export default function FrameworkPage() {
                   : "flex items-start gap-4 rounded-xl border border-gray-200 bg-white p-4 shadow-sm"
               }
             >
-              <span className={isV5 ? "mt-0.5 text-blue-500 font-bold text-sm" : "mt-0.5 text-coral-500 font-bold text-sm"}>&#9658;</span>
+              <span className={isDark ? "mt-0.5 text-blue-500 font-bold text-sm" : "mt-0.5 text-coral-500 font-bold text-sm"}>&#9658;</span>
               <div>
-                <h3 className={isV5 ? "text-sm font-semibold text-white" : "text-sm font-bold text-dark-900"}>{t.label}</h3>
-                <p className={isV5 ? "mt-1 text-sm text-slate-400 font-light" : "mt-1 text-sm text-gray-500"}>{t.desc}</p>
+                <h3 className={isDark ? "text-sm font-semibold text-white" : "text-sm font-bold text-dark-900"}>{t.label}</h3>
+                <p className={isDark ? "mt-1 text-sm text-slate-400 font-light" : "mt-1 text-sm text-gray-500"}>{t.desc}</p>
               </div>
             </div>
           ))}
@@ -89,11 +91,11 @@ export default function FrameworkPage() {
               ? "text-center text-3xl md:text-5xl font-light text-white tracking-tighter mb-16"
               : "text-center text-2xl font-bold text-dark-900 sm:text-3xl"
           }
-          style={isV5 ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
+          style={isDark ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
         >
-          {isV5 ? "Architecture Pillars" : <>ARCHITECTURE <span className="text-coral-500">PILLARS</span></>}
+          {isDark ? "Architecture Pillars" : <>ARCHITECTURE <span className="text-coral-500">PILLARS</span></>}
         </h2>
-        <div className={isV5 ? "mt-16 grid gap-6 sm:grid-cols-2" : "mt-12 grid gap-4 sm:gap-6 sm:grid-cols-2"}>
+        <div className={isDark ? "mt-16 grid gap-6 sm:grid-cols-2" : "mt-12 grid gap-4 sm:gap-6 sm:grid-cols-2"}>
           {pillars.map((p) => (
             <div
               key={p.title}
@@ -112,10 +114,10 @@ export default function FrameworkPage() {
               >
                 <p.icon className="h-5 w-5" />
               </div>
-              <h3 className={isV5 ? "mt-4 text-base font-semibold text-white" : "mt-4 text-base font-bold text-dark-900"}>
+              <h3 className={isDark ? "mt-4 text-base font-semibold text-white" : "mt-4 text-base font-bold text-dark-900"}>
                 {p.title}
               </h3>
-              <p className={isV5 ? "mt-2 text-sm leading-relaxed text-slate-400 font-light" : "mt-2 text-sm leading-relaxed text-gray-500"}>
+              <p className={isDark ? "mt-2 text-sm leading-relaxed text-slate-400 font-light" : "mt-2 text-sm leading-relaxed text-gray-500"}>
                 {p.desc}
               </p>
             </div>

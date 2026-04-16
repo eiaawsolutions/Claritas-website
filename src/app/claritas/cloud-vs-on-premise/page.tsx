@@ -22,19 +22,21 @@ const comparisons = [
 export default function CloudVsOnPremisePage() {
   const { version } = useDesignVersion();
   const isV5 = version === "v5";
+  const isV7 = version === "v7";
+  const isDark = isV5 || isV7;
 
   return (
     <SubpageShell
       badge="Deployment Options"
-      title={isV5 ? "Cloud vs On-Premise" : "CLOUD VS ON-PREMISE"}
+      title={isDark ? "Cloud vs On-Premise" : "CLOUD VS ON-PREMISE"}
       description="Claritas™ CRM offers two deployment models to suit your organisation's needs. Choose cloud for fast deployment and low cost, or on-premise for maximum control and customisation. Both deliver the same powerful CRM capabilities."
-      ctaTitle={isV5 ? "Not sure which is right for you?" : "Not sure which is right for you?"}
+      ctaTitle={isDark ? "Not sure which is right for you?" : "Not sure which is right for you?"}
       ctaDescription="Our team can help you evaluate the best deployment option for your organisation."
       ctaPrimary={{ label: "TALK TO SALES", href: "/contact" }}
       ctaSecondary={{ label: "SEE PRICING", href: "/pricing" }}
     >
       {/* Two deployment cards */}
-      <div className={isV5 ? "grid gap-6 sm:grid-cols-2 mb-20" : "grid gap-6 sm:grid-cols-2 mb-16"}>
+      <div className={isDark ? "grid gap-6 sm:grid-cols-2 mb-20" : "grid gap-6 sm:grid-cols-2 mb-16"}>
         <div
           className={
             isV5
@@ -51,13 +53,13 @@ export default function CloudVsOnPremisePage() {
           >
             <Cloud className="h-6 w-6" />
           </div>
-          <h2 className={isV5 ? "mt-4 text-xl font-semibold text-white" : "mt-4 text-xl font-extrabold text-dark-900"}>
+          <h2 className={isDark ? "mt-4 text-xl font-semibold text-white" : "mt-4 text-xl font-extrabold text-dark-900"}>
             On-Demand (Cloud)
           </h2>
-          <p className={isV5 ? "mt-1 text-sm font-medium text-blue-400" : "mt-1 text-sm font-medium text-coral-500"}>
+          <p className={isDark ? "mt-1 text-sm font-medium text-blue-400" : "mt-1 text-sm font-medium text-coral-500"}>
             Recommended
           </p>
-          <p className={isV5 ? "mt-4 text-sm leading-relaxed text-slate-400 font-light" : "mt-4 text-sm leading-relaxed text-gray-500"}>
+          <p className={isDark ? "mt-4 text-sm leading-relaxed text-slate-400 font-light" : "mt-4 text-sm leading-relaxed text-gray-500"}>
             Accelerate CRM implementation with Claritas&trade; Cloud Edition — fast and affordable.
             Low upfront costs with predictable monthly fees. Internet-based hosting enables access to
             customer information from any location, any device. Always on the latest version with automatic
@@ -80,13 +82,13 @@ export default function CloudVsOnPremisePage() {
           >
             <Server className="h-6 w-6" />
           </div>
-          <h2 className={isV5 ? "mt-4 text-xl font-semibold text-white" : "mt-4 text-xl font-extrabold text-dark-900"}>
+          <h2 className={isDark ? "mt-4 text-xl font-semibold text-white" : "mt-4 text-xl font-extrabold text-dark-900"}>
             On-Premise
           </h2>
-          <p className={isV5 ? "mt-1 text-sm font-medium text-slate-500" : "mt-1 text-sm font-medium text-gray-400"}>
+          <p className={isDark ? "mt-1 text-sm font-medium text-slate-500" : "mt-1 text-sm font-medium text-gray-400"}>
             Enterprise plan
           </p>
-          <p className={isV5 ? "mt-4 text-sm leading-relaxed text-slate-400 font-light" : "mt-4 text-sm leading-relaxed text-gray-500"}>
+          <p className={isDark ? "mt-4 text-sm leading-relaxed text-slate-400 font-light" : "mt-4 text-sm leading-relaxed text-gray-500"}>
             Suited for organisations needing extensive customisation or tight integration with existing
             on-site systems. This model provides maximum control and security on your system. Data stays
             on your servers, managed by your IT team. Available exclusively on the Enterprise plan.
@@ -102,9 +104,9 @@ export default function CloudVsOnPremisePage() {
               ? "text-center text-3xl md:text-5xl font-light text-white tracking-tighter mb-16"
               : "text-center text-2xl font-bold text-dark-900 sm:text-3xl"
           }
-          style={isV5 ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
+          style={isDark ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
         >
-          {isV5 ? "Side-by-Side Comparison" : <>SIDE-BY-SIDE <span className="text-coral-500">COMPARISON</span></>}
+          {isDark ? "Side-by-Side Comparison" : <>SIDE-BY-SIDE <span className="text-coral-500">COMPARISON</span></>}
         </h2>
         <div
           className={
@@ -121,13 +123,13 @@ export default function CloudVsOnPremisePage() {
                 : "grid grid-cols-3 border-b border-gray-200 bg-dark-900 text-white"
             }
           >
-            <div className={isV5 ? "px-4 py-3 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400" : "px-4 py-3 text-xs font-bold uppercase tracking-wider"}>
+            <div className={isDark ? "px-4 py-3 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400" : "px-4 py-3 text-xs font-bold uppercase tracking-wider"}>
               Criteria
             </div>
-            <div className={isV5 ? "px-4 py-3 text-[10px] font-black uppercase tracking-[0.3em] text-blue-500" : "px-4 py-3 text-xs font-bold uppercase tracking-wider text-coral-400"}>
+            <div className={isDark ? "px-4 py-3 text-[10px] font-black uppercase tracking-[0.3em] text-blue-500" : "px-4 py-3 text-xs font-bold uppercase tracking-wider text-coral-400"}>
               Cloud
             </div>
-            <div className={isV5 ? "px-4 py-3 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400" : "px-4 py-3 text-xs font-bold uppercase tracking-wider"}>
+            <div className={isDark ? "px-4 py-3 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400" : "px-4 py-3 text-xs font-bold uppercase tracking-wider"}>
               On-Premise
             </div>
           </div>
@@ -141,13 +143,13 @@ export default function CloudVsOnPremisePage() {
                   : `grid grid-cols-3 border-b border-gray-100 last:border-0 ${i % 2 === 0 ? "bg-white" : "bg-gray-50"}`
               }
             >
-              <div className={isV5 ? "px-4 py-3 text-xs font-semibold text-white" : "px-4 py-3 text-xs font-semibold text-dark-900"}>
+              <div className={isDark ? "px-4 py-3 text-xs font-semibold text-white" : "px-4 py-3 text-xs font-semibold text-dark-900"}>
                 {row.criteria}
               </div>
-              <div className={isV5 ? "px-4 py-3 text-xs text-slate-400 font-light" : "px-4 py-3 text-xs text-gray-600"}>
+              <div className={isDark ? "px-4 py-3 text-xs text-slate-400 font-light" : "px-4 py-3 text-xs text-gray-600"}>
                 {row.cloud}
               </div>
-              <div className={isV5 ? "px-4 py-3 text-xs text-slate-400 font-light" : "px-4 py-3 text-xs text-gray-600"}>
+              <div className={isDark ? "px-4 py-3 text-xs text-slate-400 font-light" : "px-4 py-3 text-xs text-gray-600"}>
                 {row.onPrem}
               </div>
             </div>

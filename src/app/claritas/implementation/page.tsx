@@ -56,31 +56,33 @@ const fourPs = [
 export default function ImplementationPage() {
   const { version } = useDesignVersion();
   const isV5 = version === "v5";
+  const isV7 = version === "v7";
+  const isDark = isV5 || isV7;
 
   return (
     <SubpageShell
       badge="Implementation"
-      title={isV5 ? "CRM Implementation" : "CRM IMPLEMENTATION"}
+      title={isDark ? "CRM Implementation" : "CRM IMPLEMENTATION"}
       subtitle="The adoption of CRM is not an overnight implementation"
       description="CRM is a journey, not an instantaneous transformation. Companies often expect significant results within the first month — but lasting success comes from a structured, phased approach. Here is the maturity path most organisations follow."
-      ctaTitle={isV5 ? "Start your CRM journey today" : "Start your CRM journey today"}
+      ctaTitle={isDark ? "Start your CRM journey today" : "Start your CRM journey today"}
       ctaDescription="Our consultants guide you through every stage — from planning to optimisation."
       ctaPrimary={{ label: "REQUEST A DEMO", href: "/contact?demo=true" }}
       ctaSecondary={{ label: "READ SUCCESS STORIES", href: "/case-studies" }}
     >
       {/* Maturity Stages */}
-      <div className={isV5 ? "mb-20" : "mb-16"}>
+      <div className={isDark ? "mb-20" : "mb-16"}>
         <h2
           className={
             isV5
               ? "text-center text-3xl md:text-5xl font-light text-white tracking-tighter mb-16"
               : "text-center text-2xl font-bold text-dark-900 sm:text-3xl"
           }
-          style={isV5 ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
+          style={isDark ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
         >
-          {isV5 ? "CRM Maturity Journey" : <>CRM MATURITY <span className="text-coral-500">JOURNEY</span></>}
+          {isDark ? "CRM Maturity Journey" : <>CRM MATURITY <span className="text-coral-500">JOURNEY</span></>}
         </h2>
-        <div className={isV5 ? "space-y-4 max-w-4xl mx-auto" : "mt-12 space-y-4 max-w-4xl mx-auto"}>
+        <div className={isDark ? "space-y-4 max-w-4xl mx-auto" : "mt-12 space-y-4 max-w-4xl mx-auto"}>
           {stages.map((s) => (
             <div
               key={s.number}
@@ -100,10 +102,10 @@ export default function ImplementationPage() {
                 {s.number}
               </div>
               <div>
-                <h3 className={isV5 ? "text-base font-semibold text-white" : "text-base font-bold text-dark-900"}>
+                <h3 className={isDark ? "text-base font-semibold text-white" : "text-base font-bold text-dark-900"}>
                   {s.title}
                 </h3>
-                <p className={isV5 ? "mt-2 text-sm leading-relaxed text-slate-400 font-light" : "mt-2 text-sm leading-relaxed text-gray-500"}>
+                <p className={isDark ? "mt-2 text-sm leading-relaxed text-slate-400 font-light" : "mt-2 text-sm leading-relaxed text-gray-500"}>
                   {s.desc}
                 </p>
               </div>
@@ -120,14 +122,14 @@ export default function ImplementationPage() {
               ? "text-center text-3xl md:text-5xl font-light text-white tracking-tighter mb-6"
               : "text-center text-2xl font-bold text-dark-900 sm:text-3xl"
           }
-          style={isV5 ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
+          style={isDark ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
         >
-          {isV5 ? "The 4 P\u2019s of CRM Success" : <>THE 4 <span className="text-coral-500">P&apos;s</span> OF CRM SUCCESS</>}
+          {isDark ? "The 4 P\u2019s of CRM Success" : <>THE 4 <span className="text-coral-500">P&apos;s</span> OF CRM SUCCESS</>}
         </h2>
-        <p className={isV5 ? "mt-4 mx-auto max-w-2xl text-center text-sm text-slate-500 font-light mb-16" : "mt-4 mx-auto max-w-2xl text-center text-sm text-gray-500"}>
+        <p className={isDark ? "mt-4 mx-auto max-w-2xl text-center text-sm text-slate-500 font-light mb-16" : "mt-4 mx-auto max-w-2xl text-center text-sm text-gray-500"}>
           Four critical success factors determine whether your CRM implementation reaches its full potential.
         </p>
-        <div className={isV5 ? "mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4" : "mt-12 grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4"}>
+        <div className={isDark ? "mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4" : "mt-12 grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4"}>
           {fourPs.map((p) => (
             <div
               key={p.title}
@@ -137,13 +139,13 @@ export default function ImplementationPage() {
                   : "rounded-2xl border border-gray-200 bg-white p-5 sm:p-6 text-center shadow-[0_8px_30px_-8px_rgba(0,0,0,0.08)] transition-all hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] hover:-translate-y-1"
               }
             >
-              <span className={isV5 ? "text-4xl font-bold text-blue-500" : "text-4xl font-extrabold text-coral-500"}>
+              <span className={isDark ? "text-4xl font-bold text-blue-500" : "text-4xl font-extrabold text-coral-500"}>
                 {p.letter}
               </span>
-              <h3 className={isV5 ? "mt-2 text-base font-semibold text-white" : "mt-2 text-base font-bold text-dark-900"}>
+              <h3 className={isDark ? "mt-2 text-base font-semibold text-white" : "mt-2 text-base font-bold text-dark-900"}>
                 {p.title}
               </h3>
-              <p className={isV5 ? "mt-3 text-xs leading-relaxed text-slate-400 font-light" : "mt-3 text-xs leading-relaxed text-gray-500"}>
+              <p className={isDark ? "mt-3 text-xs leading-relaxed text-slate-400 font-light" : "mt-3 text-xs leading-relaxed text-gray-500"}>
                 {p.desc}
               </p>
             </div>

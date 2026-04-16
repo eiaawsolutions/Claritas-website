@@ -8,14 +8,19 @@ import { useDesignVersion } from "@/config/design-context";
 export default function ContactPage() {
   const { version } = useDesignVersion();
   const isV5 = version === "v5";
+  const isV6 = version === "v6";
+  const isV7 = version === "v7";
+  const isDark = isV5 || isV7;
 
   const [form, setForm] = useState({ email: "", name: "", phone: "", subject: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
-  const inputClass = isV5
-    ? "bg-white/[0.03] border border-white/[0.06] px-4 py-3 text-sm text-white placeholder:text-slate-600 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-    : "rounded-lg border border-dark-600 bg-dark-800 px-4 py-3 text-sm text-white placeholder:text-gray-500 focus:border-coral-500 focus:outline-none focus:ring-1 focus:ring-coral-500";
+  const inputClass = isV6
+    ? "bg-white border border-zinc-200 rounded-lg px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+    : isV5
+      ? "bg-white/[0.03] border border-white/[0.06] px-4 py-3 text-sm text-white placeholder:text-slate-600 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+      : "rounded-lg border border-dark-600 bg-dark-800 px-4 py-3 text-sm text-white placeholder:text-gray-500 focus:border-coral-500 focus:outline-none focus:ring-1 focus:ring-coral-500";
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -51,16 +56,23 @@ export default function ContactPage() {
   return (
     <>
       {/* Hero */}
-      <section className={`relative overflow-hidden pt-16 ${isV5 ? "bg-[#050b1a]" : "bg-gray-50"}`}>
-        {isV5 && <div className="absolute inset-0 bg-gradient-to-b from-[#050b1a] via-[#0a1428] to-[#050b1a]" />}
-        <div className={`mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative ${isV5 ? "py-20 sm:py-28" : "py-16 sm:py-24"}`}>
+      <section className={`relative overflow-hidden pt-16 ${isV6 ? "bg-zinc-950" : isDark ? "bg-[#0b1121]" : "bg-gray-50"}`}>
+        {isDark && <div className="absolute inset-0 bg-gradient-to-b from-[#0b1121] via-[#0f1729] to-[#0b1121]" />}
+        {isV6 && (
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
+        )}
+        <div className={`mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative ${isV6 ? "py-20 sm:py-28" : isDark ? "py-20 sm:py-28" : "py-16 sm:py-24"}`}>
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: isV5 ? 0.6 : 0.5 }}
+            transition={{ duration: isV6 ? 0.5 : isDark ? 0.6 : 0.5 }}
             className="text-center"
           >
-            {isV5 ? (
+            {isV6 ? (
+              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-semibold tracking-wide uppercase">
+                Get in Touch
+              </span>
+            ) : isDark ? (
               <div className="flex items-center justify-center gap-4 mb-10">
                 <motion.div
                   initial={{ width: 0 }}
@@ -85,19 +97,23 @@ export default function ContactPage() {
             )}
             <h1
               className={
-                isV5
-                  ? "text-4xl md:text-6xl font-light text-white leading-[0.95] tracking-tighter"
-                  : "mt-6 text-3xl font-extrabold tracking-tight text-dark-900 sm:text-4xl lg:text-5xl"
+                isV6
+                  ? "mt-6 text-3xl md:text-5xl font-bold text-white tracking-tight"
+                  : isV5
+                    ? "text-4xl md:text-6xl font-light text-white leading-[0.95] tracking-tighter"
+                    : "mt-6 text-3xl font-extrabold tracking-tight text-dark-900 sm:text-4xl lg:text-5xl"
               }
-              style={isV5 ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
+              style={isDark ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
             >
-              {isV5 ? (
+              {isV6 ? (
+                <><span className="text-blue-400">Contact</span> Us</>
+              ) : isDark ? (
                 <><span className="text-blue-500">Contact</span> Us</>
               ) : (
                 <><span className="text-coral-500">CONTACT</span> US</>
               )}
             </h1>
-            <p className={`mx-auto mt-4 max-w-xl text-base ${isV5 ? "text-slate-500 font-light" : "text-gray-500"}`}>
+            <p className={`mx-auto mt-4 max-w-xl text-base ${isV6 ? "text-zinc-400 font-light" : isDark ? "text-slate-500 font-light" : "text-gray-500"}`}>
               Whether you&apos;re looking for a demo, pricing, or just want to learn more — we&apos;d love to hear from you.
             </p>
           </motion.div>
@@ -105,9 +121,9 @@ export default function ContactPage() {
       </section>
 
       {/* Form + Info */}
-      <section className={isV5 ? "bg-[#050b1a] py-20 sm:py-28" : "bg-dark-900 py-16 sm:py-20"}>
+      <section className={isV6 ? "bg-zinc-50 py-20" : isDark ? "bg-[#0b1121] py-20 sm:py-28" : "bg-dark-900 py-16 sm:py-20"}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className={`grid lg:grid-cols-2 ${isV5 ? "gap-16" : "gap-10 lg:gap-16"}`}>
+          <div className={`grid lg:grid-cols-2 ${isV6 ? "gap-16" : isDark ? "gap-16" : "gap-10 lg:gap-16"}`}>
             {/* Form */}
             <motion.div
               initial={{ opacity: 0, x: -16 }}
@@ -119,22 +135,26 @@ export default function ContactPage() {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   className={
-                    isV5
-                      ? "flex flex-col items-center justify-center border border-green-500/30 bg-green-500/10 px-6 py-16 text-center"
-                      : "flex flex-col items-center justify-center rounded-2xl border border-green-500/30 bg-green-500/10 px-6 py-16 text-center"
+                    isV6
+                      ? "flex flex-col items-center justify-center rounded-2xl border border-blue-200 bg-blue-50 px-6 py-16 text-center"
+                      : isV5
+                        ? "flex flex-col items-center justify-center border border-green-500/30 bg-green-500/10 px-6 py-16 text-center"
+                        : "flex flex-col items-center justify-center rounded-2xl border border-green-500/30 bg-green-500/10 px-6 py-16 text-center"
                   }
                 >
-                  <CheckCircle2 className="h-12 w-12 text-green-400" />
-                  <h3 className="mt-4 text-lg font-bold text-white">Thank You!</h3>
-                  <p className={`mt-2 text-sm ${isV5 ? "text-slate-400" : "text-gray-400"}`}>
+                  <CheckCircle2 className={isV6 ? "h-12 w-12 text-blue-600" : "h-12 w-12 text-green-400"} />
+                  <h3 className={isV6 ? "mt-4 text-lg font-bold text-zinc-950" : "mt-4 text-lg font-bold text-white"}>Thank You!</h3>
+                  <p className={`mt-2 text-sm ${isV6 ? "text-zinc-500" : isDark ? "text-slate-400" : "text-gray-400"}`}>
                     Your enquiry has been sent to our sales team. We&apos;ll get back to you shortly!
                   </p>
                   <button
                     onClick={() => setStatus("idle")}
                     className={
-                      isV5
-                        ? "mt-6 border border-white/20 px-6 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-300 transition-colors hover:border-blue-500 hover:text-white"
-                        : "mt-6 rounded-full border border-gray-600 px-6 py-2 text-xs font-semibold uppercase tracking-wider text-gray-300 transition-colors hover:border-coral-500 hover:text-white"
+                      isV6
+                        ? "mt-6 bg-zinc-100 border border-zinc-200 rounded-full px-6 py-2 text-xs font-semibold text-zinc-600 transition-colors hover:bg-zinc-200"
+                        : isV5
+                          ? "mt-6 border border-white/20 px-6 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-300 transition-colors hover:border-blue-500 hover:text-white"
+                          : "mt-6 rounded-full border border-gray-600 px-6 py-2 text-xs font-semibold uppercase tracking-wider text-gray-300 transition-colors hover:border-coral-500 hover:text-white"
                     }
                   >
                     Send Another
@@ -201,9 +221,11 @@ export default function ContactPage() {
                     type="submit"
                     disabled={status === "sending"}
                     className={
-                      isV5
-                        ? "inline-flex items-center gap-2 px-12 py-5 bg-white text-[#050b1a] font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-blue-600 hover:text-white transition-all duration-500 disabled:opacity-60 disabled:cursor-not-allowed"
-                        : "inline-flex items-center gap-2 rounded-full bg-coral-500 px-10 py-3 text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-coral-600 hover:shadow-lg hover:shadow-coral-500/25 disabled:opacity-60 disabled:cursor-not-allowed"
+                      isV6
+                        ? "inline-flex items-center gap-2 bg-zinc-950 text-white rounded-full px-10 py-3 text-sm font-bold hover:bg-zinc-800 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                        : isV5
+                          ? "inline-flex items-center gap-2 px-12 py-5 bg-white text-[#0b1121] font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-blue-600 hover:text-white transition-all duration-500 disabled:opacity-60 disabled:cursor-not-allowed"
+                          : "inline-flex items-center gap-2 rounded-full bg-coral-500 px-10 py-3 text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-coral-600 hover:shadow-lg hover:shadow-coral-500/25 disabled:opacity-60 disabled:cursor-not-allowed"
                     }
                   >
                     {status === "sending" ? (
@@ -227,14 +249,14 @@ export default function ContactPage() {
               className="space-y-6"
             >
               <div className="flex items-start gap-4">
-                <div className={`flex h-10 w-10 shrink-0 items-center justify-center ${isV5 ? "bg-blue-500/10 text-blue-400" : "rounded-full bg-coral-500/20 text-coral-400"}`}>
+                <div className={`flex h-10 w-10 shrink-0 items-center justify-center ${isV6 ? "rounded-lg bg-blue-50 text-blue-600" : isDark ? "bg-blue-500/10 text-blue-400" : "rounded-full bg-coral-500/20 text-coral-400"}`}>
                   <MapPin className="h-5 w-5" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-semibold text-white">
+                  <h4 className={`text-sm font-semibold ${isV6 ? "text-zinc-950" : "text-white"}`}>
                     Head Office - Malaysia
                   </h4>
-                  <p className={`mt-1 text-sm leading-relaxed ${isV5 ? "text-slate-400" : "text-gray-400"}`}>
+                  <p className={`mt-1 text-sm leading-relaxed ${isV6 ? "text-zinc-500" : isDark ? "text-slate-400" : "text-gray-400"}`}>
                     9-7, Block A, Jaya One,
                     <br />
                     72A Jalan Prof Diraja,
@@ -248,38 +270,38 @@ export default function ContactPage() {
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <div className={`flex h-10 w-10 shrink-0 items-center justify-center ${isV5 ? "bg-blue-500/10 text-blue-400" : "rounded-full bg-coral-500/20 text-coral-400"}`}>
+                <div className={`flex h-10 w-10 shrink-0 items-center justify-center ${isV6 ? "rounded-lg bg-blue-50 text-blue-600" : isDark ? "bg-blue-500/10 text-blue-400" : "rounded-full bg-coral-500/20 text-coral-400"}`}>
                   <Phone className="h-5 w-5" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-semibold text-white">
+                  <h4 className={`text-sm font-semibold ${isV6 ? "text-zinc-950" : "text-white"}`}>
                     Sales Hotline:
                   </h4>
-                  <p className={`mt-1 text-sm ${isV5 ? "text-slate-400" : "text-gray-400"}`}>03-7613 4824</p>
+                  <p className={`mt-1 text-sm ${isV6 ? "text-zinc-500" : isDark ? "text-slate-400" : "text-gray-400"}`}>03-7613 4824</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <div className={`flex h-10 w-10 shrink-0 items-center justify-center ${isV5 ? "bg-blue-500/10 text-blue-400" : "rounded-full bg-coral-500/20 text-coral-400"}`}>
+                <div className={`flex h-10 w-10 shrink-0 items-center justify-center ${isV6 ? "rounded-lg bg-blue-50 text-blue-600" : isDark ? "bg-blue-500/10 text-blue-400" : "rounded-full bg-coral-500/20 text-coral-400"}`}>
                   <Mail className="h-5 w-5" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-semibold text-white">
+                  <h4 className={`text-sm font-semibold ${isV6 ? "text-zinc-950" : "text-white"}`}>
                     Sales Enquiry:
                   </h4>
-                  <p className={`mt-1 text-sm ${isV5 ? "text-slate-400" : "text-gray-400"}`}>
+                  <p className={`mt-1 text-sm ${isV6 ? "text-zinc-500" : isDark ? "text-slate-400" : "text-gray-400"}`}>
                     sales@claritascrm.com
                   </p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <div className={`flex h-10 w-10 shrink-0 items-center justify-center ${isV5 ? "bg-blue-500/10 text-blue-400" : "rounded-full bg-coral-500/20 text-coral-400"}`}>
+                <div className={`flex h-10 w-10 shrink-0 items-center justify-center ${isV6 ? "rounded-lg bg-blue-50 text-blue-600" : isDark ? "bg-blue-500/10 text-blue-400" : "rounded-full bg-coral-500/20 text-coral-400"}`}>
                   <Clock className="h-5 w-5" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-semibold text-white">
+                  <h4 className={`text-sm font-semibold ${isV6 ? "text-zinc-950" : "text-white"}`}>
                     Business Hours:
                   </h4>
-                  <p className={`mt-1 text-sm ${isV5 ? "text-slate-400" : "text-gray-400"}`}>
+                  <p className={`mt-1 text-sm ${isV6 ? "text-zinc-500" : isDark ? "text-slate-400" : "text-gray-400"}`}>
                     Mon — Fri, 9AM — 6PM MYT
                   </p>
                 </div>

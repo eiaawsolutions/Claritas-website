@@ -35,6 +35,75 @@ export function SubpageShell({
 }: SubpageShellProps) {
   const { version } = useDesignVersion();
 
+  if (version === "v8") {
+    return (
+      <>
+        {/* Hero */}
+        <section className="relative bg-luxury-cream pt-20 overflow-hidden">
+          <div className="max-w-[1800px] mx-auto px-8 md:px-16 py-20 sm:py-28 relative">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="max-w-3xl"
+            >
+              <span className="text-[11px] uppercase tracking-[0.4em] text-luxury-gold font-semibold mb-8 block">
+                {badge}
+              </span>
+              <h1
+                className="text-4xl md:text-6xl text-luxury-ink leading-[0.95] tracking-tighter"
+                style={{ fontFamily: 'var(--font-playfair), "Playfair Display", serif' }}
+              >
+                {title}
+              </h1>
+              {subtitle && (
+                <p className="mt-6 text-xl text-luxury-ink/60 italic" style={{ fontFamily: 'var(--font-playfair), "Playfair Display", serif' }}>
+                  {subtitle}
+                </p>
+              )}
+              {description && (
+                <p className="mt-6 text-base leading-relaxed text-luxury-ink/50 max-w-2xl">
+                  {description}
+                </p>
+              )}
+            </motion.div>
+          </div>
+        </section>
+
+        <section className="py-20 sm:py-28 bg-luxury-cream">
+          <div className="max-w-[1800px] mx-auto px-8 md:px-16">{children}</div>
+        </section>
+
+        {ctaTitle && (
+          <section className="bg-luxury-ink py-32">
+            <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+              <h2
+                className="text-4xl md:text-6xl text-luxury-cream tracking-tighter"
+                style={{ fontFamily: 'var(--font-playfair), "Playfair Display", serif' }}
+              >
+                {ctaTitle}
+              </h2>
+              {ctaDescription && <p className="mt-6 text-lg text-luxury-cream/50">{ctaDescription}</p>}
+              <div className="mt-12 flex flex-col items-center justify-center gap-6 sm:flex-row">
+                {ctaPrimary && (
+                  <Link href={ctaPrimary.href} className="group flex items-center gap-2 bg-luxury-cream text-luxury-ink px-12 py-5 text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-luxury-gold hover:text-white transition-all duration-500">
+                    {ctaPrimary.label}
+                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                )}
+                {ctaSecondary && (
+                  <Link href={ctaSecondary.href} className="border border-luxury-cream/20 text-luxury-cream px-12 py-5 text-[11px] font-bold uppercase tracking-[0.2em] hover:border-luxury-gold hover:text-luxury-gold transition-all duration-500">
+                    {ctaSecondary.label}
+                  </Link>
+                )}
+              </div>
+            </div>
+          </section>
+        )}
+      </>
+    );
+  }
+
   if (version === "v7") {
     return (
       <>
@@ -352,6 +421,21 @@ export function ContentCard({
 }) {
   const { version } = useDesignVersion();
 
+  if (version === "v8") {
+    return (
+      <div className="border border-luxury-ink/[0.06] bg-luxury-warm p-6 sm:p-10 transition-all hover:border-luxury-gold/20">
+        {number != null && (
+          <div className="flex items-center gap-4 mb-6">
+            <span className="text-luxury-gold font-bold text-sm" style={{ fontFamily: 'var(--font-playfair), "Playfair Display", serif' }}>{String(number).padStart(2, "0")}</span>
+            <div className="flex-1 h-px bg-luxury-ink/[0.06]" />
+          </div>
+        )}
+        <h3 className="text-xl text-luxury-ink" style={{ fontFamily: 'var(--font-playfair), "Playfair Display", serif' }}>{title}</h3>
+        <div className="mt-4 text-base leading-relaxed text-luxury-ink/60">{children}</div>
+      </div>
+    );
+  }
+
   if (version === "v7") {
     return (
       <div className="bg-white/[0.03] border border-white/[0.08] rounded-2xl p-6 sm:p-8 transition-all hover:bg-white/[0.05] hover:border-white/[0.12]">
@@ -434,6 +518,28 @@ export function SectionHeading({
 }) {
   const { version } = useDesignVersion();
 
+  if (version === "v8") {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        className="text-center mb-16"
+      >
+        {badge && (
+          <span className="text-[11px] uppercase tracking-[0.4em] text-luxury-gold font-semibold">{badge}</span>
+        )}
+        <h2
+          className="mt-4 text-4xl md:text-5xl text-luxury-ink tracking-tighter"
+          style={{ fontFamily: 'var(--font-playfair), "Playfair Display", serif' }}
+        >
+          {title}
+        </h2>
+      </motion.div>
+    );
+  }
+
   if (version === "v7") {
     return (
       <motion.div
@@ -447,6 +553,23 @@ export function SectionHeading({
           <span className="text-xs font-semibold tracking-[0.15em] text-blue-400/80 uppercase">{badge}</span>
         )}
         <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">{title}</h2>
+      </motion.div>
+    );
+  }
+
+  if (version === "v6") {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4 }}
+        className="text-center mb-14"
+      >
+        {badge && (
+          <span className="text-sm font-bold tracking-widest text-blue-600 uppercase">{badge}</span>
+        )}
+        <h2 className="mt-3 text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight">{title}</h2>
       </motion.div>
     );
   }

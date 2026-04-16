@@ -161,6 +161,15 @@ export function ContactSection() {
             <h2 className={`text-3xl font-bold ${s.heading} sm:text-4xl`}>
               <span className={s.headingAccent}>CONTACT</span> US
             </h2>
+          ) : version === "v8" ? (
+            <div>
+              <span className="text-[11px] uppercase tracking-[0.4em] text-luxury-gold font-semibold">
+                Get in Touch
+              </span>
+              <h2 className={`mt-4 text-3xl font-bold ${s.heading} sm:text-4xl`} style={{ fontFamily: 'var(--font-playfair, "Playfair Display", serif)' }}>
+                Let&apos;s <span className={s.headingAccent}>talk</span>
+              </h2>
+            </div>
           ) : version === "v7" ? (
             <div>
               <span className="text-xs font-semibold tracking-[0.15em] uppercase text-blue-400/60">

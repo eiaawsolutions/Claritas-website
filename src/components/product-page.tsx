@@ -34,6 +34,75 @@ export function ProductPage({
 }: ProductPageProps) {
   const { version } = useDesignVersion();
 
+  // ── V8: Atelier — Luxury editorial ──
+  if (version === "v8") {
+    return (
+      <>
+        <section className="relative bg-luxury-cream pt-20 overflow-hidden">
+          <div className="max-w-[1800px] mx-auto px-8 md:px-16 py-20 sm:py-28 relative">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="max-w-3xl"
+            >
+              <div className="flex items-center gap-4 mb-8">
+                <div className="flex h-11 w-11 items-center justify-center bg-luxury-gold/10 text-luxury-gold">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <span className="text-[11px] uppercase tracking-[0.4em] text-luxury-gold font-semibold">{category}</span>
+              </div>
+              <h1
+                className="text-4xl md:text-6xl text-luxury-ink leading-[0.95] tracking-tighter"
+                style={{ fontFamily: 'var(--font-playfair), "Playfair Display", serif' }}
+              >
+                {title}
+              </h1>
+              <p className="mt-4 text-xl text-luxury-ink/60 italic" style={{ fontFamily: 'var(--font-playfair), "Playfair Display", serif' }}>
+                {tagline}
+              </p>
+              <p className="mt-6 text-base leading-relaxed text-luxury-ink/50 max-w-2xl">{description}</p>
+              <div className="mt-10 flex flex-wrap gap-6">
+                <Link href="/contact?demo=true" className="group flex items-center gap-2 bg-luxury-ink text-luxury-cream px-8 py-3 text-[11px] uppercase tracking-[0.2em] font-semibold hover:bg-luxury-gold transition-colors duration-500">
+                  Request a Demo <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                </Link>
+                <Link href="/pricing" className="border border-luxury-ink/20 text-luxury-ink px-8 py-3 text-[11px] uppercase tracking-[0.2em] font-semibold hover:border-luxury-gold hover:text-luxury-gold transition-colors duration-500">
+                  See Pricing
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        <section className="py-20 sm:py-28 bg-luxury-cream">
+          <div className="max-w-[1800px] mx-auto px-8 md:px-16">
+            <div className="max-w-4xl mx-auto space-y-8">
+              {sections.map((section, i) => (
+                <motion.div
+                  key={section.title}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.5, delay: i * 0.05 }}
+                  className="border border-luxury-ink/[0.06] bg-luxury-warm p-6 sm:p-10 transition-all hover:border-luxury-gold/20"
+                >
+                  <div className="flex items-center gap-4 mb-6">
+                    <span className="text-luxury-gold font-bold text-sm" style={{ fontFamily: 'var(--font-playfair), "Playfair Display", serif' }}>{String(i + 1).padStart(2, "0")}</span>
+                    <div className="flex-1 h-px bg-luxury-ink/[0.06]" />
+                  </div>
+                  <h3 className="text-xl text-luxury-ink" style={{ fontFamily: 'var(--font-playfair), "Playfair Display", serif' }}>{section.title}</h3>
+                  <div className="mt-4 text-base leading-relaxed text-luxury-ink/60">
+                    {section.body}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </>
+    );
+  }
+
   // ── V7: Enterprise ──
   if (version === "v7") {
     return (
@@ -105,6 +174,76 @@ export function ProductPage({
               <Link href="/contact" className="border border-white/[0.12] rounded-lg px-8 py-3.5 text-sm font-medium text-white hover:border-white/30 transition-colors">
                 Contact Sales
               </Link>
+            </div>
+          </div>
+        </section>
+      </>
+    );
+  }
+
+  // ── V6: Precision — Light engineering with dark hero ──
+  if (version === "v6") {
+    return (
+      <>
+        <section className="relative bg-zinc-950 pt-24 overflow-hidden">
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[300px] w-[300px] rounded-full bg-blue-600 opacity-10 blur-[100px]" />
+          <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8 relative">
+            <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="max-w-3xl">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-300">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <span className="inline-flex items-center px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-semibold tracking-wide uppercase">{category}</span>
+              </div>
+              <h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight">{title}</h1>
+              <p className="mt-3 text-lg text-zinc-400 font-light italic">{tagline}</p>
+              <p className="mt-6 text-base leading-relaxed text-zinc-400 font-light max-w-2xl">{description}</p>
+              <div className="mt-10 flex flex-wrap gap-4">
+                <Link href="/contact?demo=true" className="group inline-flex items-center gap-2 bg-white text-zinc-950 rounded-full px-8 py-3.5 text-sm font-bold hover:bg-zinc-100 transition-colors">
+                  Request a Demo <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                </Link>
+                <Link href="/pricing" className="inline-flex items-center gap-2 border border-zinc-700 text-white rounded-full px-8 py-3.5 text-sm font-semibold hover:border-zinc-500 transition-colors">
+                  See Pricing
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        <section className="py-24 bg-zinc-50">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <div className="space-y-6">
+              {sections.map((section, i) => (
+                <motion.div key={section.title} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-40px" }} transition={{ duration: 0.4, delay: i * 0.05 }} className="bg-white border border-zinc-200 rounded-2xl p-6 sm:p-8 shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5">
+                  <div className="flex items-center gap-4 mb-4">
+                    <span className="text-blue-600 font-bold text-sm">{String(i + 1).padStart(2, "0")}</span>
+                    <div className="flex-1 h-px bg-zinc-200" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-zinc-950">{section.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-zinc-600">{section.body}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-white py-24 border-t border-zinc-200">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <div className="relative bg-zinc-950 rounded-[2rem] p-10 md:p-16 text-center overflow-hidden">
+              <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
+              <div className="relative">
+                <h2 className="text-3xl font-bold text-white tracking-tight">Ready to supercharge your <span className="text-blue-400">{category.toLowerCase()}</span>?</h2>
+                <p className="mt-4 text-zinc-400">Get started with a free 14-day trial. No credit card required.</p>
+                <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+                  <Link href="/contact?demo=true" className="group inline-flex items-center gap-2 bg-white text-zinc-950 rounded-full px-8 py-3.5 text-sm font-bold hover:bg-zinc-100 transition-colors">
+                    Start Free Trial <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                  </Link>
+                  <Link href="/contact" className="bg-zinc-800 text-white border border-zinc-700 rounded-full px-8 py-3.5 text-sm font-semibold hover:bg-zinc-700 transition-colors">
+                    Contact Sales
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </section>

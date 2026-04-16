@@ -72,7 +72,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-design="v8"
+      data-design="v7"
       className={`${poppins.variable} ${inter.variable} ${plusJakarta.variable} ${manrope.variable} ${playfair.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-[family-name:var(--font-inter)]">

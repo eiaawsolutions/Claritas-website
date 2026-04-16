@@ -206,21 +206,31 @@ const caseStudies: CaseStudy[] = [
 export default function CaseStudiesPage() {
   const { version } = useDesignVersion();
   const isV5 = version === "v5";
+  const isV6 = version === "v6";
+  const isV7 = version === "v7";
+  const isDark = isV5 || isV7;
   const [activeCaseStudy, setActiveCaseStudy] = useState<CaseStudy | null>(null);
 
   return (
     <>
       {/* Hero */}
-      <section className={`relative overflow-hidden pt-16 ${isV5 ? "bg-[#050b1a]" : "bg-gray-50"}`}>
-        {isV5 && <div className="absolute inset-0 bg-gradient-to-b from-[#050b1a] via-[#0a1428] to-[#050b1a]" />}
-        <div className={`mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative ${isV5 ? "py-20 sm:py-28" : "py-16 sm:py-24"}`}>
+      <section className={`relative overflow-hidden pt-16 ${isV6 ? "bg-zinc-950" : isDark ? "bg-[#0b1121]" : "bg-gray-50"}`}>
+        {isDark && <div className="absolute inset-0 bg-gradient-to-b from-[#0b1121] via-[#0f1729] to-[#0b1121]" />}
+        {isV6 && (
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
+        )}
+        <div className={`mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative ${isV6 || isDark ? "py-20 sm:py-28" : "py-16 sm:py-24"}`}>
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: isV5 ? 0.6 : 0.5 }}
+            transition={{ duration: isV6 ? 0.6 : isDark ? 0.6 : 0.5 }}
             className="max-w-3xl"
           >
-            {isV5 ? (
+            {isV6 ? (
+              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-semibold tracking-wide uppercase">
+                Case Studies
+              </span>
+            ) : isDark ? (
               <div className="flex items-center gap-4 mb-10">
                 <motion.div
                   initial={{ width: 0 }}
@@ -239,19 +249,23 @@ export default function CaseStudiesPage() {
             )}
             <h1
               className={
-                isV5
+                isV6
+                  ? "mt-6 text-3xl md:text-5xl font-bold text-white tracking-tight"
+                  : isV5
                   ? "text-4xl md:text-6xl font-light text-white leading-[0.95] tracking-tighter"
                   : "mt-6 text-2xl font-extrabold tracking-tight text-dark-900 sm:text-3xl md:text-4xl lg:text-5xl"
               }
-              style={isV5 ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
+              style={isDark ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
             >
-              {isV5 ? (
+              {isV6 ? (
+                <>Success <span className="text-blue-400">Stories</span></>
+              ) : isDark ? (
                 <>Success <span className="text-blue-500">Stories</span></>
               ) : (
                 <>SUCCESS <span className="text-coral-500">STORIES</span></>
               )}
             </h1>
-            <p className={`mt-4 text-base leading-relaxed ${isV5 ? "text-slate-500 font-light" : "text-gray-500"}`}>
+            <p className={`mt-4 text-base leading-relaxed ${isV6 ? "text-zinc-400 font-light" : isDark ? "text-slate-500 font-light" : "text-gray-500"}`}>
               Retaining customers to form a long-term customer relationship is the
               most important factor when it comes to implementing CRM solutions. We
               put what we embrace into practice, ensuring we deliver the ultimate
@@ -259,8 +273,8 @@ export default function CaseStudiesPage() {
               selected case studies that prove Claritas&trade; lived up to its
               expectation in optimizing our clients&apos; business value.
             </p>
-            <div className={`mt-6 flex items-center gap-4 text-sm ${isV5 ? "text-slate-500" : "text-gray-400"}`}>
-              <span className={`flex h-10 w-10 items-center justify-center text-sm font-bold text-white ${isV5 ? "bg-blue-500" : "rounded-full bg-coral-500"}`}>
+            <div className={`mt-6 flex items-center gap-4 text-sm ${isV6 ? "text-zinc-400" : isDark ? "text-slate-500" : "text-gray-400"}`}>
+              <span className={`flex h-10 w-10 items-center justify-center text-sm font-bold text-white ${isV6 ? "bg-blue-600 rounded-full" : isDark ? "bg-blue-500" : "rounded-full bg-coral-500"}`}>
                 50+
               </span>
               Successful customer stories across APAC
@@ -270,9 +284,9 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* Industry Grid */}
-      <section className={isV5 ? "bg-[#050b1a] py-20 sm:py-28" : "bg-gray-50 py-16 sm:py-20"}>
+      <section className={isV6 ? "bg-zinc-50 py-20" : isDark ? "bg-[#0b1121] py-20 sm:py-28" : "bg-gray-50 py-16 sm:py-20"}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className={isV5 ? "space-y-16" : "space-y-12"}>
+          <div className={isDark ? "space-y-16" : "space-y-12"}>
             {industries.map((industry, ii) => (
               <motion.div
                 key={industry.name}
@@ -282,7 +296,9 @@ export default function CaseStudiesPage() {
                 transition={{ duration: 0.4, delay: ii * 0.03 }}
               >
                 <h2 className={
-                  isV5
+                  isV6
+                    ? "text-sm font-bold tracking-widest text-blue-600 uppercase mb-5"
+                    : isV5
                     ? "mb-5 text-[10px] font-black uppercase tracking-[0.3em] text-blue-500"
                     : "mb-5 text-xs font-bold uppercase tracking-widest text-coral-500"
                 }>
@@ -294,7 +310,13 @@ export default function CaseStudiesPage() {
                     const inner = (
                       <div
                         className={
-                          isV5
+                          isV6
+                            ? `group flex h-24 flex-col items-center justify-center rounded-xl border bg-white px-4 py-3 text-center transition-all duration-300 ${
+                                hasCaseStudy
+                                  ? "border-blue-200 shadow-sm shadow-blue-500/5 cursor-pointer hover:shadow-blue-500/10 hover:-translate-y-2"
+                                  : "border-zinc-200 shadow-sm hover:shadow-md hover:-translate-y-1"
+                              }`
+                            : isV5
                             ? `group flex h-24 flex-col items-center justify-center border px-4 py-3 text-center transition-all duration-300 ${
                                 hasCaseStudy
                                   ? "border-blue-500/30 bg-transparent cursor-pointer hover:border-blue-500 hover:-translate-y-2"
@@ -313,15 +335,15 @@ export default function CaseStudiesPage() {
                             alt={client.name}
                             width={100}
                             height={40}
-                            className={`h-8 w-auto object-contain transition-opacity ${isV5 ? "opacity-50 group-hover:opacity-100 brightness-0 invert" : "opacity-70 group-hover:opacity-100"}`}
+                            className={`h-8 w-auto object-contain transition-opacity ${isV6 ? "opacity-70 group-hover:opacity-100" : isDark ? "opacity-50 group-hover:opacity-100 brightness-0 invert" : "opacity-70 group-hover:opacity-100"}`}
                           />
                         ) : (
-                          <span className={`text-sm font-bold transition-colors ${isV5 ? "text-slate-500 group-hover:text-white" : "text-dark-900/60 group-hover:text-dark-900"}`}>
+                          <span className={`text-sm font-bold transition-colors ${isV6 ? "text-zinc-600 group-hover:text-zinc-950" : isDark ? "text-slate-500 group-hover:text-white" : "text-dark-900/60 group-hover:text-dark-900"}`}>
                             {client.name}
                           </span>
                         )}
                         {hasCaseStudy && (
-                          <span className={`mt-1.5 text-[10px] font-semibold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity ${isV5 ? "text-blue-500" : "text-coral-500"}`}>
+                          <span className={`mt-1.5 text-[10px] font-semibold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity ${isV6 ? "text-blue-600" : isDark ? "text-blue-500" : "text-coral-500"}`}>
                             View Story
                           </span>
                         )}
@@ -354,39 +376,45 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* CTA */}
-      <section className={isV5 ? "bg-[#0a1428] py-24 sm:py-32" : "bg-gray-50 py-16 sm:py-20"}>
+      <section className={isV6 ? "bg-white border-t border-zinc-200 py-20" : isDark ? "bg-[#0f1729] py-24 sm:py-32" : "bg-gray-50 py-16 sm:py-20"}>
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <h2
-            className={isV5 ? "text-3xl md:text-5xl font-light text-white tracking-tighter" : "text-2xl font-extrabold text-dark-900 sm:text-3xl"}
-            style={isV5 ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
+            className={isV6 ? "text-3xl font-bold text-zinc-950 tracking-tight" : isDark ? "text-3xl md:text-5xl font-light text-white tracking-tighter" : "text-2xl font-extrabold text-dark-900 sm:text-3xl"}
+            style={isDark ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
           >
-            {isV5 ? (
+            {isV6 ? (
+              <>Ready to be our next <span className="text-blue-600">success story</span>?</>
+            ) : isDark ? (
               <>Ready to be our next <span className="text-blue-500">success story</span>?</>
             ) : (
               <>Ready to be our next{" "}<span className="text-coral-500">success story</span>?</>
             )}
           </h2>
-          <p className={`mt-4 text-base ${isV5 ? "text-slate-500 font-light" : "text-gray-500"}`}>
+          <p className={`mt-4 text-base ${isV6 ? "text-zinc-500" : isDark ? "text-slate-500 font-light" : "text-gray-500"}`}>
             Join 50+ companies across APAC who trust Claritas CRM. Get started
             with a free 14-day trial.
           </p>
-          <div className={`mt-8 flex flex-col items-center justify-center sm:flex-row ${isV5 ? "gap-6" : "gap-3"}`}>
+          <div className={`mt-8 flex flex-col items-center justify-center sm:flex-row ${isDark ? "gap-6" : "gap-3"}`}>
             <Link
               href="/contact?demo=true"
               className={
-                isV5
-                  ? "inline-flex items-center gap-3 px-12 py-5 bg-white text-[#050b1a] font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-blue-600 hover:text-white transition-all duration-500"
+                isV6
+                  ? "inline-flex items-center gap-2 rounded-full bg-zinc-950 px-8 py-3 text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-zinc-800 hover:shadow-lg"
+                  : isV5
+                  ? "inline-flex items-center gap-3 px-12 py-5 bg-white text-[#0b1121] font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-blue-600 hover:text-white transition-all duration-500"
                   : "inline-flex items-center gap-2 rounded-full bg-coral-500 px-8 py-3 text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-coral-600 hover:shadow-lg hover:shadow-coral-500/25"
               }
             >
               REQUEST A DEMO
-              <ArrowRight className={isV5 ? "h-3.5 w-3.5" : "h-4 w-4"} />
+              <ArrowRight className={isDark ? "h-3.5 w-3.5" : "h-4 w-4"} />
             </Link>
             <Link
               href="/pricing"
               className={
-                isV5
-                  ? "inline-flex items-center gap-2 px-12 py-5 border border-white/20 text-white font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-white hover:text-[#050b1a] transition-all duration-500"
+                isV6
+                  ? "inline-flex items-center gap-2 rounded-full border border-zinc-300 px-8 py-3 text-sm font-bold uppercase tracking-wider text-zinc-700 transition-all hover:border-zinc-400 hover:text-zinc-950"
+                  : isV5
+                  ? "inline-flex items-center gap-2 px-12 py-5 border border-white/20 text-white font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-white hover:text-[#0b1121] transition-all duration-500"
                   : "inline-flex items-center gap-2 rounded-full border-2 border-dark-900 px-8 py-3 text-sm font-bold uppercase tracking-wider text-dark-900 transition-all hover:bg-dark-900 hover:text-white"
               }
             >
@@ -412,8 +440,10 @@ export default function CaseStudiesPage() {
               exit={{ opacity: 0, y: 24, scale: 0.96 }}
               transition={{ duration: 0.25 }}
               className={
-                isV5
-                  ? "relative max-h-[85vh] w-full max-w-2xl overflow-y-auto bg-[#050b1a] border border-white/[0.06] p-6 shadow-2xl sm:p-8"
+                isV6
+                  ? "relative max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white p-6 shadow-2xl sm:p-8"
+                  : isV5
+                  ? "relative max-h-[85vh] w-full max-w-2xl overflow-y-auto bg-[#0b1121] border border-white/[0.06] p-6 shadow-2xl sm:p-8"
                   : "relative max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white p-6 shadow-2xl sm:p-8"
               }
               onClick={(e) => e.stopPropagation()}
@@ -422,7 +452,9 @@ export default function CaseStudiesPage() {
               <button
                 onClick={() => setActiveCaseStudy(null)}
                 className={
-                  isV5
+                  isV6
+                    ? "absolute right-4 top-4 rounded-full p-1.5 text-zinc-400 transition-colors hover:bg-zinc-100 hover:text-zinc-600"
+                    : isV5
                     ? "absolute right-4 top-4 p-1.5 text-slate-500 transition-colors hover:bg-white/[0.06] hover:text-white"
                     : "absolute right-4 top-4 rounded-full p-1.5 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
                 }
@@ -433,7 +465,9 @@ export default function CaseStudiesPage() {
 
               {/* Badge */}
               <span className={
-                isV5
+                isV6
+                  ? "inline-flex bg-blue-50 text-blue-600 rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider"
+                  : isV5
                   ? "inline-block text-[10px] font-black uppercase tracking-[0.3em] text-blue-500"
                   : "inline-block rounded-full bg-coral-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-coral-500"
               }>
@@ -441,8 +475,8 @@ export default function CaseStudiesPage() {
               </span>
 
               <h2
-                className={isV5 ? "mt-3 text-2xl sm:text-3xl font-light text-white tracking-tighter" : "mt-3 text-2xl font-extrabold text-dark-900 sm:text-3xl"}
-                style={isV5 ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
+                className={isV6 ? "mt-3 text-2xl font-bold text-zinc-950 tracking-tight sm:text-3xl" : isDark ? "mt-3 text-2xl sm:text-3xl font-light text-white tracking-tighter" : "mt-3 text-2xl font-extrabold text-dark-900 sm:text-3xl"}
+                style={isDark ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
               >
                 {activeCaseStudy.company}
               </h2>
@@ -450,13 +484,15 @@ export default function CaseStudiesPage() {
               {/* Challenge */}
               <div className="mt-6">
                 <h3 className={
-                  isV5
+                  isV6
+                    ? "text-sm font-bold tracking-widest text-blue-600 uppercase"
+                    : isV5
                     ? "text-[10px] font-black uppercase tracking-[0.3em] text-blue-500"
                     : "text-xs font-bold uppercase tracking-wider text-gray-400"
                 }>
                   The Challenge
                 </h3>
-                <p className={`mt-2 text-sm leading-relaxed ${isV5 ? "text-slate-400 font-light" : "text-gray-600"}`}>
+                <p className={`mt-2 text-sm leading-relaxed ${isV6 ? "text-zinc-600" : isDark ? "text-slate-400 font-light" : "text-gray-600"}`}>
                   {activeCaseStudy.challenge}
                 </p>
               </div>
@@ -464,13 +500,15 @@ export default function CaseStudiesPage() {
               {/* Solution */}
               <div className="mt-6">
                 <h3 className={
-                  isV5
+                  isV6
+                    ? "text-sm font-bold tracking-widest text-blue-600 uppercase"
+                    : isV5
                     ? "text-[10px] font-black uppercase tracking-[0.3em] text-blue-500"
                     : "text-xs font-bold uppercase tracking-wider text-gray-400"
                 }>
                   The Solution
                 </h3>
-                <p className={`mt-2 text-sm leading-relaxed ${isV5 ? "text-slate-400 font-light" : "text-gray-600"}`}>
+                <p className={`mt-2 text-sm leading-relaxed ${isV6 ? "text-zinc-600" : isDark ? "text-slate-400 font-light" : "text-gray-600"}`}>
                   {activeCaseStudy.solution}
                 </p>
               </div>
@@ -478,27 +516,29 @@ export default function CaseStudiesPage() {
               {/* Results */}
               <div className="mt-6">
                 <h3 className={
-                  isV5
+                  isV6
+                    ? "text-sm font-bold tracking-widest text-blue-600 uppercase"
+                    : isV5
                     ? "text-[10px] font-black uppercase tracking-[0.3em] text-blue-500"
                     : "text-xs font-bold uppercase tracking-wider text-gray-400"
                 }>
                   The Results
                 </h3>
-                <p className={`mt-2 text-sm leading-relaxed ${isV5 ? "text-slate-400 font-light" : "text-gray-600"}`}>
+                <p className={`mt-2 text-sm leading-relaxed ${isV6 ? "text-zinc-600" : isDark ? "text-slate-400 font-light" : "text-gray-600"}`}>
                   {activeCaseStudy.results}
                 </p>
               </div>
 
               {/* Quote */}
-              <div className={isV5 ? "mt-8 border border-white/[0.06] bg-white/[0.03] p-5" : "mt-8 rounded-xl bg-gray-50 p-5"}>
-                <Quote className={isV5 ? "h-6 w-6 text-blue-500/50" : "h-6 w-6 text-coral-300"} />
-                <p className={`mt-2 text-sm italic leading-relaxed ${isV5 ? "text-slate-300" : "text-gray-700"}`}>
+              <div className={isV6 ? "mt-8 rounded-xl bg-zinc-50 border border-zinc-200 p-5" : isDark ? "mt-8 border border-white/[0.06] bg-white/[0.03] p-5" : "mt-8 rounded-xl bg-gray-50 p-5"}>
+                <Quote className={isV6 ? "h-6 w-6 text-blue-300" : isDark ? "h-6 w-6 text-blue-500/50" : "h-6 w-6 text-coral-300"} />
+                <p className={`mt-2 text-sm italic leading-relaxed ${isV6 ? "text-zinc-700" : isDark ? "text-slate-300" : "text-gray-700"}`}>
                   &ldquo;{activeCaseStudy.quote}&rdquo;
                 </p>
-                <p className={`mt-3 text-xs font-semibold ${isV5 ? "text-white" : "text-dark-900"}`}>
+                <p className={`mt-3 text-xs font-semibold ${isV6 ? "text-zinc-950" : isDark ? "text-white" : "text-dark-900"}`}>
                   {activeCaseStudy.quoteAuthor}
                 </p>
-                <p className={`text-xs ${isV5 ? "text-slate-500" : "text-gray-400"}`}>
+                <p className={`text-xs ${isV6 ? "text-zinc-400" : isDark ? "text-slate-500" : "text-gray-400"}`}>
                   {activeCaseStudy.quoteRole}
                 </p>
               </div>
@@ -508,8 +548,10 @@ export default function CaseStudiesPage() {
                 <Link
                   href="/contact?demo=true"
                   className={
-                    isV5
-                      ? "inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#050b1a] font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-blue-600 hover:text-white transition-all duration-500"
+                    isV6
+                      ? "inline-flex items-center justify-center gap-2 rounded-full bg-zinc-950 px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-white transition-all hover:bg-zinc-800"
+                      : isV5
+                      ? "inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#0b1121] font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-blue-600 hover:text-white transition-all duration-500"
                       : "inline-flex items-center justify-center gap-2 rounded-full bg-coral-500 px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-white transition-all hover:bg-coral-600"
                   }
                   onClick={() => setActiveCaseStudy(null)}
@@ -520,7 +562,9 @@ export default function CaseStudiesPage() {
                 <button
                   onClick={() => setActiveCaseStudy(null)}
                   className={
-                    isV5
+                    isV6
+                      ? "rounded-full border border-zinc-300 px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-zinc-500 transition-all hover:border-zinc-400 hover:text-zinc-950"
+                      : isV5
                       ? "px-8 py-4 border border-white/20 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 transition-all hover:border-white/40 hover:text-white"
                       : "rounded-full border border-gray-300 px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-gray-500 transition-all hover:border-gray-400 hover:text-dark-900"
                   }

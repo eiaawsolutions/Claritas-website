@@ -50,18 +50,20 @@ const sections = [
 export default function SecurityPage() {
   const { version } = useDesignVersion();
   const isV5 = version === "v5";
+  const isV7 = version === "v7";
+  const isDark = isV5 || isV7;
 
   return (
     <SubpageShell
       badge="Security"
-      title={isV5 ? "Claritas Security" : "CLARITAS SECURITY"}
+      title={isDark ? "Claritas Security" : "CLARITAS SECURITY"}
       subtitle="Your application security and data privacy is our utmost priority"
       description="We take customer confidentiality seriously. Claritas™ CRM is built on enterprise-grade security infrastructure with multiple layers of protection — from physical data centre security to application-level encryption and audit trails."
-      ctaTitle={isV5 ? "Questions about security?" : "Questions about security?"}
+      ctaTitle={isDark ? "Questions about security?" : "Questions about security?"}
       ctaDescription="Our team is happy to discuss security requirements and compliance needs."
       ctaPrimary={{ label: "CONTACT US", href: "/contact" }}
     >
-      <div className={isV5 ? "space-y-4 max-w-4xl mx-auto" : "space-y-4 max-w-4xl mx-auto"}>
+      <div className={isDark ? "space-y-4 max-w-4xl mx-auto" : "space-y-4 max-w-4xl mx-auto"}>
         {sections.map((s) => (
           <div
             key={s.title}
@@ -82,10 +84,10 @@ export default function SecurityPage() {
                 <s.icon className="h-5 w-5" />
               </div>
               <div>
-                <h3 className={isV5 ? "text-base font-semibold text-white" : "text-base font-bold text-dark-900"}>
+                <h3 className={isDark ? "text-base font-semibold text-white" : "text-base font-bold text-dark-900"}>
                   {s.title}
                 </h3>
-                <p className={isV5 ? "mt-2 text-sm leading-relaxed text-slate-400 font-light" : "mt-2 text-sm leading-relaxed text-gray-500"}>
+                <p className={isDark ? "mt-2 text-sm leading-relaxed text-slate-400 font-light" : "mt-2 text-sm leading-relaxed text-gray-500"}>
                   {s.body}
                 </p>
               </div>

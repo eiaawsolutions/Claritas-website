@@ -30,19 +30,21 @@ const integrations = [
 export default function IntegrationPage() {
   const { version } = useDesignVersion();
   const isV5 = version === "v5";
+  const isV7 = version === "v7";
+  const isDark = isV5 || isV7;
 
   return (
     <SubpageShell
       badge="Integration"
-      title={isV5 ? "CRM Integration" : "CRM INTEGRATION"}
+      title={isDark ? "CRM Integration" : "CRM INTEGRATION"}
       subtitle="Integration extends the value of CRM"
       description="Imagine POS sales data available in real-time, customer data automatically synchronised with your ERP, and invoices created automatically when opportunities close. Claritas™ CRM integrates with your existing business systems to create a unified view of every customer touchpoint."
-      ctaTitle={isV5 ? "Need a custom integration?" : "Need a custom integration?"}
+      ctaTitle={isDark ? "Need a custom integration?" : "Need a custom integration?"}
       ctaDescription="Our Enterprise plan includes custom integrations and API access. Talk to our team about your requirements."
       ctaPrimary={{ label: "CONTACT SALES", href: "/contact" }}
       ctaSecondary={{ label: "SEE PRICING", href: "/pricing" }}
     >
-      <div className={isV5 ? "grid gap-6 sm:grid-cols-2" : "grid gap-6 sm:grid-cols-2"}>
+      <div className={isDark ? "grid gap-6 sm:grid-cols-2" : "grid gap-6 sm:grid-cols-2"}>
         {integrations.map((item) => (
           <div
             key={item.title}
@@ -61,10 +63,10 @@ export default function IntegrationPage() {
             >
               <item.icon className="h-6 w-6" />
             </div>
-            <h3 className={isV5 ? "mt-5 text-lg font-semibold text-white" : "mt-5 text-lg font-bold text-dark-900"}>
+            <h3 className={isDark ? "mt-5 text-lg font-semibold text-white" : "mt-5 text-lg font-bold text-dark-900"}>
               {item.title}
             </h3>
-            <p className={isV5 ? "mt-3 text-sm leading-relaxed text-slate-400 font-light" : "mt-3 text-sm leading-relaxed text-gray-500"}>
+            <p className={isDark ? "mt-3 text-sm leading-relaxed text-slate-400 font-light" : "mt-3 text-sm leading-relaxed text-gray-500"}>
               {item.desc}
             </p>
           </div>

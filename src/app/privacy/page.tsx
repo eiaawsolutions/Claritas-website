@@ -48,13 +48,21 @@ const sections = [
 export default function PrivacyPage() {
   const { version } = useDesignVersion();
   const isV5 = version === "v5";
+  const isV6 = version === "v6";
+  const isV7 = version === "v7";
+  const isDark = isV5 || isV7;
 
   return (
     <>
-      <section className={`pt-16 ${isV5 ? "bg-[#050b1a] relative" : "bg-gray-50"}`}>
-        {isV5 && <div className="absolute inset-0 bg-gradient-to-b from-[#050b1a] via-[#0a1428] to-[#050b1a]" />}
-        <div className={`mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative ${isV5 ? "py-20 sm:py-28" : "py-16 sm:py-24"}`}>
-          {isV5 ? (
+      <section className={`pt-16 ${isV6 ? "bg-zinc-950 relative" : isDark ? "bg-[#0b1121] relative" : "bg-gray-50"}`}>
+        {isDark && <div className="absolute inset-0 bg-gradient-to-b from-[#0b1121] via-[#0f1729] to-[#0b1121]" />}
+        {isV6 && <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />}
+        <div className={`mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative ${isV6 ? "py-20 sm:py-28" : isDark ? "py-20 sm:py-28" : "py-16 sm:py-24"}`}>
+          {isV6 ? (
+            <span className="inline-block px-3 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-semibold tracking-wide uppercase">
+              Legal
+            </span>
+          ) : isDark ? (
             <div className="flex items-center gap-4 mb-10">
               <div className="h-px w-[60px] bg-blue-500" />
               <span className="font-black uppercase tracking-[0.4em] text-[10px] text-blue-500">
@@ -68,22 +76,26 @@ export default function PrivacyPage() {
           )}
           <h1
             className={
-              isV5
-                ? "text-4xl md:text-6xl font-light text-white leading-[0.95] tracking-tighter"
-                : "mt-6 text-2xl font-extrabold tracking-tight text-dark-900 sm:text-3xl md:text-4xl"
+              isV6
+                ? "mt-6 text-3xl md:text-5xl font-bold text-white tracking-tight"
+                : isV5
+                  ? "text-4xl md:text-6xl font-light text-white leading-[0.95] tracking-tighter"
+                  : "mt-6 text-2xl font-extrabold tracking-tight text-dark-900 sm:text-3xl md:text-4xl"
             }
-            style={isV5 ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
+            style={isDark ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
           >
-            {isV5 ? (
+            {isV6 ? (
+              <>Privacy <span className="text-blue-400">Policy</span></>
+            ) : isDark ? (
               <>Privacy <span className="text-blue-500">Policy</span></>
             ) : (
               <>PRIVACY <span className="text-coral-500">POLICY</span></>
             )}
           </h1>
-          <p className={`mt-4 text-sm ${isV5 ? "text-slate-500" : "text-gray-400"}`}>
+          <p className={`mt-4 text-sm ${isV6 ? "text-zinc-400" : isDark ? "text-slate-500" : "text-gray-400"}`}>
             Last updated: April 2026
           </p>
-          <p className={`mt-4 text-base leading-relaxed ${isV5 ? "text-slate-400 font-light" : "text-gray-500"}`}>
+          <p className={`mt-4 text-base leading-relaxed ${isV6 ? "text-zinc-400 font-light" : isDark ? "text-slate-400 font-light" : "text-gray-500"}`}>
             Claritas&trade; CRM, a registered trademark of Netster, is committed to protecting your
             privacy. This policy explains how we collect, use, and safeguard your personal information
             when you visit our website or use our services.
@@ -91,16 +103,16 @@ export default function PrivacyPage() {
         </div>
       </section>
 
-      <section className={isV5 ? "py-20 sm:py-28 bg-[#050b1a]" : "py-16 sm:py-20"}>
+      <section className={isV6 ? "py-20 sm:py-28 bg-zinc-50" : isDark ? "py-20 sm:py-28 bg-[#0b1121]" : "py-16 sm:py-20"}>
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className={isV5 ? "space-y-12" : "space-y-10"}>
+          <div className={isV6 ? "space-y-10" : isDark ? "space-y-12" : "space-y-10"}>
             {sections.map((s, i) => (
               <div key={s.title}>
-                <h2 className={isV5 ? "text-lg font-bold text-white" : "text-lg font-bold text-dark-900"}>
-                  <span className={`mr-2 ${isV5 ? "text-blue-500" : "text-coral-500"}`}>{i + 1}.</span>
+                <h2 className={isV6 ? "text-lg font-semibold text-zinc-950" : isDark ? "text-lg font-bold text-white" : "text-lg font-bold text-dark-900"}>
+                  <span className={`mr-2 ${isV6 ? "text-blue-600" : isDark ? "text-blue-500" : "text-coral-500"}`}>{i + 1}.</span>
                   {s.title}
                 </h2>
-                <p className={`mt-3 text-sm leading-relaxed whitespace-pre-line ${isV5 ? "text-slate-400 font-light" : "text-gray-600"}`}>
+                <p className={`mt-3 text-sm leading-relaxed whitespace-pre-line ${isV6 ? "text-zinc-600" : isDark ? "text-slate-400 font-light" : "text-gray-600"}`}>
                   {s.body}
                 </p>
               </div>

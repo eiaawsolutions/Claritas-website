@@ -48,31 +48,33 @@ const azureComponents = [
 export default function CloudPage() {
   const { version } = useDesignVersion();
   const isV5 = version === "v5";
+  const isV7 = version === "v7";
+  const isDark = isV5 || isV7;
 
   return (
     <SubpageShell
       badge="Cloud Platform"
-      title={isV5 ? "Claritas Cloud" : "CLARITAS CLOUD"}
+      title={isDark ? "Claritas Cloud" : "CLARITAS CLOUD"}
       subtitle="Expanding software capabilities and computing power"
       description="Claritas™ Cloud sits on top of Microsoft Azure Platform-as-a-Service (PaaS) to provide you unprecedented availability at a fraction of the cost. With data centres across North America, Europe, and Asia, your CRM is always close to your users — delivering greater flexibility, reduced complexity, and transparent cost accounting."
-      ctaTitle={isV5 ? "Ready to move to the cloud?" : "Ready to move to the cloud?"}
+      ctaTitle={isDark ? "Ready to move to the cloud?" : "Ready to move to the cloud?"}
       ctaDescription="Get started with a free 14-day trial. No credit card required."
       ctaPrimary={{ label: "START FREE TRIAL", href: "/contact?demo=true" }}
       ctaSecondary={{ label: "CLOUD VS ON-PREMISE", href: "/claritas/cloud-vs-on-premise" }}
     >
       {/* Benefits Grid */}
-      <div className={isV5 ? "mb-20" : "mb-16"}>
+      <div className={isDark ? "mb-20" : "mb-16"}>
         <h2
           className={
             isV5
               ? "text-center text-3xl md:text-5xl font-light text-white tracking-tighter mb-16"
               : "text-center text-2xl font-bold text-dark-900 sm:text-3xl"
           }
-          style={isV5 ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
+          style={isDark ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
         >
-          {isV5 ? "Why Cloud?" : <>WHY <span className="text-coral-500">CLOUD?</span></>}
+          {isDark ? "Why Cloud?" : <>WHY <span className="text-coral-500">CLOUD?</span></>}
         </h2>
-        <div className={isV5 ? "mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" : "mt-12 grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3"}>
+        <div className={isDark ? "mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" : "mt-12 grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3"}>
           {benefits.map((b) => (
             <div
               key={b.title}
@@ -91,10 +93,10 @@ export default function CloudPage() {
               >
                 <b.icon className="h-5 w-5" />
               </div>
-              <h3 className={isV5 ? "mt-4 text-base font-semibold text-white" : "mt-4 text-base font-bold text-dark-900"}>
+              <h3 className={isDark ? "mt-4 text-base font-semibold text-white" : "mt-4 text-base font-bold text-dark-900"}>
                 {b.title}
               </h3>
-              <p className={isV5 ? "mt-2 text-sm leading-relaxed text-slate-400 font-light" : "mt-2 text-sm leading-relaxed text-gray-500"}>
+              <p className={isDark ? "mt-2 text-sm leading-relaxed text-slate-400 font-light" : "mt-2 text-sm leading-relaxed text-gray-500"}>
                 {b.desc}
               </p>
             </div>
@@ -110,14 +112,14 @@ export default function CloudPage() {
               ? "text-center text-3xl md:text-5xl font-light text-white tracking-tighter mb-16"
               : "text-center text-2xl font-bold text-dark-900 sm:text-3xl"
           }
-          style={isV5 ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
+          style={isDark ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
         >
-          {isV5 ? "Powered by Microsoft Azure" : <>POWERED BY <span className="text-coral-500">MICROSOFT AZURE</span></>}
+          {isDark ? "Powered by Microsoft Azure" : <>POWERED BY <span className="text-coral-500">MICROSOFT AZURE</span></>}
         </h2>
-        <p className={isV5 ? "mt-4 text-center text-sm text-slate-500 font-light" : "mt-4 text-center text-sm text-gray-500"}>
+        <p className={isDark ? "mt-4 text-center text-sm text-slate-500 font-light" : "mt-4 text-center text-sm text-gray-500"}>
           Claritas leverages five foundational Azure components for a robust, scalable CRM platform.
         </p>
-        <div className={isV5 ? "mt-10 space-y-3 max-w-4xl mx-auto" : "mt-10 space-y-3 max-w-4xl mx-auto"}>
+        <div className={isDark ? "mt-10 space-y-3 max-w-4xl mx-auto" : "mt-10 space-y-3 max-w-4xl mx-auto"}>
           {azureComponents.map((c) => (
             <div
               key={c.name}
@@ -127,10 +129,10 @@ export default function CloudPage() {
                   : "flex items-start gap-4 rounded-xl border border-gray-200 bg-white p-4 shadow-sm"
               }
             >
-              <span className={isV5 ? "mt-0.5 text-blue-500 font-bold text-sm" : "mt-0.5 text-coral-500 font-bold text-sm"}>&#9658;</span>
+              <span className={isDark ? "mt-0.5 text-blue-500 font-bold text-sm" : "mt-0.5 text-coral-500 font-bold text-sm"}>&#9658;</span>
               <div>
-                <h3 className={isV5 ? "text-sm font-semibold text-white" : "text-sm font-bold text-dark-900"}>{c.name}</h3>
-                <p className={isV5 ? "mt-1 text-sm text-slate-400 font-light" : "mt-1 text-sm text-gray-500"}>{c.desc}</p>
+                <h3 className={isDark ? "text-sm font-semibold text-white" : "text-sm font-bold text-dark-900"}>{c.name}</h3>
+                <p className={isDark ? "mt-1 text-sm text-slate-400 font-light" : "mt-1 text-sm text-gray-500"}>{c.desc}</p>
               </div>
             </div>
           ))}
