@@ -5,6 +5,7 @@ import { ProductsSection } from "@/components/products-section";
 import { Testimonials } from "@/components/testimonials";
 import { JobOpenings } from "@/components/job-openings";
 import { ContactSection } from "@/components/contact-section";
+import { CtaBanner } from "@/components/cta-banner";
 
 export default function HomePage() {
   return (
@@ -15,6 +16,7 @@ export default function HomePage() {
       <ProductsSection />
       <Testimonials />
       <JobOpenings />
+      <CtaBanner />
       <ContactSection />
     </>
   );

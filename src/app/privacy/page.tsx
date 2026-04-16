@@ -1,10 +1,6 @@
-import type { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy | Claritas CRM",
-  description:
-    "Claritas CRM privacy policy — how we collect, use, and protect your personal data.",
-};
+import { useDesignVersion } from "@/config/design-context";
 
 const sections = [
   {
@@ -50,20 +46,44 @@ const sections = [
 ];
 
 export default function PrivacyPage() {
+  const { version } = useDesignVersion();
+  const isV5 = version === "v5";
+
   return (
     <>
-      <section className="bg-gray-50 pt-16">
-        <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-          <span className="inline-block rounded-full bg-coral-500 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-white">
-            Legal
-          </span>
-          <h1 className="mt-6 text-2xl font-extrabold tracking-tight text-dark-900 sm:text-3xl md:text-4xl">
-            PRIVACY <span className="text-coral-500">POLICY</span>
+      <section className={`pt-16 ${isV5 ? "bg-[#050b1a] relative" : "bg-gray-50"}`}>
+        {isV5 && <div className="absolute inset-0 bg-gradient-to-b from-[#050b1a] via-[#0a1428] to-[#050b1a]" />}
+        <div className={`mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative ${isV5 ? "py-20 sm:py-28" : "py-16 sm:py-24"}`}>
+          {isV5 ? (
+            <div className="flex items-center gap-4 mb-10">
+              <div className="h-px w-[60px] bg-blue-500" />
+              <span className="font-black uppercase tracking-[0.4em] text-[10px] text-blue-500">
+                Legal
+              </span>
+            </div>
+          ) : (
+            <span className="inline-block rounded-full bg-coral-500 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-white">
+              Legal
+            </span>
+          )}
+          <h1
+            className={
+              isV5
+                ? "text-4xl md:text-6xl font-light text-white leading-[0.95] tracking-tighter"
+                : "mt-6 text-2xl font-extrabold tracking-tight text-dark-900 sm:text-3xl md:text-4xl"
+            }
+            style={isV5 ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
+          >
+            {isV5 ? (
+              <>Privacy <span className="text-blue-500">Policy</span></>
+            ) : (
+              <>PRIVACY <span className="text-coral-500">POLICY</span></>
+            )}
           </h1>
-          <p className="mt-4 text-sm text-gray-400">
+          <p className={`mt-4 text-sm ${isV5 ? "text-slate-500" : "text-gray-400"}`}>
             Last updated: April 2026
           </p>
-          <p className="mt-4 text-base leading-relaxed text-gray-500">
+          <p className={`mt-4 text-base leading-relaxed ${isV5 ? "text-slate-400 font-light" : "text-gray-500"}`}>
             Claritas&trade; CRM, a registered trademark of Netster, is committed to protecting your
             privacy. This policy explains how we collect, use, and safeguard your personal information
             when you visit our website or use our services.
@@ -71,16 +91,16 @@ export default function PrivacyPage() {
         </div>
       </section>
 
-      <section className="py-16 sm:py-20">
+      <section className={isV5 ? "py-20 sm:py-28 bg-[#050b1a]" : "py-16 sm:py-20"}>
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="space-y-10">
+          <div className={isV5 ? "space-y-12" : "space-y-10"}>
             {sections.map((s, i) => (
               <div key={s.title}>
-                <h2 className="text-lg font-bold text-dark-900">
-                  <span className="mr-2 text-coral-500">{i + 1}.</span>
+                <h2 className={isV5 ? "text-lg font-bold text-white" : "text-lg font-bold text-dark-900"}>
+                  <span className={`mr-2 ${isV5 ? "text-blue-500" : "text-coral-500"}`}>{i + 1}.</span>
                   {s.title}
                 </h2>
-                <p className="mt-3 text-sm leading-relaxed text-gray-600 whitespace-pre-line">
+                <p className={`mt-3 text-sm leading-relaxed whitespace-pre-line ${isV5 ? "text-slate-400 font-light" : "text-gray-600"}`}>
                   {s.body}
                 </p>
               </div>

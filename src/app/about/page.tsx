@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ContactSection } from "@/components/contact-section";
+import { useDesignVersion } from "@/config/design-context";
 import {
   Users,
   Globe,
@@ -113,25 +114,67 @@ const capabilities = [
 ];
 
 export default function AboutPage() {
+  const { version } = useDesignVersion();
+  const isV5 = version === "v5";
+  const isV6 = version === "v6";
+  const isV7 = version === "v7";
+  const isDark = isV5 || isV7;
+
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gray-50 pt-16">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+      <section className={`relative overflow-hidden pt-16 ${isV6 ? "bg-zinc-950" : isDark ? "bg-[#0b1121]" : "bg-gray-50"}`}>
+        {isDark && <div className="absolute inset-0 bg-gradient-to-b from-[#0b1121] via-[#0f1729] to-[#0b1121]" />}
+        {isV6 && (
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
+        )}
+        <div className={`mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative ${isV6 || isDark ? "py-20 sm:py-28" : "py-16 sm:py-24"}`}>
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: isV6 ? 0.6 : isV5 ? 0.6 : 0.5 }}
             className="max-w-3xl"
           >
-            <span className="inline-block rounded-full bg-coral-500 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-white">
-              About Us
-            </span>
-            <h1 className="mt-6 text-2xl font-extrabold tracking-tight text-dark-900 sm:text-3xl md:text-4xl lg:text-5xl">
-              Empowering businesses with{" "}
-              <span className="text-coral-500">smarter CRM</span>
+            {isV6 ? (
+              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-semibold tracking-wide uppercase">
+                About Us
+              </span>
+            ) : isV5 ? (
+              <div className="flex items-center gap-4 mb-10">
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: 60 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="h-px bg-blue-500"
+                />
+                <span className="font-black uppercase tracking-[0.4em] text-[10px] text-blue-500">
+                  About Us
+                </span>
+              </div>
+            ) : (
+              <span className="inline-block rounded-full bg-coral-500 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-white">
+                About Us
+              </span>
+            )}
+            <h1
+              className={
+                isV6
+                  ? "mt-6 text-3xl md:text-5xl font-bold text-white tracking-tight"
+                  : isV5
+                  ? "text-4xl md:text-6xl font-light text-white leading-[0.95] tracking-tighter"
+                  : "mt-6 text-2xl font-extrabold tracking-tight text-dark-900 sm:text-3xl md:text-4xl lg:text-5xl"
+              }
+              style={isV5 ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
+            >
+              {isV6 ? (
+                <>Empowering businesses with <span className="text-blue-400">smarter CRM</span></>
+              ) : isV5 ? (
+                <>Empowering businesses with <span className="text-blue-500">smarter CRM</span></>
+              ) : (
+                <>Empowering businesses with{" "}<span className="text-coral-500">smarter CRM</span></>
+              )}
             </h1>
-            <p className="mt-6 text-base leading-relaxed text-gray-500">
+            <p className={`mt-6 text-base leading-relaxed ${isV6 ? "text-zinc-400 font-light" : isV5 ? "text-slate-500 font-light" : "text-gray-500"}`}>
               Claritas&trade; is a registered trademark of Netster &mdash; a Malaysian
               technology company dedicated to building enterprise-grade customer
               relationship management solutions for the APAC market.
@@ -141,17 +184,20 @@ export default function AboutPage() {
       </section>
 
       {/* What is Claritas CRM */}
-      <section className="py-16 sm:py-20" id="what-is-crm">
+      <section className={isV5 ? "py-24 sm:py-32 bg-[#050b1a]" : "py-16 sm:py-20"} id="what-is-crm">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-2xl font-bold text-coral-500 sm:text-3xl">
+            <h2
+              className={isV5 ? "text-2xl sm:text-3xl font-light text-blue-500 tracking-tighter" : "text-2xl font-bold text-coral-500 sm:text-3xl"}
+              style={isV5 ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
+            >
               What is Claritas&trade; CRM?
             </h2>
-            <p className="mt-4 text-base leading-relaxed text-gray-600">
+            <p className={`mt-4 text-base leading-relaxed ${isV5 ? "text-slate-400 font-light" : "text-gray-600"}`}>
               Claritas&trade; CRM is an integrated and customer centric CRM solution that manages, tracks, and stores information related to your existing customers and new prospects. It helps companies to enhance customer experience and drive business growth to the next level by integrating technology, data, process and people to effectively organize, automate and synchronize marketing, sales and service engagements across all customer contact points.
             </p>
           </motion.div>
@@ -159,20 +205,34 @@ export default function AboutPage() {
       </section>
 
       {/* 6 Capability Cards */}
-      <section className="bg-gray-50 py-16 sm:py-20">
+      <section className={isV5 ? "bg-[#0a1428] py-24 sm:py-32" : "bg-gray-50 py-16 sm:py-20"}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className={isV5 ? "text-center mb-16" : "text-center mb-12"}
           >
-            <h2 className="text-2xl font-bold text-dark-900 sm:text-3xl">
-              WHAT <span className="text-coral-500">CLARITAS&trade; CRM</span> CAN DO
-            </h2>
+            {isV5 ? (
+              <>
+                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-500">
+                  Capabilities
+                </span>
+                <h2
+                  className="mt-4 text-3xl md:text-5xl font-light text-white tracking-tighter"
+                  style={{ fontFamily: 'var(--font-playfair), "Playfair Display", serif' }}
+                >
+                  What Claritas&trade; CRM Can Do
+                </h2>
+              </>
+            ) : (
+              <h2 className="text-2xl font-bold text-dark-900 sm:text-3xl">
+                WHAT <span className="text-coral-500">CLARITAS&trade; CRM</span> CAN DO
+              </h2>
+            )}
           </motion.div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className={`grid gap-6 sm:grid-cols-2 lg:grid-cols-3 ${isV5 ? "gap-8" : ""}`}>
             {capabilities.map((cap, i) => (
               <motion.div
                 key={cap.title}
@@ -180,17 +240,21 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className="group rounded-2xl border border-gray-200 bg-white p-6 shadow-[0_8px_30px_-8px_rgba(0,0,0,0.08)] transition-all hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] hover:-translate-y-1"
+                className={
+                  isV5
+                    ? "border border-white/[0.06] bg-transparent p-8 transition-all hover:border-white/[0.12] hover:-translate-y-1"
+                    : "group rounded-2xl border border-gray-200 bg-white p-6 shadow-[0_8px_30px_-8px_rgba(0,0,0,0.08)] transition-all hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] hover:-translate-y-1"
+                }
               >
-                <div className="rounded-lg bg-coral-500 px-4 py-2 text-center">
-                  <h3 className="text-sm font-bold text-white">{cap.title}</h3>
+                <div className={isV5 ? "bg-blue-500/10 px-4 py-2 text-center" : "rounded-lg bg-coral-500 px-4 py-2 text-center"}>
+                  <h3 className={isV5 ? "text-sm font-bold text-blue-400" : "text-sm font-bold text-white"}>{cap.title}</h3>
                 </div>
-                <p className="mt-4 text-sm leading-relaxed text-gray-500">
+                <p className={`mt-4 text-sm leading-relaxed ${isV5 ? "text-slate-400 font-light" : "text-gray-500"}`}>
                   {cap.description}
                 </p>
                 <Link
                   href={cap.href}
-                  className="mt-4 inline-block text-xs font-semibold text-coral-500 hover:text-coral-600"
+                  className={`mt-4 inline-block text-xs font-semibold ${isV5 ? "text-blue-500 hover:text-blue-400" : "text-coral-500 hover:text-coral-600"}`}
                 >
                   Learn more &gt;
                 </Link>
@@ -201,15 +265,22 @@ export default function AboutPage() {
       </section>
 
       {/* What makes different */}
-      <section className="py-16 sm:py-20">
+      <section className={isV5 ? "py-24 sm:py-32 bg-[#050b1a]" : "py-16 sm:py-20"}>
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-xl font-bold text-dark-900 sm:text-2xl">
-              What makes Claritas&trade; CRM <span className="text-coral-500">different</span>?
+            <h2
+              className={isV5 ? "text-xl sm:text-2xl font-light text-white tracking-tighter" : "text-xl font-bold text-dark-900 sm:text-2xl"}
+              style={isV5 ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
+            >
+              {isV5 ? (
+                <>What makes Claritas&trade; CRM <span className="text-blue-500">different</span>?</>
+              ) : (
+                <>What makes Claritas&trade; CRM <span className="text-coral-500">different</span>?</>
+              )}
             </h2>
             <ul className="mt-6 space-y-4">
               {[
@@ -218,8 +289,8 @@ export default function AboutPage() {
                 "Fast time to market with proven track record of implementation and flexibility to adapt to a variety of needs to deliver more value for money.",
                 "Established project management, implementation approach and governance methodology to ensure smooth execution of the project and ensure efficient and effective response to unforeseen changes in the implementation.",
               ].map((d, i) => (
-                <li key={i} className="flex items-start gap-3 text-sm leading-relaxed text-gray-600">
-                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-dark-900" />
+                <li key={i} className={`flex items-start gap-3 text-sm leading-relaxed ${isV5 ? "text-slate-400 font-light" : "text-gray-600"}`}>
+                  <span className={`mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full ${isV5 ? "bg-blue-500" : "bg-dark-900"}`} />
                   {d}
                 </li>
               ))}
@@ -229,17 +300,20 @@ export default function AboutPage() {
       </section>
 
       {/* 360 View */}
-      <section className="bg-gray-50 py-16 sm:py-20">
+      <section className={isV5 ? "bg-[#0a1428] py-24 sm:py-32" : "bg-gray-50 py-16 sm:py-20"}>
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-xl font-bold text-coral-500 uppercase sm:text-2xl">
+            <h2
+              className={isV5 ? "text-xl sm:text-2xl font-light text-blue-500 uppercase tracking-tighter" : "text-xl font-bold text-coral-500 uppercase sm:text-2xl"}
+              style={isV5 ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
+            >
               Single 360-Degree View of Customer
             </h2>
-            <p className="mt-4 text-base leading-relaxed text-gray-600">
+            <p className={`mt-4 text-base leading-relaxed ${isV5 ? "text-slate-400 font-light" : "text-gray-600"}`}>
               Inadequate knowledge about a customer&apos;s information creates a shortfall when trying to serve the customer or close a deal. Claritas&trade; CRM enables a complete picture of every customer by integrating and consolidating all the key data that your organization holds on them in a single integrated CRM platform &ndash; creating a rich single 360-degree view of your customers&apos; profiles, product holdings, service subscriptions, open cases and opportunities, potential offers, service alerts, next best action (NBA) and interaction history, all in one place.
             </p>
           </motion.div>
@@ -247,14 +321,28 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="py-16 sm:py-20">
+      <section className={isV5 ? "py-24 sm:py-32 bg-[#050b1a]" : "py-16 sm:py-20"}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl font-bold text-dark-900 sm:text-3xl md:text-4xl">
-              WHAT <span className="text-coral-500">DRIVES</span> US
-            </h2>
+          <div className={isV5 ? "text-center mb-16" : "text-center mb-12"}>
+            {isV5 ? (
+              <>
+                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-500">
+                  Our Values
+                </span>
+                <h2
+                  className="mt-4 text-3xl md:text-5xl font-light text-white tracking-tighter"
+                  style={{ fontFamily: 'var(--font-playfair), "Playfair Display", serif' }}
+                >
+                  What Drives Us
+                </h2>
+              </>
+            ) : (
+              <h2 className="text-2xl font-bold text-dark-900 sm:text-3xl md:text-4xl">
+                WHAT <span className="text-coral-500">DRIVES</span> US
+              </h2>
+            )}
           </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className={`grid sm:grid-cols-2 lg:grid-cols-4 ${isV5 ? "gap-8" : "gap-6"}`}>
             {values.map((v, i) => (
               <motion.div
                 key={v.title}
@@ -262,15 +350,19 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="rounded-2xl border border-gray-200 bg-white p-6 text-center shadow-[0_8px_30px_-8px_rgba(0,0,0,0.08)] transition-all hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] hover:-translate-y-1"
+                className={
+                  isV5
+                    ? "border border-white/[0.06] bg-transparent p-8 text-center transition-all hover:border-white/[0.12] hover:-translate-y-1"
+                    : "rounded-2xl border border-gray-200 bg-white p-6 text-center shadow-[0_8px_30px_-8px_rgba(0,0,0,0.08)] transition-all hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] hover:-translate-y-1"
+                }
               >
-                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-coral-50 text-coral-500">
+                <div className={`mx-auto flex h-12 w-12 items-center justify-center ${isV5 ? "bg-blue-500/10 text-blue-400" : "rounded-full bg-coral-50 text-coral-500"}`}>
                   <v.icon className="h-6 w-6" />
                 </div>
-                <h3 className="mt-4 text-base font-bold text-dark-900">
+                <h3 className={`mt-4 text-base font-bold ${isV5 ? "text-white" : "text-dark-900"}`}>
                   {v.title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-gray-500">
+                <p className={`mt-2 text-sm leading-relaxed ${isV5 ? "text-slate-400 font-light" : "text-gray-500"}`}>
                   {v.desc}
                 </p>
               </motion.div>
@@ -280,14 +372,28 @@ export default function AboutPage() {
       </section>
 
       {/* Timeline */}
-      <section className="bg-gray-50 py-16 sm:py-20" id="case-studies">
+      <section className={isV5 ? "bg-[#0a1428] py-24 sm:py-32" : "bg-gray-50 py-16 sm:py-20"} id="case-studies">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl font-bold text-dark-900 sm:text-3xl md:text-4xl">
-              OUR <span className="text-coral-500">JOURNEY</span>
-            </h2>
+          <div className={isV5 ? "text-center mb-16" : "text-center mb-12"}>
+            {isV5 ? (
+              <>
+                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-500">
+                  Timeline
+                </span>
+                <h2
+                  className="mt-4 text-3xl md:text-5xl font-light text-white tracking-tighter"
+                  style={{ fontFamily: 'var(--font-playfair), "Playfair Display", serif' }}
+                >
+                  Our Journey
+                </h2>
+              </>
+            ) : (
+              <h2 className="text-2xl font-bold text-dark-900 sm:text-3xl md:text-4xl">
+                OUR <span className="text-coral-500">JOURNEY</span>
+              </h2>
+            )}
           </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className={`grid sm:grid-cols-2 lg:grid-cols-3 ${isV5 ? "gap-8" : "gap-6"}`}>
             {timeline.map((t, i) => (
               <motion.div
                 key={t.year}
@@ -295,15 +401,19 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className="rounded-2xl border border-gray-200 bg-white p-6 shadow-[0_8px_30px_-8px_rgba(0,0,0,0.08)] transition-all hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] hover:-translate-y-1"
+                className={
+                  isV5
+                    ? "border border-white/[0.06] bg-transparent p-8 transition-all hover:border-white/[0.12] hover:-translate-y-1"
+                    : "rounded-2xl border border-gray-200 bg-white p-6 shadow-[0_8px_30px_-8px_rgba(0,0,0,0.08)] transition-all hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] hover:-translate-y-1"
+                }
               >
-                <span className="text-2xl font-extrabold text-coral-500">
+                <span className={`text-2xl font-extrabold ${isV5 ? "text-blue-500" : "text-coral-500"}`}>
                   {t.year}
                 </span>
-                <h3 className="mt-2 text-base font-bold text-dark-900">
+                <h3 className={`mt-2 text-base font-bold ${isV5 ? "text-white" : "text-dark-900"}`}>
                   {t.title}
                 </h3>
-                <p className="mt-2 text-sm text-gray-500">{t.desc}</p>
+                <p className={`mt-2 text-sm ${isV5 ? "text-slate-400 font-light" : "text-gray-500"}`}>{t.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -311,20 +421,31 @@ export default function AboutPage() {
       </section>
 
       {/* Fintech CTA */}
-      <section className="py-16 sm:py-20">
+      <section className={isV5 ? "py-24 sm:py-32 bg-[#050b1a]" : "py-16 sm:py-20"}>
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-dark-900 sm:text-3xl">
-            CRM for <span className="text-coral-500">Banking & Financial Services</span>
+          <h2
+            className={isV5 ? "text-2xl sm:text-3xl font-light text-white tracking-tighter" : "text-2xl font-bold text-dark-900 sm:text-3xl"}
+            style={isV5 ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
+          >
+            {isV5 ? (
+              <>CRM for <span className="text-blue-500">Banking & Financial Services</span></>
+            ) : (
+              <>CRM for <span className="text-coral-500">Banking & Financial Services</span></>
+            )}
           </h2>
-          <p className="mt-4 text-base text-gray-500">
+          <p className={`mt-4 text-base ${isV5 ? "text-slate-500 font-light" : "text-gray-500"}`}>
             Looking for a flexible and customizable CRM solution suited to banking and financial services?
           </p>
           <Link
             href="/solutions/fintech"
-            className="mt-6 inline-flex items-center gap-2 rounded-full bg-coral-500 px-8 py-3 text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-coral-600 hover:shadow-lg hover:shadow-coral-500/25"
+            className={
+              isV5
+                ? "mt-8 inline-flex items-center gap-3 px-12 py-5 bg-white text-[#050b1a] font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-blue-600 hover:text-white transition-all duration-500"
+                : "mt-6 inline-flex items-center gap-2 rounded-full bg-coral-500 px-8 py-3 text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-coral-600 hover:shadow-lg hover:shadow-coral-500/25"
+            }
           >
             VIEW FINTECH SOLUTION
-            <ArrowRight className="h-4 w-4" />
+            <ArrowRight className={isV5 ? "h-3.5 w-3.5" : "h-4 w-4"} />
           </Link>
         </div>
       </section>

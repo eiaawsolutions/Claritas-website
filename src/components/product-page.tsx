@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, type LucideIcon } from "lucide-react";
+import { useDesignVersion } from "@/config/design-context";
 
 interface ContentSection {
   title: string;
@@ -31,9 +32,207 @@ export function ProductPage({
   bgLight,
   textColor,
 }: ProductPageProps) {
+  const { version } = useDesignVersion();
+
+  // ── V7: Enterprise ──
+  if (version === "v7") {
+    return (
+      <>
+        <section className="relative bg-[#0b1121] pt-16 overflow-hidden">
+          <div className="absolute top-0 right-0 h-[400px] w-[400px] rounded-full bg-blue-500/[0.04] blur-[120px]" />
+          <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8 relative">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="max-w-3xl"
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-500/10 text-blue-400">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <span className="text-xs font-semibold tracking-[0.15em] uppercase text-blue-400/80">{category}</span>
+              </div>
+              <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">{title}</h1>
+              <p className="mt-3 text-lg text-slate-400">{tagline}</p>
+              <p className="mt-6 text-base leading-relaxed text-slate-500 max-w-2xl">{description}</p>
+              <div className="mt-10 flex flex-wrap gap-4">
+                <Link href="/contact?demo=true" className="group flex items-center gap-2 bg-blue-500 rounded-lg px-8 py-3 text-sm font-semibold text-white hover:bg-blue-400 transition-colors">
+                  Request a Demo <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                </Link>
+                <Link href="/pricing" className="border border-white/[0.12] rounded-lg px-8 py-3 text-sm font-medium text-white hover:border-white/30 transition-colors">
+                  See Pricing
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        <section className="py-20 sm:py-28 bg-[#0b1121]">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <div className="space-y-6">
+              {sections.map((section, i) => (
+                <motion.div
+                  key={section.title}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.4, delay: i * 0.05 }}
+                  className="bg-white/[0.03] border border-white/[0.08] rounded-2xl p-6 sm:p-8 transition-all hover:bg-white/[0.05] hover:border-white/[0.12]"
+                >
+                  <div className="flex items-center gap-4 mb-5">
+                    <span className="text-blue-400 font-bold text-sm">{String(i + 1).padStart(2, "0")}</span>
+                    <div className="flex-1 h-px bg-white/[0.06]" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-white">{section.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-slate-400">{section.body}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-[#0f1729] py-20 sm:py-28">
+          <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+              Ready to transform your <span className="text-blue-400">{category.toLowerCase()}</span>?
+            </h2>
+            <p className="mt-4 text-base text-slate-400">Get started with a free 14-day trial. No credit card required.</p>
+            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <Link href="/contact?demo=true" className="group flex items-center gap-2 bg-blue-500 rounded-lg px-8 py-3.5 text-sm font-semibold text-white hover:bg-blue-400 transition-colors">
+                Start Free Trial <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </Link>
+              <Link href="/contact" className="border border-white/[0.12] rounded-lg px-8 py-3.5 text-sm font-medium text-white hover:border-white/30 transition-colors">
+                Contact Sales
+              </Link>
+            </div>
+          </div>
+        </section>
+      </>
+    );
+  }
+
+  // ── V5: Prestige ──
+  if (version === "v5") {
+    return (
+      <>
+        <section className="relative bg-[#050b1a] pt-20 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-[#050b1a] via-[#0a1428] to-[#050b1a]" />
+          <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8 relative">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="max-w-3xl"
+            >
+              <div className="flex items-center gap-4 mb-10">
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: 60 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="h-px bg-blue-500"
+                />
+                <span className="font-black uppercase tracking-[0.4em] text-[10px] text-blue-500">
+                  {category}
+                </span>
+              </div>
+              <h1
+                className="text-4xl md:text-6xl lg:text-7xl font-light text-white leading-[0.95] tracking-tighter"
+                style={{ fontFamily: 'var(--font-playfair), "Playfair Display", serif' }}
+              >
+                {title}
+              </h1>
+              <p className="mt-6 text-xl text-slate-400 font-light italic">
+                {tagline}
+              </p>
+              <p className="mt-8 text-base leading-relaxed text-slate-500 max-w-2xl font-light">
+                {description}
+              </p>
+              <div className="mt-12 flex flex-col sm:flex-row flex-wrap gap-6">
+                <Link
+                  href="/contact?demo=true"
+                  className="group relative px-10 py-4 bg-white text-[#050b1a] font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-blue-600 hover:text-white transition-all duration-500 flex items-center gap-3"
+                >
+                  Request a Demo
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                </Link>
+                <Link
+                  href="/pricing"
+                  className="px-10 py-4 border border-white/20 text-white font-bold uppercase tracking-[0.2em] text-[10px] hover:border-white/50 hover:bg-white/5 transition-all duration-300"
+                >
+                  See Pricing
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        <section className="py-24 sm:py-32 bg-[#050b1a]">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <div className="space-y-16">
+              {sections.map((section, i) => (
+                <motion.div
+                  key={section.title}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.4, delay: i * 0.05 }}
+                  className="border border-white/[0.06] bg-transparent p-8 sm:p-10"
+                >
+                  <div className="flex items-center gap-4 mb-6">
+                    <span className="text-blue-500 font-bold text-sm">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <div className="flex-1 h-px bg-white/[0.06]" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white uppercase tracking-tight">
+                    {section.title}
+                  </h3>
+                  <p className="mt-4 text-base leading-relaxed text-slate-400 font-light">
+                    {section.body}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-white py-24 sm:py-32">
+          <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+            <h2
+              className="text-3xl md:text-5xl font-light text-[#050b1a] tracking-tighter"
+              style={{ fontFamily: 'var(--font-playfair), "Playfair Display", serif' }}
+            >
+              Ready to transform your{" "}
+              <span className="italic">{category.toLowerCase()}</span>?
+            </h2>
+            <p className="mt-6 text-lg text-slate-500 font-light">
+              Get started with a free 14-day trial. No credit card required.
+            </p>
+            <div className="mt-10 flex flex-col items-center justify-center gap-6 sm:flex-row">
+              <Link
+                href="/contact?demo=true"
+                className="group px-12 py-5 bg-[#050b1a] text-white font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-blue-600 transition-all duration-500 flex items-center gap-3"
+              >
+                Start Free Trial
+                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+              </Link>
+              <Link
+                href="/contact"
+                className="px-12 py-5 border border-[#050b1a]/20 text-[#050b1a] font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-[#050b1a] hover:text-white transition-all duration-500"
+              >
+                Contact Sales
+              </Link>
+            </div>
+          </div>
+        </section>
+      </>
+    );
+  }
+
+  // ── Default (v1/v2/v3/v4) ──
   return (
     <>
-      {/* Hero */}
       <section className="relative overflow-hidden bg-gray-50 pt-16">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
           <motion.div
@@ -80,7 +279,6 @@ export function ProductPage({
         </div>
       </section>
 
-      {/* Content sections */}
       <section className="py-16 sm:py-20">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="space-y-12">
@@ -106,7 +304,6 @@ export function ProductPage({
         </div>
       </section>
 
-      {/* CTA */}
       <section className="bg-gray-50 py-16 sm:py-20">
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <h2 className="text-3xl font-extrabold text-dark-900">

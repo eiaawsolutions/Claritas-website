@@ -6,7 +6,7 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 
-  /* Claritas Brand — Coral/Salmon accent from design */
+  /* Claritas Brand — Coral/Salmon accent (V1) */
   --color-coral-50: #fef2f0;
   --color-coral-100: #fde8e4;
   --color-coral-200: #fbc8bf;
@@ -17,6 +17,34 @@
   --color-coral-700: #b83a31;
   --color-coral-800: #99312a;
   --color-coral-900: #7f2d28;
+
+  /* V2 Slate — Teal accent */
+  --color-teal-700: #0d7377;
+  --color-teal-800: #0a5f62;
+  --color-blue-400: #60a5fa;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+
+  /* V4 Aurora — Violet + Emerald accents */
+  --color-teal-400: #2dd4bf;
+  --color-teal-500: #14b8a6;
+  --color-teal-600: #0d9488;
+  --color-violet-400: #a78bfa;
+  --color-violet-500: #8b5cf6;
+  --color-violet-600: #7c3aed;
+  --color-emerald-400: #34d399;
+  --color-emerald-500: #10b981;
+
+  /* V3 Executive — Amber/Gold accent */
+  --color-amber-500: #f59e0b;
+  --color-amber-600: #d97706;
+
+  /* V8 Atelier — Luxury editorial */
+  --color-luxury-cream: #FAF8F4;
+  --color-luxury-ink: #1A1A1A;
+  --color-luxury-gold: #B8965A;
+  --color-luxury-gold-light: #D4B886;
+  --color-luxury-warm: #F5F2ED;
 
   /* Neutral palette */
   --color-dark-900: #1a1a2e;
@@ -44,4 +72,71 @@ body {
   background: var(--color-background);
   color: var(--color-foreground);
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+}
+
+/* V2: Slate global overrides */
+html[data-design="v2"] body {
+  background: #f7f8fa;
+  color: #1e293b;
+}
+
+/* V3: Executive global overrides */
+html[data-design="v3"] body {
+  background: #faf9f7;
+  color: #1a2b4a;
+}
+
+/* V4: Aurora — gradient mesh + glassmorphism */
+html[data-design="v4"] body {
+  background: #0a0118;
+  color: #e2e8f0;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+/* V5: Prestige global overrides */
+html[data-design="v5"] body {
+  background: #050b1a;
+  color: #e2e8f0;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+html[data-design="v5"] h1,
+html[data-design="v5"] h2 {
+  font-family: var(--font-playfair), 'Playfair Display', serif;
+}
+
+html[data-design="v5"] h3,
+html[data-design="v5"] h4 {
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+/* V6: Precision — light engineering aesthetic */
+html[data-design="v6"] body {
+  background: #fafafa;
+  color: #09090b;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+/* V7: Enterprise — dark navy + blue accent SaaS */
+html[data-design="v7"] body {
+  background: #0b1121;
+  color: #e2e8f0;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+/* V8: Atelier — luxury editorial aesthetic */
+html[data-design="v8"] body {
+  background: #FAF8F4;
+  color: #1A1A1A;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+html[data-design="v8"] h1,
+html[data-design="v8"] h2 {
+  font-family: var(--font-playfair), 'Playfair Display', serif;
+}
+
+html[data-design="v8"] ::selection {
+  background: #B8965A;
+  color: #fff;
 }

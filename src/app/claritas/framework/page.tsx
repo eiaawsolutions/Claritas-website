@@ -1,12 +1,8 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { Layers, Database, Code2, Headphones, ArrowRight } from "lucide-react";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Claritas Framework | Technical Architecture",
-  description:
-    "Claritas CRM framework — built on .NET, multi-tenant architecture, Azure cloud stack, with 3x data redundancy and 8x5 support.",
-};
+import { Layers, Database, Code2, Headphones } from "lucide-react";
+import { SubpageShell } from "@/components/subpage-shell";
+import { useDesignVersion } from "@/config/design-context";
 
 const techStack = [
   { label: ".NET Framework 4.0", desc: "Enterprise-grade runtime for robust, scalable applications" },
@@ -40,80 +36,92 @@ const pillars = [
 ];
 
 export default function FrameworkPage() {
-  return (
-    <>
-      <section className="bg-gray-50 pt-16">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-          <div className="max-w-3xl">
-            <span className="inline-block rounded-full bg-coral-500 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-white">
-              Technical Architecture
-            </span>
-            <h1 className="mt-6 text-2xl font-extrabold tracking-tight text-dark-900 sm:text-3xl md:text-4xl lg:text-5xl">
-              CLARITAS <span className="text-coral-500">FRAMEWORK</span>
-            </h1>
-            <p className="mt-4 text-lg font-medium italic text-gray-400">
-              On-demand access to your data: Seamless &mdash; Secure &mdash; Reliable
-            </p>
-            <p className="mt-4 text-base leading-relaxed text-gray-500">
-              Claritas&trade; provides hosted applications and data storage with flexible, scalable management
-              of operating expenses aligned to your company&apos;s growth. Built on proven Microsoft technologies,
-              the platform delivers enterprise-grade reliability with cloud-native agility.
-            </p>
-          </div>
-        </div>
-      </section>
+  const { version } = useDesignVersion();
+  const isV5 = version === "v5";
 
+  return (
+    <SubpageShell
+      badge="Technical Architecture"
+      title={isV5 ? "Claritas Framework" : "CLARITAS FRAMEWORK"}
+      subtitle="On-demand access to your data: Seamless — Secure — Reliable"
+      description="Claritas™ provides hosted applications and data storage with flexible, scalable management of operating expenses aligned to your company's growth. Built on proven Microsoft technologies, the platform delivers enterprise-grade reliability with cloud-native agility."
+      ctaTitle={isV5 ? "See it in action" : "See it in action"}
+      ctaDescription="Request a demo to experience the Claritas framework firsthand."
+      ctaPrimary={{ label: "REQUEST A DEMO", href: "/contact?demo=true" }}
+    >
       {/* Tech Stack */}
-      <section className="py-16 sm:py-20">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-center text-2xl font-bold text-dark-900 sm:text-3xl">
-            TECHNOLOGY <span className="text-coral-500">STACK</span>
-          </h2>
-          <div className="mt-10 space-y-3">
-            {techStack.map((t) => (
-              <div key={t.label} className="flex items-start gap-4 rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
-                <span className="mt-0.5 text-coral-500 font-bold text-sm">&#9658;</span>
-                <div>
-                  <h3 className="text-sm font-bold text-dark-900">{t.label}</h3>
-                  <p className="mt-1 text-sm text-gray-500">{t.desc}</p>
-                </div>
+      <div className={isV5 ? "mb-20" : "mb-16"}>
+        <h2
+          className={
+            isV5
+              ? "text-center text-3xl md:text-5xl font-light text-white tracking-tighter mb-16"
+              : "text-center text-2xl font-bold text-dark-900 sm:text-3xl"
+          }
+          style={isV5 ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
+        >
+          {isV5 ? "Technology Stack" : <>TECHNOLOGY <span className="text-coral-500">STACK</span></>}
+        </h2>
+        <div className={isV5 ? "mt-10 space-y-3 max-w-4xl mx-auto" : "mt-10 space-y-3 max-w-4xl mx-auto"}>
+          {techStack.map((t) => (
+            <div
+              key={t.label}
+              className={
+                isV5
+                  ? "flex items-start gap-4 border border-white/[0.06] bg-transparent p-4"
+                  : "flex items-start gap-4 rounded-xl border border-gray-200 bg-white p-4 shadow-sm"
+              }
+            >
+              <span className={isV5 ? "mt-0.5 text-blue-500 font-bold text-sm" : "mt-0.5 text-coral-500 font-bold text-sm"}>&#9658;</span>
+              <div>
+                <h3 className={isV5 ? "text-sm font-semibold text-white" : "text-sm font-bold text-dark-900"}>{t.label}</h3>
+                <p className={isV5 ? "mt-1 text-sm text-slate-400 font-light" : "mt-1 text-sm text-gray-500"}>{t.desc}</p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
-      </section>
+      </div>
 
       {/* Pillars */}
-      <section className="bg-gray-50 py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-center text-2xl font-bold text-dark-900 sm:text-3xl">
-            ARCHITECTURE <span className="text-coral-500">PILLARS</span>
-          </h2>
-          <div className="mt-12 grid gap-4 sm:gap-6 sm:grid-cols-2">
-            {pillars.map((p) => (
-              <div key={p.title} className="rounded-2xl border border-gray-200 bg-white p-5 sm:p-6 shadow-[0_8px_30px_-8px_rgba(0,0,0,0.08)] transition-all hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] hover:-translate-y-1">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-coral-50 text-coral-500">
-                  <p.icon className="h-5 w-5" />
-                </div>
-                <h3 className="mt-4 text-base font-bold text-dark-900">{p.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-gray-500">{p.desc}</p>
+      <div>
+        <h2
+          className={
+            isV5
+              ? "text-center text-3xl md:text-5xl font-light text-white tracking-tighter mb-16"
+              : "text-center text-2xl font-bold text-dark-900 sm:text-3xl"
+          }
+          style={isV5 ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
+        >
+          {isV5 ? "Architecture Pillars" : <>ARCHITECTURE <span className="text-coral-500">PILLARS</span></>}
+        </h2>
+        <div className={isV5 ? "mt-16 grid gap-6 sm:grid-cols-2" : "mt-12 grid gap-4 sm:gap-6 sm:grid-cols-2"}>
+          {pillars.map((p) => (
+            <div
+              key={p.title}
+              className={
+                isV5
+                  ? "border border-white/[0.06] bg-transparent p-6"
+                  : "rounded-2xl border border-gray-200 bg-white p-5 sm:p-6 shadow-[0_8px_30px_-8px_rgba(0,0,0,0.08)] transition-all hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] hover:-translate-y-1"
+              }
+            >
+              <div
+                className={
+                  isV5
+                    ? "flex h-10 w-10 items-center justify-center bg-blue-500/10 text-blue-400"
+                    : "flex h-10 w-10 items-center justify-center rounded-xl bg-coral-50 text-coral-500"
+                }
+              >
+                <p.icon className="h-5 w-5" />
               </div>
-            ))}
-          </div>
+              <h3 className={isV5 ? "mt-4 text-base font-semibold text-white" : "mt-4 text-base font-bold text-dark-900"}>
+                {p.title}
+              </h3>
+              <p className={isV5 ? "mt-2 text-sm leading-relaxed text-slate-400 font-light" : "mt-2 text-sm leading-relaxed text-gray-500"}>
+                {p.desc}
+              </p>
+            </div>
+          ))}
         </div>
-      </section>
-
-      <section className="py-16 sm:py-20">
-        <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-extrabold text-dark-900 sm:text-3xl">
-            See it in <span className="text-coral-500">action</span>
-          </h2>
-          <p className="mt-4 text-base text-gray-500">Request a demo to experience the Claritas framework firsthand.</p>
-          <Link href="/contact?demo=true" className="mt-8 inline-flex items-center gap-2 rounded-full bg-coral-500 px-8 py-3 text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-coral-600 hover:shadow-lg hover:shadow-coral-500/25">
-            REQUEST A DEMO <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-      </section>
-    </>
+      </div>
+    </SubpageShell>
   );
 }

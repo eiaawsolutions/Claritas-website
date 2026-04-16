@@ -1,12 +1,7 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+"use client";
 
-export const metadata: Metadata = {
-  title: "CRM Implementation | Claritas CRM",
-  description:
-    "The CRM implementation journey — from manual processes to full optimisation. Learn the 4-stage maturity model and the 4 P's framework.",
-};
+import { SubpageShell } from "@/components/subpage-shell";
+import { useDesignVersion } from "@/config/design-context";
 
 const stages = [
   {
@@ -59,90 +54,102 @@ const fourPs = [
 ];
 
 export default function ImplementationPage() {
-  return (
-    <>
-      <section className="bg-gray-50 pt-16">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-          <div className="max-w-3xl">
-            <span className="inline-block rounded-full bg-coral-500 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-white">
-              Implementation
-            </span>
-            <h1 className="mt-6 text-2xl font-extrabold tracking-tight text-dark-900 sm:text-3xl md:text-4xl lg:text-5xl">
-              CRM <span className="text-coral-500">IMPLEMENTATION</span>
-            </h1>
-            <p className="mt-4 text-lg font-medium italic text-gray-400">
-              The adoption of CRM is not an overnight implementation
-            </p>
-            <p className="mt-4 text-base leading-relaxed text-gray-500">
-              CRM is a journey, not an instantaneous transformation. Companies often expect significant
-              results within the first month — but lasting success comes from a structured, phased approach.
-              Here is the maturity path most organisations follow.
-            </p>
-          </div>
-        </div>
-      </section>
+  const { version } = useDesignVersion();
+  const isV5 = version === "v5";
 
+  return (
+    <SubpageShell
+      badge="Implementation"
+      title={isV5 ? "CRM Implementation" : "CRM IMPLEMENTATION"}
+      subtitle="The adoption of CRM is not an overnight implementation"
+      description="CRM is a journey, not an instantaneous transformation. Companies often expect significant results within the first month — but lasting success comes from a structured, phased approach. Here is the maturity path most organisations follow."
+      ctaTitle={isV5 ? "Start your CRM journey today" : "Start your CRM journey today"}
+      ctaDescription="Our consultants guide you through every stage — from planning to optimisation."
+      ctaPrimary={{ label: "REQUEST A DEMO", href: "/contact?demo=true" }}
+      ctaSecondary={{ label: "READ SUCCESS STORIES", href: "/case-studies" }}
+    >
       {/* Maturity Stages */}
-      <section className="py-16 sm:py-20">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-center text-2xl font-bold text-dark-900 sm:text-3xl">
-            CRM MATURITY <span className="text-coral-500">JOURNEY</span>
-          </h2>
-          <div className="mt-12 space-y-4">
-            {stages.map((s) => (
-              <div key={s.number} className="flex gap-4 rounded-2xl border border-gray-200 bg-white p-5 sm:p-6 shadow-[0_8px_30px_-8px_rgba(0,0,0,0.08)] transition-all hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] hover:-translate-y-1">
-                <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-sm font-extrabold ${s.colour}`}>
-                  {s.number}
-                </div>
-                <div>
-                  <h3 className="text-base font-bold text-dark-900">{s.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-gray-500">{s.desc}</p>
-                </div>
+      <div className={isV5 ? "mb-20" : "mb-16"}>
+        <h2
+          className={
+            isV5
+              ? "text-center text-3xl md:text-5xl font-light text-white tracking-tighter mb-16"
+              : "text-center text-2xl font-bold text-dark-900 sm:text-3xl"
+          }
+          style={isV5 ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
+        >
+          {isV5 ? "CRM Maturity Journey" : <>CRM MATURITY <span className="text-coral-500">JOURNEY</span></>}
+        </h2>
+        <div className={isV5 ? "space-y-4 max-w-4xl mx-auto" : "mt-12 space-y-4 max-w-4xl mx-auto"}>
+          {stages.map((s) => (
+            <div
+              key={s.number}
+              className={
+                isV5
+                  ? "flex gap-4 border border-white/[0.06] bg-transparent p-6"
+                  : "flex gap-4 rounded-2xl border border-gray-200 bg-white p-5 sm:p-6 shadow-[0_8px_30px_-8px_rgba(0,0,0,0.08)] transition-all hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] hover:-translate-y-1"
+              }
+            >
+              <div
+                className={
+                  isV5
+                    ? "flex h-12 w-12 shrink-0 items-center justify-center bg-blue-500/10 text-blue-400 text-sm font-bold"
+                    : `flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-sm font-extrabold ${s.colour}`
+                }
+              >
+                {s.number}
               </div>
-            ))}
-          </div>
+              <div>
+                <h3 className={isV5 ? "text-base font-semibold text-white" : "text-base font-bold text-dark-900"}>
+                  {s.title}
+                </h3>
+                <p className={isV5 ? "mt-2 text-sm leading-relaxed text-slate-400 font-light" : "mt-2 text-sm leading-relaxed text-gray-500"}>
+                  {s.desc}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
-      </section>
+      </div>
 
       {/* 4 P's */}
-      <section className="bg-gray-50 py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-center text-2xl font-bold text-dark-900 sm:text-3xl">
-            THE 4 <span className="text-coral-500">P&apos;s</span> OF CRM SUCCESS
-          </h2>
-          <p className="mt-4 mx-auto max-w-2xl text-center text-sm text-gray-500">
-            Four critical success factors determine whether your CRM implementation reaches its full potential.
-          </p>
-          <div className="mt-12 grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {fourPs.map((p) => (
-              <div key={p.title} className="rounded-2xl border border-gray-200 bg-white p-5 sm:p-6 text-center shadow-[0_8px_30px_-8px_rgba(0,0,0,0.08)] transition-all hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] hover:-translate-y-1">
-                <span className="text-4xl font-extrabold text-coral-500">{p.letter}</span>
-                <h3 className="mt-2 text-base font-bold text-dark-900">{p.title}</h3>
-                <p className="mt-3 text-xs leading-relaxed text-gray-500">{p.desc}</p>
-              </div>
-            ))}
-          </div>
+      <div>
+        <h2
+          className={
+            isV5
+              ? "text-center text-3xl md:text-5xl font-light text-white tracking-tighter mb-6"
+              : "text-center text-2xl font-bold text-dark-900 sm:text-3xl"
+          }
+          style={isV5 ? { fontFamily: 'var(--font-playfair), "Playfair Display", serif' } : undefined}
+        >
+          {isV5 ? "The 4 P\u2019s of CRM Success" : <>THE 4 <span className="text-coral-500">P&apos;s</span> OF CRM SUCCESS</>}
+        </h2>
+        <p className={isV5 ? "mt-4 mx-auto max-w-2xl text-center text-sm text-slate-500 font-light mb-16" : "mt-4 mx-auto max-w-2xl text-center text-sm text-gray-500"}>
+          Four critical success factors determine whether your CRM implementation reaches its full potential.
+        </p>
+        <div className={isV5 ? "mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4" : "mt-12 grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4"}>
+          {fourPs.map((p) => (
+            <div
+              key={p.title}
+              className={
+                isV5
+                  ? "border border-white/[0.06] bg-transparent p-6 text-center"
+                  : "rounded-2xl border border-gray-200 bg-white p-5 sm:p-6 text-center shadow-[0_8px_30px_-8px_rgba(0,0,0,0.08)] transition-all hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] hover:-translate-y-1"
+              }
+            >
+              <span className={isV5 ? "text-4xl font-bold text-blue-500" : "text-4xl font-extrabold text-coral-500"}>
+                {p.letter}
+              </span>
+              <h3 className={isV5 ? "mt-2 text-base font-semibold text-white" : "mt-2 text-base font-bold text-dark-900"}>
+                {p.title}
+              </h3>
+              <p className={isV5 ? "mt-3 text-xs leading-relaxed text-slate-400 font-light" : "mt-3 text-xs leading-relaxed text-gray-500"}>
+                {p.desc}
+              </p>
+            </div>
+          ))}
         </div>
-      </section>
-
-      <section className="py-16 sm:py-20">
-        <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-extrabold text-dark-900 sm:text-3xl">
-            Start your CRM <span className="text-coral-500">journey</span> today
-          </h2>
-          <p className="mt-4 text-base text-gray-500">
-            Our consultants guide you through every stage — from planning to optimisation.
-          </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link href="/contact?demo=true" className="inline-flex items-center gap-2 rounded-full bg-coral-500 px-8 py-3 text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-coral-600 hover:shadow-lg hover:shadow-coral-500/25">
-              REQUEST A DEMO <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link href="/case-studies" className="inline-flex items-center gap-2 rounded-full border-2 border-dark-900 px-8 py-3 text-sm font-bold uppercase tracking-wider text-dark-900 transition-all hover:bg-dark-900 hover:text-white">
-              READ SUCCESS STORIES
-            </Link>
-          </div>
-        </div>
-      </section>
-    </>
+      </div>
+    </SubpageShell>
   );
 }

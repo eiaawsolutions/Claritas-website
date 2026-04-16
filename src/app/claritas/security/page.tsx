@@ -1,12 +1,8 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { ShieldCheck, Lock, Eye, Server, FileCheck, Trash2, Users, ArrowRight } from "lucide-react";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Security | Claritas CRM",
-  description:
-    "Enterprise-grade security — ISO 27001 certified data centres, encryption, multi-tenant isolation, audit trails, and disaster recovery.",
-};
+import { ShieldCheck, Lock, Eye, Server, FileCheck, Trash2, Users } from "lucide-react";
+import { SubpageShell } from "@/components/subpage-shell";
+import { useDesignVersion } from "@/config/design-context";
 
 const sections = [
   {
@@ -52,63 +48,51 @@ const sections = [
 ];
 
 export default function SecurityPage() {
+  const { version } = useDesignVersion();
+  const isV5 = version === "v5";
+
   return (
-    <>
-      <section className="bg-gray-50 pt-16">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-          <div className="max-w-3xl">
-            <span className="inline-block rounded-full bg-coral-500 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-white">
-              Security
-            </span>
-            <h1 className="mt-6 text-2xl font-extrabold tracking-tight text-dark-900 sm:text-3xl md:text-4xl lg:text-5xl">
-              CLARITAS <span className="text-coral-500">SECURITY</span>
-            </h1>
-            <p className="mt-4 text-lg font-medium italic text-gray-400">
-              Your application security and data privacy is our utmost priority
-            </p>
-            <p className="mt-4 text-base leading-relaxed text-gray-500">
-              We take customer confidentiality seriously. Claritas&trade; CRM is built on enterprise-grade
-              security infrastructure with multiple layers of protection — from physical data centre security
-              to application-level encryption and audit trails.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 sm:py-20">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="space-y-4">
-            {sections.map((s) => (
+    <SubpageShell
+      badge="Security"
+      title={isV5 ? "Claritas Security" : "CLARITAS SECURITY"}
+      subtitle="Your application security and data privacy is our utmost priority"
+      description="We take customer confidentiality seriously. Claritas™ CRM is built on enterprise-grade security infrastructure with multiple layers of protection — from physical data centre security to application-level encryption and audit trails."
+      ctaTitle={isV5 ? "Questions about security?" : "Questions about security?"}
+      ctaDescription="Our team is happy to discuss security requirements and compliance needs."
+      ctaPrimary={{ label: "CONTACT US", href: "/contact" }}
+    >
+      <div className={isV5 ? "space-y-4 max-w-4xl mx-auto" : "space-y-4 max-w-4xl mx-auto"}>
+        {sections.map((s) => (
+          <div
+            key={s.title}
+            className={
+              isV5
+                ? "border border-white/[0.06] bg-transparent p-6 sm:p-8"
+                : "rounded-2xl border border-gray-200 bg-white p-5 sm:p-6 shadow-[0_8px_30px_-8px_rgba(0,0,0,0.08)] transition-all hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] hover:-translate-y-1"
+            }
+          >
+            <div className="flex items-start gap-4">
               <div
-                key={s.title}
-                className="rounded-2xl border border-gray-200 bg-white p-5 sm:p-6 shadow-[0_8px_30px_-8px_rgba(0,0,0,0.08)] transition-all hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] hover:-translate-y-1"
+                className={
+                  isV5
+                    ? "flex h-10 w-10 shrink-0 items-center justify-center bg-blue-500/10 text-blue-400"
+                    : "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-coral-50 text-coral-500"
+                }
               >
-                <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-coral-50 text-coral-500">
-                    <s.icon className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <h3 className="text-base font-bold text-dark-900">{s.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-gray-500">{s.body}</p>
-                  </div>
-                </div>
+                <s.icon className="h-5 w-5" />
               </div>
-            ))}
+              <div>
+                <h3 className={isV5 ? "text-base font-semibold text-white" : "text-base font-bold text-dark-900"}>
+                  {s.title}
+                </h3>
+                <p className={isV5 ? "mt-2 text-sm leading-relaxed text-slate-400 font-light" : "mt-2 text-sm leading-relaxed text-gray-500"}>
+                  {s.body}
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
-
-      <section className="bg-gray-50 py-16 sm:py-20">
-        <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-extrabold text-dark-900 sm:text-3xl">
-            Questions about <span className="text-coral-500">security</span>?
-          </h2>
-          <p className="mt-4 text-base text-gray-500">Our team is happy to discuss security requirements and compliance needs.</p>
-          <Link href="/contact" className="mt-8 inline-flex items-center gap-2 rounded-full bg-coral-500 px-8 py-3 text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-coral-600 hover:shadow-lg hover:shadow-coral-500/25">
-            CONTACT US <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-      </section>
-    </>
+        ))}
+      </div>
+    </SubpageShell>
   );
 }
