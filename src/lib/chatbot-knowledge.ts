@@ -147,17 +147,33 @@ export const knowledgeBase: KnowledgeEntry[] = [
   // ── Security & Trust ──
   {
     topic: "security",
-    keywords: ["security", "secure", "data", "protection", "trust", "compliance", "privacy", "safe"],
+    keywords: ["security", "secure", "data", "protection", "trust", "compliance", "privacy", "safe", "iso", "encryption", "audit"],
     answer:
-      "Claritas CRM takes security seriously. We provide enterprise-grade security, data protection compliance, and transparent practices. Our Enterprise plan includes SSO (Single Sign-On), audit trails, and SLA-backed support. We are a Microsoft Azure partner with cloud-native architecture and hybrid deployment options.",
+      "Claritas CRM provides enterprise-grade security hosted in ISO 27001 certified Microsoft Azure data centres. Key features include multi-tenant data isolation, encryption (MD5/SHA2), SSL/HTTPS, audit trails, 3x data redundancy, automatic backups, and 99.9% uptime SLA. We have strict data deletion procedures and staff access protocols.\n\nVisit our **[Security](/claritas/security)** page for full details!",
   },
 
   // ── Deployment ──
   {
     topic: "deployment",
-    keywords: ["deploy", "cloud", "on-premise", "azure", "hosting", "install", "setup"],
+    keywords: ["deploy", "cloud", "on-premise", "azure", "hosting", "install", "setup", "cloud vs"],
     answer:
-      "Claritas CRM offers flexible deployment: cloud-native on Microsoft Azure (default) with hybrid and on-premise deployment options available on the Enterprise plan. Our cloud-first architecture ensures scalability, reliability, and security.",
+      "Claritas CRM offers two deployment options:\n\n**Cloud (Recommended)** — Hosted on Microsoft Azure with low upfront cost, automatic scaling, 99.9% SLA, and automatic updates.\n\n**On-Premise** — Available on Enterprise plan for maximum control and deep customisation. Data stays on your servers.\n\nVisit our **[Cloud vs On-Premise](/claritas/cloud-vs-on-premise)** page for a detailed comparison!",
+  },
+
+  // ── Implementation ──
+  {
+    topic: "implementation",
+    keywords: ["implement", "implementation", "setup", "onboard", "methodology", "process", "timeline", "how long"],
+    answer:
+      "CRM implementation follows a 4-stage maturity journey: (1) Manual Operations, (2) Partial Automation, (3) End-to-End Automation, (4) Optimisation. Success depends on the 4 P's: Process, Product, People, and Price. Claritas provides dedicated project managers, consultants, and training to guide you through every stage.\n\nLearn more on our **[Implementation](/claritas/implementation)** page!",
+  },
+
+  // ── Framework ──
+  {
+    topic: "framework",
+    keywords: ["framework", "architecture", "technology", "tech stack", ".net", "sql", "multi-tenant"],
+    answer:
+      "Claritas CRM is built on .NET Framework 4.0 with C#, WCF, WF, and SQL Server Reporting Services. It uses multi-tenant architecture on Microsoft Azure with 3x data redundancy and SOA principles. Modern web technologies include AJAX, JSON, and jQuery.\n\nSee our **[Framework](/claritas/framework)** page for details!",
   },
 
   // ── Integration ──

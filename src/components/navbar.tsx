@@ -9,12 +9,15 @@ import { Menu, X, ChevronDown } from "lucide-react";
 const navLinks = [
   { name: "Home", href: "/" },
   {
-    name: "Company",
-    href: "/about",
+    name: "Claritas",
+    href: "/claritas/cloud",
     children: [
-      { name: "About Us", href: "/about" },
-      { name: "Case Studies", href: "/case-studies" },
-      { name: "News & Events", href: "/about#news" },
+      { name: "Claritas Cloud", href: "/claritas/cloud" },
+      { name: "Framework", href: "/claritas/framework" },
+      { name: "Security", href: "/claritas/security" },
+      { name: "Integration", href: "/claritas/integration" },
+      { name: "Cloud vs On-Premise", href: "/claritas/cloud-vs-on-premise" },
+      { name: "Implementation", href: "/claritas/implementation" },
     ],
   },
   {
@@ -31,7 +34,16 @@ const navLinks = [
       { name: "Dashboard & Reports", href: "/products/dashboard" },
     ],
   },
-  { name: "Careers", href: "/#careers" },
+  {
+    name: "Company",
+    href: "/about",
+    children: [
+      { name: "About Us", href: "/about" },
+      { name: "Case Studies", href: "/case-studies" },
+      { name: "News & Events", href: "/news-events" },
+    ],
+  },
+  { name: "Pricing", href: "/pricing" },
 ];
 
 export function Navbar() {
