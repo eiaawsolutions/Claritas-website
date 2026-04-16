@@ -5,7 +5,7 @@ const footerLinks = [
   { name: "Privacy Policy", href: "/privacy" },
   { name: "Promotion", href: "/#" },
   { name: "News & Events", href: "/about#news" },
-  { name: "Case Studies", href: "/about#case-studies" },
+  { name: "Case Studies", href: "/case-studies" },
   { name: "About Us", href: "/about" },
 ];
 

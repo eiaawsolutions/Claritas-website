@@ -103,7 +103,7 @@ export function ClientLogos() {
 
           <div className="mt-8">
             <Link
-              href="/about#case-studies"
+              href="/case-studies"
               className="inline-block rounded-lg bg-coral-500 px-10 py-3.5 text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-coral-600 hover:shadow-lg hover:shadow-coral-500/25"
             >
               LEARN MORE

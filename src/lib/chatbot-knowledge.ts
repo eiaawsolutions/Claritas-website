@@ -29,9 +29,9 @@ export const knowledgeBase: KnowledgeEntry[] = [
   },
   {
     topic: "clients",
-    keywords: ["client", "customer", "who uses", "case study", "testimonial", "reference", "success"],
+    keywords: ["client", "customer", "who uses", "case study", "testimonial", "reference", "success", "story", "stories"],
     answer:
-      "Claritas CRM has 50+ successful customer stories including major brands like FGV Holdings, Nando's, Pfizer, SingTel, Intel, Astro, Carlsberg, Proton, and CIMB Aviva. Our clients span multiple industries across the APAC region.",
+      "Claritas CRM has 50+ successful customer stories across 12 industries including Pharmaceutical (Pfizer, Zuellig Pharma), Retail (Nando's, Room Service Deliveries), Telecom (SingTel), Finance (CIMB Aviva, Mestari), Manufacturing (Carlsberg, Intel), Call Centre (Kannal Solutions), and more.\n\nWe have detailed case studies with real results — for example, Pfizer achieved real-time mobile sales visibility, and Zuellig Pharma improved service turnaround across 15 countries.\n\nVisit our **[Case Studies](/case-studies)** page to read the full success stories!",
   },
 
   // ── Contact Info ──

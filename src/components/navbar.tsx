@@ -13,7 +13,7 @@ const navLinks = [
     href: "/about",
     children: [
       { name: "About Us", href: "/about" },
-      { name: "Case Studies", href: "/about#case-studies" },
+      { name: "Case Studies", href: "/case-studies" },
       { name: "News & Events", href: "/about#news" },
     ],
   },
