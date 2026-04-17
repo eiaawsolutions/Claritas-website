@@ -29,6 +29,68 @@ export function Testimonials() {
   const { version } = useDesignVersion();
 
   // ── V8: Atelier — Luxury editorial ��─
+  // ── V9: Obsidian — Transcript ledger ──
+  if (version === "v9") {
+    return (
+      <section className="bg-[#F4F2EC] py-24 border-t border-[#0A0A0A]/14">
+        <div className="mx-auto max-w-[1600px] px-6 md:px-10">
+          <div className="grid grid-cols-12 gap-6 mb-14 items-end border-b border-[#0A0A0A]/14 pb-6">
+            <div className="col-span-12 md:col-span-6">
+              <div className="v9-mono text-[10px] uppercase tracking-[0.3em] text-[#FF4D1F] mb-4">
+                SECTION D · FIELD TRANSCRIPTS
+              </div>
+              <h2 className="v9-display text-5xl md:text-6xl text-[#0A0A0A]">
+                ON<br />RECORD<sup className="v9-mono text-[#FF4D1F] text-[20%] align-top ml-2">{testimonials.length}</sup>
+              </h2>
+            </div>
+            <p className="col-span-12 md:col-span-4 md:col-start-8 text-base text-[#0A0A0A]/70 leading-relaxed">
+              Verbatim accounts from operators deploying Claritas in production. Redaction symbols retained for authenticity.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 border-t border-l border-[#0A0A0A]/14">
+            {testimonials.map((t, i) => (
+              <motion.div
+                key={t.name}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
+                className="group relative border-r border-b border-[#0A0A0A]/14 p-8 lg:p-10 flex flex-col min-h-[420px] hover:bg-[#0A0A0A] hover:text-[#F4F2EC] transition-colors"
+              >
+                <div className="flex items-start justify-between mb-6">
+                  <span className="v9-mono text-[10px] uppercase tracking-[0.3em] text-[#FF4D1F]">
+                    TRANS / {String(i + 1).padStart(3, "0")}
+                  </span>
+                  <div className="flex gap-0.5">
+                    {Array.from({ length: 5 }).map((_, idx) => (
+                      <Star
+                        key={idx}
+                        className={`h-3 w-3 ${idx < t.rating ? "fill-[#FF4D1F] text-[#FF4D1F]" : "text-current opacity-30"}`}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                <Quote className="h-6 w-6 text-[#FF4D1F] mb-4 shrink-0" />
+                <p className="flex-1 text-base leading-relaxed opacity-90 italic">
+                  {t.text}
+                </p>
+
+                <div className="mt-8 pt-4 border-t border-dashed border-current/20 v9-mono text-[10px] uppercase tracking-[0.25em] space-y-1">
+                  <div className="font-semibold">{t.name}</div>
+                  <div className="opacity-60">{"↳ "}{t.company}</div>
+                </div>
+
+                <ShieldCheck className="absolute top-3 right-3 h-3 w-3 opacity-30 group-hover:text-[#FF4D1F] group-hover:opacity-100 transition-all" />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   if (version === "v8") {
     return (
       <section className="py-32 px-8 md:px-16 bg-luxury-warm">

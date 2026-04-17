@@ -34,6 +34,90 @@ export function ProductPage({
 }: ProductPageProps) {
   const { version } = useDesignVersion();
 
+  // ── V9: Obsidian — Industrial brutalist / field manual ──
+  if (version === "v9") {
+    return (
+      <>
+        <section className="relative bg-[#F4F2EC] text-[#0A0A0A] pt-28 border-b border-[#0A0A0A]/14">
+          <div className="mx-auto max-w-[1600px] px-6 md:px-10 py-16 lg:py-20">
+            <div className="v9-mono text-[10px] uppercase tracking-[0.3em] text-[#0A0A0A]/60 mb-6 flex items-center gap-3">
+              <span className="text-[#FF4D1F]">↳</span>
+              <span>MODULE / {category}</span>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="grid grid-cols-12 gap-6 items-end"
+            >
+              <div className="col-span-12 lg:col-span-2">
+                <div className="flex h-16 w-16 items-center justify-center border-2 border-[#0A0A0A] bg-[#F4F2EC]">
+                  <Icon className="h-7 w-7 text-[#FF4D1F]" />
+                </div>
+              </div>
+              <h1 className="col-span-12 lg:col-span-10 v9-display text-[11vw] md:text-[7vw] lg:text-[6vw] text-[#0A0A0A]">
+                {title}
+              </h1>
+            </motion.div>
+
+            <div className="mt-10 grid grid-cols-12 gap-6 items-end">
+              <div className="col-span-12 lg:col-span-7">
+                <p className="text-xl italic text-[#0A0A0A]/75" style={{ fontFamily: 'var(--font-playfair), "Playfair Display", serif' }}>
+                  {tagline}
+                </p>
+                <p className="mt-4 text-base leading-relaxed text-[#0A0A0A]/65 max-w-xl">
+                  {description}
+                </p>
+              </div>
+              <div className="col-span-12 lg:col-span-4 lg:col-start-9 flex flex-col gap-3">
+                <Link href="/contact?demo=true" className="group flex items-center justify-between bg-[#0A0A0A] text-[#F4F2EC] px-5 py-3.5 v9-mono text-[11px] uppercase tracking-[0.22em] font-semibold hover:bg-[#FF4D1F] transition-colors">
+                  <span>Request a Demo</span>
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                </Link>
+                <Link href="/pricing" className="flex items-center justify-between border border-[#0A0A0A]/30 px-5 py-3.5 v9-mono text-[11px] uppercase tracking-[0.22em] text-[#0A0A0A] hover:border-[#0A0A0A] hover:bg-[#0A0A0A] hover:text-[#F4F2EC] transition-colors">
+                  <span>See Pricing</span>
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-[#F4F2EC] py-20">
+          <div className="mx-auto max-w-[1600px] px-6 md:px-10">
+            <div className="v9-mono text-[10px] uppercase tracking-[0.3em] text-[#FF4D1F] mb-8 border-b border-[#0A0A0A]/14 pb-3">
+              SPECIFICATION · {sections.length} ENTRIES
+            </div>
+            <div className="grid md:grid-cols-2 border-t border-l border-[#0A0A0A]/14">
+              {sections.map((section, i) => (
+                <motion.div
+                  key={section.title}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.4, delay: i * 0.05 }}
+                  className="group border-r border-b border-[#0A0A0A]/14 p-8 lg:p-10 hover:bg-[#0A0A0A] hover:text-[#F4F2EC] transition-colors"
+                >
+                  <div className="flex items-center justify-between mb-6">
+                    <span className="v9-mono text-[10px] uppercase tracking-[0.3em] text-[#FF4D1F]">
+                      / {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="v9-mono text-[9px] uppercase tracking-[0.25em] opacity-40">
+                      SPEC {String(i + 1).padStart(2, "0")} / {String(sections.length).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <h3 className="v9-display text-2xl md:text-3xl mb-4">{section.title}</h3>
+                  <p className="text-base leading-relaxed opacity-80">{section.body}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </>
+    );
+  }
+
   // ── V8: Atelier — Luxury editorial ──
   if (version === "v8") {
     return (

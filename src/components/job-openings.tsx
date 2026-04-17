@@ -99,6 +99,17 @@ export function JobOpenings() {
       text: "text-[#1A1A1A]/60",
       sub: "text-[#1A1A1A]/40",
     },
+    v9: {
+      section: "bg-[#F4F2EC]",
+      badge: "bg-transparent text-[#FF4D1F] border border-[#FF4D1F]/40",
+      heading: "text-[#0A0A0A]",
+      accent: "text-[#FF4D1F]",
+      body: "text-[#0A0A0A]/70",
+      card: "border border-[#0A0A0A]/14 bg-[#F4F2EC] hover:bg-[#0A0A0A] hover:text-[#F4F2EC] transition-colors",
+      iconBg: "bg-[#FF4D1F]/10 text-[#FF4D1F] border border-[#FF4D1F]/30",
+      text: "text-current opacity-80",
+      sub: "text-current opacity-50",
+    },
   };
 
   const s = styles[version];

@@ -51,6 +51,99 @@ const products = [
 export function ProductsSection() {
   const { version } = useDesignVersion();
 
+  // ── V9: Obsidian — Technical field manual ──
+  if (version === "v9") {
+    return (
+      <section id="products" className="bg-[#0A0A0A] text-[#F4F2EC] py-24 border-y border-[#F4F2EC]/10">
+        <div className="mx-auto max-w-[1600px] px-6 md:px-10">
+          <div className="grid grid-cols-12 gap-6 mb-16 items-end border-b border-[#F4F2EC]/15 pb-8">
+            <div className="col-span-12 md:col-span-6">
+              <div className="v9-mono text-[10px] uppercase tracking-[0.3em] text-[#FF4D1F] mb-4">
+                SECTION C · PRODUCT MANIFEST
+              </div>
+              <h2 className="v9-display text-5xl md:text-7xl text-[#F4F2EC]">
+                THE<br />MANIFEST<sup className="v9-mono text-[#FF4D1F] text-[20%] align-top ml-2">III</sup>
+              </h2>
+            </div>
+            <div className="col-span-12 md:col-span-5 md:col-start-8 v9-mono text-[10px] uppercase tracking-[0.3em] text-[#F4F2EC]/60 space-y-2">
+              <div className="flex justify-between border-b border-dashed border-[#F4F2EC]/20 pb-1"><span>Units</span><span className="text-[#F4F2EC]">03 modules</span></div>
+              <div className="flex justify-between border-b border-dashed border-[#F4F2EC]/20 pb-1"><span>Stack</span><span className="text-[#F4F2EC]">Warehouse-native</span></div>
+              <div className="flex justify-between border-b border-dashed border-[#F4F2EC]/20 pb-1"><span>Latency</span><span className="text-[#F4F2EC]">&lt; 50ms P95</span></div>
+              <div className="flex justify-between"><span>SLA</span><span className="text-[#F4F2EC]">99.99% uptime</span></div>
+            </div>
+          </div>
+
+          <div className="space-y-0">
+            {products.map((product, i) => (
+              <motion.div
+                key={product.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.5 }}
+                className="group grid grid-cols-12 gap-6 items-center border-b border-[#F4F2EC]/15 py-12 lg:py-16 hover:bg-[#F4F2EC]/[0.02] transition-colors"
+              >
+                {/* Row number */}
+                <div className="col-span-1 hidden md:block v9-mono text-[10px] uppercase tracking-[0.3em] text-[#FF4D1F] self-start pt-2">
+                  0{i + 1}
+                </div>
+
+                {/* Image */}
+                <div className={`col-span-12 md:col-span-5 ${product.imagePosition === "right" ? "md:order-3" : "md:order-2"}`}>
+                  <div className="relative border border-[#F4F2EC]/15 p-3">
+                    <div className="absolute -top-2 left-3 bg-[#0A0A0A] px-2 v9-mono text-[9px] uppercase tracking-[0.3em] text-[#FF4D1F]">
+                      PLATE {String(i + 1).padStart(2, "0")}.{product.title.slice(0, 3).toUpperCase()}
+                    </div>
+                    <Image
+                      src={product.image}
+                      alt={product.title}
+                      width={600}
+                      height={620}
+                      className="w-full h-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-500"
+                    />
+                  </div>
+                </div>
+
+                {/* Copy */}
+                <div className={`col-span-12 md:col-span-6 ${product.imagePosition === "right" ? "md:order-2" : "md:order-3"}`}>
+                  <div className="v9-mono text-[10px] uppercase tracking-[0.3em] text-[#F4F2EC]/50 mb-3">
+                    Module / {product.title.toUpperCase()}
+                  </div>
+                  <h3 className="v9-display text-5xl md:text-6xl text-[#F4F2EC] mb-6">
+                    {product.v1Title}
+                  </h3>
+                  <p className="text-base text-[#F4F2EC]/70 leading-relaxed max-w-xl mb-8">
+                    {product.subtitle}
+                  </p>
+                  <ul className="space-y-2 mb-10">
+                    {product.bullets.map((b, bi) => (
+                      <li key={b} className="flex items-start gap-3 v9-mono text-[11px] uppercase tracking-[0.18em] text-[#F4F2EC]/80">
+                        <span className="text-[#FF4D1F] shrink-0">[{String(bi + 1).padStart(2, "0")}]</span>
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    href={product.href}
+                    className="inline-flex items-center gap-2 border border-[#F4F2EC]/30 px-5 py-3 v9-mono text-[11px] uppercase tracking-[0.22em] font-semibold text-[#F4F2EC] hover:bg-[#FF4D1F] hover:border-[#FF4D1F] transition-colors"
+                  >
+                    Read Specification
+                    <ChevronRight className="h-3.5 w-3.5" />
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-10 flex items-center justify-between v9-mono text-[10px] uppercase tracking-[0.3em] text-[#F4F2EC]/50">
+            <span>END OF MANIFEST</span>
+            <span>↳ PAGE C / C</span>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   // ── V8: Atelier — Luxury editorial ──
   if (version === "v8") {
     return (

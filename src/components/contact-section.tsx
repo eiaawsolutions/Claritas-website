@@ -143,6 +143,18 @@ export function ContactSection() {
       body: "text-[#1A1A1A]/50",
       successBorder: "border-[#B8965A]/20 bg-[#B8965A]/[0.06]",
     },
+    v9: {
+      section: "bg-[#0A0A0A] text-[#F4F2EC] border-t border-[#F4F2EC]/10",
+      heading: "text-[#F4F2EC]",
+      headingAccent: "text-[#FF4D1F]",
+      input: "border border-[#F4F2EC]/15 bg-transparent px-4 py-3.5 text-sm text-[#F4F2EC] placeholder:text-[#F4F2EC]/35 focus:border-[#FF4D1F] focus:outline-none focus:ring-0 v9-mono tracking-wider",
+      button: "bg-[#FF4D1F] px-10 py-4 v9-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#F4F2EC] hover:bg-[#F4F2EC] hover:text-[#0A0A0A] transition-colors",
+      ghost: "border border-[#F4F2EC]/20 px-6 py-2.5 v9-mono text-[10px] uppercase tracking-[0.22em] text-[#F4F2EC]/70 hover:border-[#FF4D1F] hover:text-[#FF4D1F]",
+      iconBg: "bg-[#FF4D1F]/15 text-[#FF4D1F] border border-[#FF4D1F]/30 rounded-none",
+      label: "text-[#F4F2EC]",
+      body: "text-[#F4F2EC]/60",
+      successBorder: "border-[#FF4D1F]/30 bg-[#FF4D1F]/[0.06]",
+    },
   };
 
   const s = styles[version];
@@ -161,6 +173,20 @@ export function ContactSection() {
             <h2 className={`text-3xl font-bold ${s.heading} sm:text-4xl`}>
               <span className={s.headingAccent}>CONTACT</span> US
             </h2>
+          ) : version === "v9" ? (
+            <div className="grid grid-cols-12 gap-6 items-end border-b border-[#F4F2EC]/15 pb-6">
+              <div className="col-span-12 md:col-span-7">
+                <span className="v9-mono text-[10px] uppercase tracking-[0.3em] text-[#FF4D1F]">
+                  SECTION E · TRANSMISSION
+                </span>
+                <h2 className="mt-4 v9-display text-5xl md:text-6xl text-[#F4F2EC]">
+                  OPEN<br />CHANNEL<span className={s.headingAccent}>.</span>
+                </h2>
+              </div>
+              <p className="col-span-12 md:col-span-4 md:col-start-9 text-base text-[#F4F2EC]/70 leading-relaxed">
+                Direct line to deployment engineering. Responses routed within one business day — KL timezone.
+              </p>
+            </div>
           ) : version === "v8" ? (
             <div>
               <span className="text-[11px] uppercase tracking-[0.4em] text-luxury-gold font-semibold">

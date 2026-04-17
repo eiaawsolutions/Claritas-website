@@ -207,6 +207,21 @@ export function Chatbot() {
       powered: "text-[#B8965A]/60",
       linkColor: "hover:text-[#B8965A]",
     },
+    v9: {
+      fab: "bg-[#0A0A0A] rounded-none hover:bg-[#FF4D1F] border border-[#0A0A0A]",
+      window: "bg-[#F4F2EC] border-2 border-[#0A0A0A] rounded-none shadow-[8px_8px_0_rgba(10,10,10,0.15)]",
+      header: "bg-[#0A0A0A]",
+      avatarBg: "bg-[#FF4D1F]/20 border border-[#FF4D1F]/40 rounded-none",
+      botBubble: "rounded-none border border-[#0A0A0A]/14 bg-[#F4F2EC] text-[#0A0A0A]",
+      userBubble: "rounded-none bg-[#0A0A0A] text-[#F4F2EC]",
+      botIcon: "bg-[#FF4D1F]/10 text-[#FF4D1F] border border-[#FF4D1F]/30 rounded-none",
+      quickBtn: "border-[#0A0A0A]/20 bg-transparent text-[#0A0A0A] hover:bg-[#0A0A0A] hover:text-[#F4F2EC] rounded-none v9-mono uppercase tracking-[0.15em] text-[10px]",
+      inputRing: "ring-[#0A0A0A]/20 focus-within:ring-[#FF4D1F]/50 rounded-none",
+      sendBtn: "bg-[#FF4D1F] hover:bg-[#0A0A0A] disabled:hover:bg-[#FF4D1F] rounded-none",
+      inputBg: "bg-[#F4F2EC] border border-[#0A0A0A]/14",
+      powered: "text-[#0A0A0A]/40 v9-mono uppercase tracking-[0.2em]",
+      linkColor: "hover:text-[#FF4D1F]",
+    },
   };
 
   const s = styles[version];

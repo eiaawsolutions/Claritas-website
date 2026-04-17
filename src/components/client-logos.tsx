@@ -40,7 +40,7 @@ const row3: Client[] = [
 
 const allClients = [...row1, ...row2, ...row3];
 
-function LogoItem({ client, variant }: { client: Client; variant: "v1" | "v2" | "v3" | "v4" | "v5" | "v6" | "v7" | "v8" }) {
+function LogoItem({ client, variant }: { client: Client; variant: "v1" | "v2" | "v3" | "v4" | "v5" | "v6" | "v7" | "v8" | "v9" }) {
   const styles = {
     v1: { img: "opacity-20", text: "text-dark-900/[0.08]" },
     v2: { img: "opacity-20", text: "text-[#1e293b]/[0.08]" },
@@ -50,6 +50,7 @@ function LogoItem({ client, variant }: { client: Client; variant: "v1" | "v2" | 
     v6: { img: "opacity-20", text: "text-zinc-800/[0.08]" },
     v7: { img: "opacity-15 brightness-0 invert", text: "text-white/[0.06]" },
     v8: { img: "opacity-15", text: "text-luxury-ink/[0.06]" },
+    v9: { img: "opacity-60 grayscale contrast-125", text: "text-[#0A0A0A]" },
   }[variant];
 
   if (client.src) {
@@ -72,6 +73,64 @@ function LogoItem({ client, variant }: { client: Client; variant: "v1" | "v2" | 
 
 export function ClientLogos() {
   const { version } = useDesignVersion();
+
+  // ── V9: Obsidian — Industrial brutalist directory ──
+  if (version === "v9") {
+    return (
+      <section className="bg-[#F4F2EC] border-y border-[#0A0A0A]/14 py-20">
+        <div className="mx-auto max-w-[1600px] px-6 md:px-10">
+          <div className="grid grid-cols-12 gap-6 mb-12 items-end border-b border-[#0A0A0A]/14 pb-6">
+            <div className="col-span-12 md:col-span-4">
+              <div className="v9-mono text-[10px] uppercase tracking-[0.3em] text-[#FF4D1F] mb-3">
+                SECTION B · REGISTRY
+              </div>
+              <h2 className="v9-display text-5xl md:text-6xl text-[#0A0A0A]">
+                FIELD<br />INDEX / 23
+              </h2>
+            </div>
+            <div className="col-span-12 md:col-span-5 md:col-start-7">
+              <p className="text-base text-[#0A0A0A]/70 leading-relaxed">
+                Operators of record running Claritas across financial services, media, telecoms, and retail. Twenty-three brands, one shared operating system.
+              </p>
+            </div>
+          </div>
+
+          {/* Logos as a strict ledger grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 border-t border-l border-[#0A0A0A]/14">
+            {allClients.map((client, idx) => (
+              <div
+                key={client.name}
+                className="relative group flex flex-col items-center justify-center border-r border-b border-[#0A0A0A]/14 aspect-[4/3] px-4 hover:bg-[#0A0A0A] hover:text-[#F4F2EC] transition-colors"
+              >
+                <div className="absolute top-2 left-2 v9-mono text-[8px] uppercase tracking-[0.3em] text-[#0A0A0A]/40 group-hover:text-[#FF4D1F]">
+                  {String(idx + 1).padStart(3, "0")}
+                </div>
+                <div className="group-hover:brightness-0 group-hover:invert transition-all">
+                  <LogoItem client={client} variant="v9" />
+                </div>
+                <div className="absolute bottom-2 right-2 v9-mono text-[8px] uppercase tracking-[0.25em] text-[#0A0A0A]/30 group-hover:text-[#F4F2EC]/60">
+                  ACTIVE
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="v9-mono text-[10px] uppercase tracking-[0.3em] text-[#0A0A0A]/60">
+              ↳ 23 DEPLOYMENTS · 15 COUNTRIES · 12 SECTORS
+            </div>
+            <Link
+              href="/case-studies"
+              className="group inline-flex items-center gap-2 border border-[#0A0A0A] px-5 py-2.5 v9-mono text-[11px] uppercase tracking-[0.22em] font-semibold text-[#0A0A0A] hover:bg-[#0A0A0A] hover:text-[#F4F2EC] transition-colors"
+            >
+              Read Dossiers
+              <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
+            </Link>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   // ── V8: Atelier — Luxury editorial ──
   if (version === "v8") {

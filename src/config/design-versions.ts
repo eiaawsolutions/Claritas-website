@@ -475,10 +475,76 @@ const v4: DesignVersion = {
 //  VERSION REGISTRY
 // ═══════════════════════════════════════════════
 
-export const designVersions: DesignVersion[] = [v1, v2, v3, v4];
+// ═══════════════════════════════════════════════
+//  VERSION 9 — "Obsidian" (Industrial brutalist / blueprint)
+// ═══════════════════════════════════════════════
+const v9: DesignVersion = {
+  id: "v9",
+  name: "Obsidian",
+  description:
+    "Industrial brutalist / declassified-blueprint aesthetic. Paper-stock cream background (#F4F2EC) with full-bleed ink (#0A0A0A) panels and a single alert-orange signal (#FF4D1F). Grotesk + JetBrains Mono pairing, extreme type contrast, rigid 12-column ledger grids, scan-line textures, crosshair corner marks. No rounded corners — 0px radius throughout. Replaces soft friendliness with operator-grade precision.",
+  createdAt: "2026-04-17",
+  status: "active",
+  colors: {
+    primary: "#FF4D1F",
+    primaryLight: "rgba(255,77,31,0.08)",
+    primaryDark: "#D63E14",
+    primaryGlow: "rgba(255,77,31,0.3)",
+    dark: "#0A0A0A",
+    darkMuted: "#1C1C1C",
+    darkBorder: "rgba(244,242,236,0.15)",
+    background: "#F4F2EC",
+    surfaceLight: "#F4F2EC",
+    surfaceMuted: "#E8E4D8",
+    cardBorder: "rgba(10,10,10,0.14)",
+    textPrimary: "#0A0A0A",
+    textSecondary: "rgba(10,10,10,0.65)",
+    textMuted: "rgba(10,10,10,0.45)",
+    textOnDark: "#F4F2EC",
+    accent: "#FF4D1F",
+    success: "#0A0A0A",
+    error: "#FF4D1F",
+    starFilled: "#FF4D1F",
+    starEmpty: "rgba(10,10,10,0.15)",
+  },
+  typography: {
+    fontFamily: "Inter (display) + JetBrains Mono (meta) + Playfair Display (italic accents)",
+    fontWeights: [400, 500, 600, 700, 900],
+    headingDisplay: "v9-display text-[9vw] md:text-[7vw] lg:text-[9.2vw] font-black tracking-[-0.045em] leading-[0.9]",
+    headingSection: "v9-display text-5xl md:text-7xl",
+    headingCard: "v9-display text-2xl md:text-3xl",
+    body: "text-base leading-relaxed",
+    small: "v9-mono text-[10px] uppercase tracking-[0.25em]",
+    buttonText: "v9-mono text-[11px] uppercase tracking-[0.22em] font-semibold",
+    badgeText: "v9-mono text-[10px] uppercase tracking-[0.3em] font-semibold",
+  },
+  spacing: { sectionPadding: "py-24", containerMaxWidth: "max-w-[1600px]", containerPadding: "px-6 md:px-10", cardPadding: "p-8 lg:p-10", gridGap: "gap-6" },
+  radius: { button: "rounded-none", card: "rounded-none", input: "rounded-none", badge: "rounded-none", avatar: "rounded-none", image: "rounded-none" },
+  shadows: { card: "none", cardHover: "none", cardPopular: "shadow-[8px_8px_0_rgba(10,10,10,0.15)]", button: "none", navbar: "none", floating: "none", chatButton: "none" },
+  animations: { floatingY: [0, 0, 0], floatingDuration: 0, hoverLift: 0, fadeInDuration: 0.7, staggerDelay: 0.08, dropdownDuration: 0.1 },
+  components: {
+    navbar: { height: "h-16 (+ thin meta bar)", background: "bg-[#F4F2EC]/95 backdrop-blur + black meta-bar above", border: "border-b border-[#0A0A0A]/14", logoHeight: "text-xl font-black", ctaStyle: "bg-[#0A0A0A] text-[#F4F2EC] px-4 py-2 v9-mono text-[11px] uppercase tracking-[0.22em] hover:bg-[#FF4D1F]" },
+    hero: { background: "#F4F2EC with halftone grain + classification strip", badgeColor: "#FF4D1F signal orange", imageContainer: "black plate with scan-line overlay + #FF4D1F corner crosshairs", imageAnimation: "fade in, no float" },
+    cards: { style: "bordered grid cells (no radius), paper bg, hover inverts to ink/paper", hoverEffect: "bg flips to #0A0A0A, text to #F4F2EC", iconContainer: "square bordered ink container with #FF4D1F glyph" },
+    footer: { layout: "Giant wordmark bar + 4-column ledger", background: "bg-[#0A0A0A] text-[#F4F2EC]", socialIconSize: "h-9 w-9 square bordered" },
+    chatbot: { buttonSize: "h-14 w-14 square", windowSize: "h-[100dvh] w-full sm:h-[520px] sm:w-[380px]", headerColor: "bg-[#0A0A0A]", botBubble: "border #0A0A0A/14 bg-[#F4F2EC]", userBubble: "bg-[#0A0A0A] text-[#F4F2EC]" },
+    buttons: { primary: "bg-[#0A0A0A] text-[#F4F2EC] px-5 py-3.5 v9-mono text-[11px] uppercase tracking-[0.22em] hover:bg-[#FF4D1F]", secondary: "border border-[#0A0A0A] px-5 py-3.5 v9-mono text-[11px] uppercase tracking-[0.22em] hover:bg-[#0A0A0A] hover:text-[#F4F2EC]", ghost: "v9-mono text-[11px] uppercase tracking-[0.22em] border-b border-current" },
+    forms: { inputStyle: "border border-[#F4F2EC]/15 bg-transparent px-4 py-3.5 v9-mono tracking-wider text-sm text-[#F4F2EC] placeholder:text-[#F4F2EC]/35", inputFocus: "focus:border-[#FF4D1F] focus:outline-none focus:ring-0" },
+    pricing: { popularHighlight: "border-2 border-[#FF4D1F] shadow-[8px_8px_0_rgba(255,77,31,0.25)]", priceSize: "v9-display text-5xl" },
+  },
+  sectionPattern: [
+    "#F4F2EC paper (hero + registry + cards)",
+    "#0A0A0A ink (products manifest + contact + footer)",
+    "Alternating ink/paper in rigid ledger grids",
+  ],
+  notes:
+    "V9 Obsidian is the industrial-brutalist, field-manual aesthetic. Every surface is a 12-col ledger grid with JetBrains-Mono metadata gutters and Inter-black display. The only accent is #FF4D1F signal orange — no gradients, no blurs, no rounded corners. Section hierarchy is stamped with 'SECTION A/B/C' labels. Ink panels carry v9-scan line texture + crosshair corner marks for the declassified-blueprint feel. Taste stack: design-taste-frontend (baseline) + industrial-brutalist-ui + high-end-visual-design discipline.",
+};
+
+export const designVersions: DesignVersion[] = [v1, v2, v3, v4, v9];
 
 /** Currently active design version */
-export const ACTIVE_VERSION = "v4";
+export const ACTIVE_VERSION = "v9";
 
 /** Look up a version by ID */
 export function getVersion(id: string): DesignVersion | undefined {

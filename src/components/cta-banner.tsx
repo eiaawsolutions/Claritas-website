@@ -8,8 +8,63 @@ import { useDesignVersion } from "@/config/design-context";
 export function CtaBanner() {
   const { version } = useDesignVersion();
 
-  // Only render for V4, V5, V6, V7, and V8
-  if (version !== "v4" && version !== "v5" && version !== "v6" && version !== "v7" && version !== "v8") return null;
+  // Only render for V4, V5, V6, V7, V8, and V9
+  if (version !== "v4" && version !== "v5" && version !== "v6" && version !== "v7" && version !== "v8" && version !== "v9") return null;
+
+  // ── V9: Obsidian — Stamped directive ──
+  if (version === "v9") {
+    return (
+      <section className="bg-[#F4F2EC] border-y border-[#0A0A0A]/14 py-24">
+        <div className="mx-auto max-w-[1600px] px-6 md:px-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="relative border-2 border-[#0A0A0A] bg-[#F4F2EC] p-10 lg:p-16 v9-scan"
+          >
+            <div className="absolute -top-3 left-8 bg-[#F4F2EC] px-3 v9-mono text-[10px] uppercase tracking-[0.3em] text-[#FF4D1F]">
+              DIRECTIVE / DEPLOY
+            </div>
+
+            <div className="grid grid-cols-12 gap-6 items-end">
+              <div className="col-span-12 lg:col-span-8">
+                <div className="v9-mono text-[10px] uppercase tracking-[0.3em] text-[#0A0A0A]/50 mb-6">
+                  FILE-09 · PHASE TERMINAL · PRIORITY 01
+                </div>
+                <h2 className="v9-display text-5xl md:text-7xl text-[#0A0A0A]">
+                  READY FOR<br />FIELD USE<span className="text-[#FF4D1F]">.</span>
+                </h2>
+                <p className="mt-6 max-w-xl text-base text-[#0A0A0A]/70 leading-relaxed">
+                  Request a scoping session. 30-minute technical review. Zero obligation. We run the diagnostic, you decide what ships next.
+                </p>
+              </div>
+              <div className="col-span-12 lg:col-span-4 flex flex-col gap-3">
+                <Link
+                  href="/contact?demo=true"
+                  className="group flex items-center justify-between bg-[#0A0A0A] text-[#F4F2EC] px-5 py-4 v9-mono text-[11px] uppercase tracking-[0.22em] font-semibold hover:bg-[#FF4D1F] transition-colors"
+                >
+                  <span>Initiate Deployment</span>
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+                <Link
+                  href="/pricing"
+                  className="group flex items-center justify-between border border-[#0A0A0A] px-5 py-4 v9-mono text-[11px] uppercase tracking-[0.22em] font-semibold text-[#0A0A0A] hover:bg-[#0A0A0A] hover:text-[#F4F2EC] transition-colors"
+                >
+                  <span>Review Pricing</span>
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Corner markers */}
+            <div className="absolute top-2 right-2 h-4 w-4 border-t-2 border-r-2 border-[#FF4D1F]" />
+            <div className="absolute bottom-2 left-2 h-4 w-4 border-b-2 border-l-2 border-[#FF4D1F]" />
+          </motion.div>
+        </div>
+      </section>
+    );
+  }
 
   // ── V8: Atelier — Luxury editorial ──
   if (version === "v8") {

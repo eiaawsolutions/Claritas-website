@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { TrendingUp, Target, Heart, HeadphonesIcon, BoxSelect } from "lucide-react";
+import { TrendingUp, Target, Heart, HeadphonesIcon, BoxSelect, ArrowUpRight } from "lucide-react";
 import { useDesignVersion } from "@/config/design-context";
 
 const cards = [
@@ -30,6 +30,75 @@ const cards = [
 
 export function ThreeCards() {
   const { version } = useDesignVersion();
+
+  // ── V9: Obsidian — Brutalist technical docket ──
+  if (version === "v9") {
+    const v9Items = [
+      { code: "OPS-01", title: "Sales Pipeline", desc: "Forecast with event-log accuracy. Every touch, stage, and signal recorded in an immutable deal ledger.", href: cards[0].href },
+      { code: "OPS-02", title: "Marketing Ops", desc: "Real-time audience attribution and campaign mechanics built on warehouse-native data — no black boxes.", href: cards[1].href },
+      { code: "OPS-03", title: "Service Desk", desc: "SLA-bound incident flow with predictive escalation. Customer outcomes, measured in minutes, not weeks.", href: cards[2].href },
+    ];
+
+    return (
+      <section className="bg-[#F4F2EC] py-24 border-t border-[#0A0A0A]/14">
+        <div className="mx-auto max-w-[1600px] px-6 md:px-10">
+          <div className="grid grid-cols-12 gap-6 mb-14 items-end">
+            <div className="col-span-12 md:col-span-6">
+              <div className="v9-mono text-[10px] uppercase tracking-[0.3em] text-[#FF4D1F] mb-4">
+                SECTION A · CAPABILITIES MATRIX
+              </div>
+              <h2 className="v9-display text-5xl md:text-7xl text-[#0A0A0A]">
+                THREE<br />INSTRUMENTS<sup className="v9-mono text-[#FF4D1F] text-[20%] align-top ml-2">n=3</sup>
+              </h2>
+            </div>
+            <p className="col-span-12 md:col-span-4 md:col-start-8 text-base text-[#0A0A0A]/70 leading-relaxed">
+              One operating system. Three integrated modules. Deploy them independently or wire them as a single closed-loop revenue engine.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-3 border-t border-l border-[#0A0A0A]/14">
+            {v9Items.map((item, i) => (
+              <motion.div
+                key={item.code}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
+                className="group relative border-r border-b border-[#0A0A0A]/14 p-8 lg:p-10 bg-[#F4F2EC] hover:bg-[#0A0A0A] hover:text-[#F4F2EC] transition-colors duration-300 min-h-[380px] flex flex-col"
+              >
+                <div className="flex items-start justify-between mb-10">
+                  <span className="v9-mono text-[10px] uppercase tracking-[0.3em] text-[#FF4D1F]">
+                    / {item.code}
+                  </span>
+                  <span className="v9-mono text-[9px] uppercase tracking-[0.25em] opacity-40">
+                    {String(i + 1).padStart(2, "0")} / 03
+                  </span>
+                </div>
+
+                <div className="flex-1 flex flex-col justify-end">
+                  <h3 className="v9-display text-4xl mb-6">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed opacity-80 mb-8">
+                    {item.desc}
+                  </p>
+                  <Link
+                    href={item.href}
+                    className="inline-flex items-center gap-2 v9-mono text-[11px] uppercase tracking-[0.25em] font-semibold border-b border-current pb-1 w-fit hover:text-[#FF4D1F] transition-colors"
+                  >
+                    Specification
+                    <ArrowUpRight className="h-3 w-3" />
+                  </Link>
+                </div>
+
+                <div className="absolute top-3 right-3 h-2 w-2 bg-[#FF4D1F] group-hover:scale-150 transition-transform" />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   // ── V8: Atelier — Luxury editorial ──
   if (version === "v8") {

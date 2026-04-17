@@ -52,6 +52,151 @@ export function Navbar() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const { version } = useDesignVersion();
 
+  // ── V9: Obsidian — Industrial brutalist / declassified terminal ──
+  if (version === "v9") {
+    return (
+      <header className="fixed top-0 w-full z-50 bg-[#F4F2EC]/95 backdrop-blur-md border-b border-[#0A0A0A]/14">
+        {/* Thin black meta bar */}
+        <div className="bg-[#0A0A0A] text-[#F4F2EC]/80 border-b border-[#F4F2EC]/10">
+          <div className="mx-auto max-w-[1600px] px-6 md:px-10 flex items-center justify-between py-1.5 v9-mono text-[9px] uppercase tracking-[0.3em]">
+            <span>SYS · CLARITAS/OPS · v9</span>
+            <span className="hidden md:inline">KL 03:12 · SG 03:12 · JKT 02:12</span>
+            <span className="text-[#FF4D1F]">● ONLINE</span>
+          </div>
+        </div>
+
+        <nav className="mx-auto max-w-[1600px] px-6 md:px-10">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo — wordmark */}
+            <Link href="/" className="flex items-baseline gap-2 transition-opacity hover:opacity-80">
+              <span className="text-xl font-black tracking-tighter text-[#0A0A0A]">CLARITAS</span>
+              <span className="v9-mono text-[9px] uppercase tracking-[0.3em] text-[#FF4D1F]">/CRM</span>
+            </Link>
+
+            {/* Center nav */}
+            <div className="hidden lg:flex lg:items-center lg:gap-1">
+              {navLinks.map((link) => (
+                <div
+                  key={link.name}
+                  className="relative"
+                  onMouseEnter={() => link.children && setOpenDropdown(link.name)}
+                  onMouseLeave={() => setOpenDropdown(null)}
+                >
+                  <Link
+                    href={link.href}
+                    className="flex items-center gap-1.5 px-4 py-2 v9-mono text-[11px] uppercase tracking-[0.22em] font-medium text-[#0A0A0A]/70 transition-colors hover:text-[#0A0A0A]"
+                  >
+                    {link.name}
+                    {link.children && <ChevronDown className="h-2.5 w-2.5 opacity-60" />}
+                  </Link>
+
+                  <AnimatePresence>
+                    {link.children && openDropdown === link.name && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 4 }}
+                        transition={{ duration: 0.1 }}
+                        className="absolute left-0 top-full mt-1 w-64 bg-[#F4F2EC] border border-[#0A0A0A]/14 shadow-[6px_6px_0_rgba(10,10,10,0.08)]"
+                      >
+                        <div className="border-b border-[#0A0A0A]/14 px-3 py-2 v9-mono text-[9px] uppercase tracking-[0.3em] text-[#FF4D1F]">
+                          ↳ {link.name}
+                        </div>
+                        {link.children.map((child) => (
+                          <Link
+                            key={child.name}
+                            href={child.href}
+                            className="flex items-center justify-between px-3 py-2.5 v9-mono text-[11px] uppercase tracking-[0.18em] text-[#0A0A0A]/70 border-b border-[#0A0A0A]/8 last:border-b-0 transition-all hover:bg-[#0A0A0A] hover:text-[#F4F2EC]"
+                          >
+                            <span>{child.name}</span>
+                            <ArrowRight className="h-3 w-3 opacity-40" />
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
+            </div>
+
+            {/* Right CTA */}
+            <div className="hidden md:flex md:items-center md:gap-3">
+              <Link
+                href="/contact"
+                className="v9-mono text-[11px] uppercase tracking-[0.22em] font-medium text-[#0A0A0A]/70 hover:text-[#0A0A0A]"
+              >
+                Sign in
+              </Link>
+              <Link
+                href="/contact?demo=true"
+                className="group flex items-center gap-2 bg-[#0A0A0A] text-[#F4F2EC] px-4 py-2 v9-mono text-[11px] uppercase tracking-[0.22em] font-semibold hover:bg-[#FF4D1F] transition-colors"
+              >
+                Request Demo
+                <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
+              </Link>
+            </div>
+
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="lg:hidden p-2 text-[#0A0A0A]"
+            >
+              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
+
+          <AnimatePresence>
+            {mobileOpen && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="overflow-hidden lg:hidden"
+              >
+                <div className="space-y-1 pb-6 pt-2 border-t border-[#0A0A0A]/14">
+                  {navLinks.map((link) => (
+                    <div key={link.name}>
+                      <Link
+                        href={link.href}
+                        onClick={() => !link.children && setMobileOpen(false)}
+                        className="block px-3 py-2.5 v9-mono text-[11px] uppercase tracking-[0.22em] font-semibold text-[#0A0A0A]"
+                      >
+                        {link.name}
+                      </Link>
+                      {link.children && (
+                        <div className="ml-4 space-y-0.5 border-l border-[#0A0A0A]/14 pl-3">
+                          {link.children.map((child) => (
+                            <Link
+                              key={child.name}
+                              href={child.href}
+                              onClick={() => setMobileOpen(false)}
+                              className="block px-3 py-2 v9-mono text-[11px] uppercase tracking-[0.18em] text-[#0A0A0A]/60 hover:text-[#0A0A0A]"
+                            >
+                              · {child.name}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                  <div className="px-3 pt-4">
+                    <Link
+                      href="/contact?demo=true"
+                      onClick={() => setMobileOpen(false)}
+                      className="block w-full bg-[#0A0A0A] text-[#F4F2EC] py-3 text-center v9-mono text-[11px] uppercase tracking-[0.22em] font-semibold"
+                    >
+                      Request Demo
+                    </Link>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </nav>
+      </header>
+    );
+  }
+
   // ── V8: Atelier — Luxury editorial aesthetic ──
   if (version === "v8") {
     return (

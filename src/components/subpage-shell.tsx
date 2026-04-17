@@ -35,6 +35,81 @@ export function SubpageShell({
 }: SubpageShellProps) {
   const { version } = useDesignVersion();
 
+  if (version === "v9") {
+    return (
+      <>
+        <section className="relative bg-[#F4F2EC] text-[#0A0A0A] pt-28 border-b border-[#0A0A0A]/14">
+          <div className="mx-auto max-w-[1600px] px-6 md:px-10 py-16 lg:py-20">
+            <div className="v9-mono text-[10px] uppercase tracking-[0.3em] text-[#0A0A0A]/60 mb-6 flex items-center gap-3">
+              <span className="text-[#FF4D1F]">↳</span>
+              <span>FILE-09 · {badge}</span>
+            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="grid grid-cols-12 gap-6"
+            >
+              <h1 className="col-span-12 lg:col-span-9 v9-display text-[9vw] md:text-[6vw] lg:text-[5vw] text-[#0A0A0A]">
+                {title}
+              </h1>
+              {(subtitle || description) && (
+                <div className="col-span-12 lg:col-span-8 mt-6 space-y-4">
+                  {subtitle && (
+                    <p className="text-xl md:text-2xl italic text-[#0A0A0A]/75" style={{ fontFamily: 'var(--font-playfair), "Playfair Display", serif' }}>
+                      {subtitle}
+                    </p>
+                  )}
+                  {description && (
+                    <p className="text-base leading-relaxed text-[#0A0A0A]/65 max-w-2xl">
+                      {description}
+                    </p>
+                  )}
+                </div>
+              )}
+            </motion.div>
+          </div>
+        </section>
+
+        <section className="bg-[#F4F2EC] py-20">
+          <div className="mx-auto max-w-[1600px] px-6 md:px-10">{children}</div>
+        </section>
+
+        {ctaTitle && (
+          <section className="bg-[#0A0A0A] text-[#F4F2EC] py-24 border-t border-[#F4F2EC]/10 v9-scan">
+            <div className="mx-auto max-w-[1600px] px-6 md:px-10">
+              <div className="grid grid-cols-12 gap-6 items-end">
+                <div className="col-span-12 lg:col-span-8">
+                  <div className="v9-mono text-[10px] uppercase tracking-[0.3em] text-[#FF4D1F] mb-4">
+                    ↳ DIRECTIVE
+                  </div>
+                  <h2 className="v9-display text-5xl md:text-7xl text-[#F4F2EC]">
+                    {ctaTitle}<span className="text-[#FF4D1F]">.</span>
+                  </h2>
+                  {ctaDescription && <p className="mt-6 text-base text-[#F4F2EC]/70 max-w-xl leading-relaxed">{ctaDescription}</p>}
+                </div>
+                <div className="col-span-12 lg:col-span-4 flex flex-col gap-3">
+                  {ctaPrimary && (
+                    <Link href={ctaPrimary.href} className="group flex items-center justify-between bg-[#FF4D1F] text-[#F4F2EC] px-5 py-4 v9-mono text-[11px] uppercase tracking-[0.22em] font-semibold hover:bg-[#F4F2EC] hover:text-[#0A0A0A] transition-colors">
+                      <span>{ctaPrimary.label}</span>
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </Link>
+                  )}
+                  {ctaSecondary && (
+                    <Link href={ctaSecondary.href} className="flex items-center justify-between border border-[#F4F2EC]/30 px-5 py-4 v9-mono text-[11px] uppercase tracking-[0.22em] text-[#F4F2EC] hover:border-[#FF4D1F] hover:text-[#FF4D1F] transition-colors">
+                      <span>{ctaSecondary.label}</span>
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  )}
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+      </>
+    );
+  }
+
   if (version === "v8") {
     return (
       <>
@@ -421,6 +496,23 @@ export function ContentCard({
 }) {
   const { version } = useDesignVersion();
 
+  if (version === "v9") {
+    return (
+      <div className="group border border-[#0A0A0A]/14 bg-[#F4F2EC] p-6 sm:p-8 transition-colors hover:bg-[#0A0A0A] hover:text-[#F4F2EC] relative">
+        <div className="flex items-center justify-between mb-6">
+          {number != null ? (
+            <span className="v9-mono text-[10px] uppercase tracking-[0.3em] text-[#FF4D1F]">
+              / {String(number).padStart(2, "0")}
+            </span>
+          ) : <span />}
+          <span className="v9-mono text-[9px] uppercase tracking-[0.25em] opacity-40">ITEM</span>
+        </div>
+        <h3 className="v9-display text-2xl md:text-3xl">{title}</h3>
+        <div className="mt-4 text-base leading-relaxed opacity-75">{children}</div>
+      </div>
+    );
+  }
+
   if (version === "v8") {
     return (
       <div className="border border-luxury-ink/[0.06] bg-luxury-warm p-6 sm:p-10 transition-all hover:border-luxury-gold/20">
@@ -517,6 +609,27 @@ export function SectionHeading({
   title: string;
 }) {
   const { version } = useDesignVersion();
+
+  if (version === "v9") {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="mb-12 border-b border-[#0A0A0A]/14 pb-6"
+      >
+        {badge && (
+          <span className="v9-mono text-[10px] uppercase tracking-[0.3em] text-[#FF4D1F]">
+            {"↳ "}{badge}
+          </span>
+        )}
+        <h2 className="mt-4 v9-display text-4xl md:text-5xl text-[#0A0A0A]">
+          {title}
+        </h2>
+      </motion.div>
+    );
+  }
 
   if (version === "v8") {
     return (

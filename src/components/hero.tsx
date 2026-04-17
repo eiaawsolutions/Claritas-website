@@ -16,6 +16,159 @@ const stats = [
 export function Hero() {
   const { version } = useDesignVersion();
 
+  // ── V9: Obsidian — Industrial brutalist / declassified blueprint ──
+  if (version === "v9") {
+    return (
+      <section className="relative pt-24 bg-[#F4F2EC] text-[#0A0A0A]">
+        {/* Classification header strip */}
+        <div className="border-y border-[#0A0A0A]/14">
+          <div className="mx-auto max-w-[1600px] px-6 md:px-10">
+            <div className="grid grid-cols-12 items-center gap-6 py-3 v9-mono text-[10px] uppercase tracking-[0.3em] text-[#0A0A0A]/70">
+              <span className="col-span-6 md:col-span-3">FILE 09 / OBSIDIAN</span>
+              <span className="hidden md:block md:col-span-3">CLASSIFICATION : EXTERNAL</span>
+              <span className="hidden md:block md:col-span-3">REV 2026.04 — ACTIVE</span>
+              <span className="col-span-6 md:col-span-3 text-right">
+                <span className="inline-flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#FF4D1F] animate-pulse" />
+                  LIVE OPS
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Main hero grid */}
+        <div className="mx-auto max-w-[1600px] px-6 md:px-10 py-16 lg:py-24">
+          <div className="grid grid-cols-12 gap-6">
+            {/* LEFT — Index column */}
+            <div className="col-span-12 lg:col-span-2 border-r-0 lg:border-r border-[#0A0A0A]/14 lg:pr-6">
+              <div className="v9-mono text-[10px] uppercase tracking-[0.25em] text-[#0A0A0A]/50 space-y-3">
+                <div>[ A.01 ]</div>
+                <div className="h-px w-8 bg-[#0A0A0A]/30" />
+                <div>Sector</div>
+                <div className="text-[#0A0A0A]">Enterprise CRM</div>
+                <div className="pt-6">Issue</div>
+                <div className="text-[#0A0A0A]">N°09 · 2026</div>
+                <div className="pt-6">Region</div>
+                <div className="text-[#0A0A0A]">APAC / MY</div>
+              </div>
+            </div>
+
+            {/* CENTER — Display type */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="col-span-12 lg:col-span-7"
+            >
+              <div className="v9-mono text-[10px] uppercase tracking-[0.3em] text-[#FF4D1F] mb-6">
+                — Dossier / Growth Infrastructure
+              </div>
+              <h1 className="v9-display text-[16vw] md:text-[11vw] lg:text-[9.2vw] text-[#0A0A0A]">
+                BETTER<br />
+                SALES<sup className="v9-mono text-[#FF4D1F] text-[22%] align-top ml-2">01</sup>
+              </h1>
+              <div className="mt-4 flex items-baseline gap-3">
+                <span className="v9-mono text-[10px] uppercase tracking-[0.35em] text-[#0A0A0A]/60">/</span>
+                <span className="text-3xl md:text-5xl font-light italic text-[#0A0A0A]/80" style={{ fontFamily: 'var(--font-playfair), "Playfair Display", serif' }}>
+                  with effective marketing.
+                </span>
+              </div>
+
+              <div className="mt-10 grid grid-cols-12 gap-6 items-end">
+                <p className="col-span-12 md:col-span-7 text-base text-[#0A0A0A]/70 leading-relaxed max-w-lg">
+                  A rigorously engineered customer operations platform. Marketing, sales, and service unified under a single event log — no seams, no silos, no latency.
+                </p>
+                <div className="col-span-12 md:col-span-5 flex flex-col gap-3">
+                  <Link
+                    href="/contact?demo=true"
+                    className="group inline-flex items-center justify-between border border-[#0A0A0A] bg-[#0A0A0A] px-5 py-3.5 text-[11px] v9-mono uppercase tracking-[0.25em] text-[#F4F2EC] hover:bg-[#FF4D1F] hover:border-[#FF4D1F] transition-colors"
+                  >
+                    <span>Request Demo</span>
+                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                  <Link
+                    href="/pricing"
+                    className="group inline-flex items-center justify-between border border-[#0A0A0A]/30 px-5 py-3.5 text-[11px] v9-mono uppercase tracking-[0.25em] text-[#0A0A0A] hover:border-[#0A0A0A] transition-colors"
+                  >
+                    <span>View Pricing</span>
+                    <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* RIGHT — Telemetry column */}
+            <div className="col-span-12 lg:col-span-3 border-l-0 lg:border-l border-[#0A0A0A]/14 lg:pl-6 space-y-5">
+              <div className="v9-mono text-[10px] uppercase tracking-[0.25em] text-[#0A0A0A]/50 mb-2">{"// TELEMETRY"}</div>
+              {stats.map((s, i) => (
+                <div key={s.label} className="border-b border-dashed border-[#0A0A0A]/15 pb-3">
+                  <div className="v9-mono text-[9px] uppercase tracking-[0.3em] text-[#0A0A0A]/40">
+                    {String(i + 1).padStart(2, "0")} — {s.label}
+                  </div>
+                  <div className="mt-1 flex items-baseline gap-2">
+                    <span className="text-3xl font-black tracking-tight text-[#0A0A0A]">{s.value}</span>
+                    <ArrowUpRight className="h-3 w-3 text-[#FF4D1F]" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Full-bleed product plate */}
+        <div className="border-t border-[#0A0A0A]/14 bg-[#0A0A0A] text-[#F4F2EC]">
+          <div className="mx-auto max-w-[1600px] px-6 md:px-10 py-8">
+            <div className="grid grid-cols-12 gap-6 items-center mb-6 v9-mono text-[10px] uppercase tracking-[0.3em] text-[#F4F2EC]/60">
+              <span className="col-span-6 md:col-span-3">PLATE / 09.A · DASHBOARD</span>
+              <span className="hidden md:block md:col-span-3">EXPOSURE · 1/60 F4.0</span>
+              <span className="hidden md:block md:col-span-3">RENDERED · KL-01</span>
+              <span className="col-span-6 md:col-span-3 text-right text-[#FF4D1F]">↳ LIVE FEED</span>
+            </div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1.2 }}
+              className="relative border border-[#F4F2EC]/15 overflow-hidden"
+            >
+              <Image
+                src="/hero-crm.png"
+                alt="Claritas CRM Dashboard"
+                width={2400}
+                height={1200}
+                className="w-full h-auto object-cover"
+                priority
+              />
+              {/* Scan lines */}
+              <div className="absolute inset-0 v9-scan pointer-events-none" />
+              {/* Corner crosshairs */}
+              <div className="absolute top-3 left-3 h-4 w-4 border-t border-l border-[#FF4D1F]" />
+              <div className="absolute top-3 right-3 h-4 w-4 border-t border-r border-[#FF4D1F]" />
+              <div className="absolute bottom-3 left-3 h-4 w-4 border-b border-l border-[#FF4D1F]" />
+              <div className="absolute bottom-3 right-3 h-4 w-4 border-b border-r border-[#FF4D1F]" />
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Trust strip */}
+        <div className="bg-[#0A0A0A] text-[#F4F2EC] border-t border-[#F4F2EC]/10">
+          <div className="mx-auto max-w-[1600px] px-6 md:px-10 py-6">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-10">
+              <span className="v9-mono text-[10px] uppercase tracking-[0.35em] text-[#F4F2EC]/50">
+                Field deployments ·
+              </span>
+              <div className="flex flex-wrap items-center gap-x-10 gap-y-2">
+                {["LUMINA", "AETHER", "SOUS", "VERTEX", "ORBIT", "HELIOS"].map((name) => (
+                  <span key={name} className="v9-mono text-xs font-semibold tracking-[0.3em] text-[#F4F2EC]/40">{name}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   // ── V8: Atelier — Luxury editorial aesthetic ──
   if (version === "v8") {
     return (
