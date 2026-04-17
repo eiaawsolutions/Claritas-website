@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useDesignVersion } from "@/config/design-context";
@@ -11,55 +12,61 @@ export function CtaBanner() {
   // Only render for V4, V5, V6, V7, V8, and V9
   if (version !== "v4" && version !== "v5" && version !== "v6" && version !== "v7" && version !== "v8" && version !== "v9") return null;
 
-  // ── V9: Obsidian — Stamped directive ──
+  // ── V9: Atrium — Editorial invitation ──
   if (version === "v9") {
     return (
-      <section className="bg-[#F4F2EC] border-y border-[#0A0A0A]/14 py-24">
-        <div className="mx-auto max-w-[1600px] px-6 md:px-10">
+      <section className="bg-[#F7F1E8] py-28 lg:py-36 relative">
+        {/* Full-bleed editorial photo as backdrop */}
+        <div className="absolute inset-0 overflow-hidden">
+          <Image
+            src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?auto=format&fit=crop&w=2200&q=80"
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover opacity-[0.18]"
+            aria-hidden
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#F7F1E8] via-[#F7F1E8]/85 to-[#F7F1E8]" />
+        </div>
+
+        <div className="relative mx-auto max-w-[1200px] px-6 md:px-12 lg:px-16 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="relative border-2 border-[#0A0A0A] bg-[#F4F2EC] p-10 lg:p-16 v9-scan"
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="absolute -top-3 left-8 bg-[#F4F2EC] px-3 v9-mono text-[10px] uppercase tracking-[0.3em] text-[#FF4D1F]">
-              DIRECTIVE / DEPLOY
+            <div className="flex items-center justify-center gap-4 mb-8">
+              <span className="h-px w-14 bg-[#8B6F3E]" />
+              <span className="v9-eyebrow">By Private Appointment</span>
+              <span className="h-px w-14 bg-[#8B6F3E]" />
             </div>
 
-            <div className="grid grid-cols-12 gap-6 items-end">
-              <div className="col-span-12 lg:col-span-8">
-                <div className="v9-mono text-[10px] uppercase tracking-[0.3em] text-[#0A0A0A]/50 mb-6">
-                  FILE-09 · PHASE TERMINAL · PRIORITY 01
-                </div>
-                <h2 className="v9-display text-5xl md:text-7xl text-[#0A0A0A]">
-                  READY FOR<br />FIELD USE<span className="text-[#FF4D1F]">.</span>
-                </h2>
-                <p className="mt-6 max-w-xl text-base text-[#0A0A0A]/70 leading-relaxed">
-                  Request a scoping session. 30-minute technical review. Zero obligation. We run the diagnostic, you decide what ships next.
-                </p>
-              </div>
-              <div className="col-span-12 lg:col-span-4 flex flex-col gap-3">
-                <Link
-                  href="/contact?demo=true"
-                  className="group flex items-center justify-between bg-[#0A0A0A] text-[#F4F2EC] px-5 py-4 v9-mono text-[11px] uppercase tracking-[0.22em] font-semibold hover:bg-[#FF4D1F] transition-colors"
-                >
-                  <span>Initiate Deployment</span>
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Link>
-                <Link
-                  href="/pricing"
-                  className="group flex items-center justify-between border border-[#0A0A0A] px-5 py-4 v9-mono text-[11px] uppercase tracking-[0.22em] font-semibold text-[#0A0A0A] hover:bg-[#0A0A0A] hover:text-[#F4F2EC] transition-colors"
-                >
-                  <span>Review Pricing</span>
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-            </div>
+            <h2 className="v9-serif text-[48px] md:text-[72px] lg:text-[88px] leading-[1.02] tracking-[-0.025em] text-[#1C1A17]">
+              We accept a limited
+              <br />
+              <span className="italic font-light text-[#8B6F3E]">number of engagements.</span>
+            </h2>
 
-            {/* Corner markers */}
-            <div className="absolute top-2 right-2 h-4 w-4 border-t-2 border-r-2 border-[#FF4D1F]" />
-            <div className="absolute bottom-2 left-2 h-4 w-4 border-b-2 border-l-2 border-[#FF4D1F]" />
+            <p className="mt-10 max-w-xl mx-auto text-[17px] leading-[1.75] text-[#1C1A17]/70">
+              A private briefing is the first step — conducted by a senior member of our team, tailored to your mandate, and bound by mutual confidence.
+            </p>
+
+            <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-5">
+              <Link
+                href="/contact?demo=true"
+                className="group inline-flex items-center gap-3 bg-[#1C1A17] text-[#F7F1E8] px-10 py-4 text-[12px] uppercase tracking-[0.24em] font-semibold hover:bg-[#8B6F3E] transition-colors duration-500"
+              >
+                Request Private Briefing
+                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+              </Link>
+              <Link
+                href="/pricing"
+                className="text-[12px] uppercase tracking-[0.24em] font-semibold text-[#1C1A17] border-b border-[#1C1A17] pb-0.5 hover:text-[#8B6F3E] hover:border-[#8B6F3E] transition-colors"
+              >
+                Review Terms of Engagement
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>

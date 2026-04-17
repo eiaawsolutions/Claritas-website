@@ -29,61 +29,75 @@ export function Testimonials() {
   const { version } = useDesignVersion();
 
   // ── V8: Atelier — Luxury editorial ��─
-  // ── V9: Obsidian — Transcript ledger ──
+  // ── V9: Atrium — Editorial pull-quote testimonials ──
   if (version === "v9") {
     return (
-      <section className="bg-[#F4F2EC] py-24 border-t border-[#0A0A0A]/14">
-        <div className="mx-auto max-w-[1600px] px-6 md:px-10">
-          <div className="grid grid-cols-12 gap-6 mb-14 items-end border-b border-[#0A0A0A]/14 pb-6">
-            <div className="col-span-12 md:col-span-6">
-              <div className="v9-mono text-[10px] uppercase tracking-[0.3em] text-[#FF4D1F] mb-4">
-                SECTION D · FIELD TRANSCRIPTS
-              </div>
-              <h2 className="v9-display text-5xl md:text-6xl text-[#0A0A0A]">
-                ON<br />RECORD<sup className="v9-mono text-[#FF4D1F] text-[20%] align-top ml-2">{testimonials.length}</sup>
-              </h2>
-            </div>
-            <p className="col-span-12 md:col-span-4 md:col-start-8 text-base text-[#0A0A0A]/70 leading-relaxed">
-              Verbatim accounts from operators deploying Claritas in production. Redaction symbols retained for authenticity.
-            </p>
-          </div>
+      <section className="bg-[#1C1A17] text-[#F7F1E8] py-28 lg:py-36 relative overflow-hidden">
+        {/* Subtle warm backdrop texture */}
+        <div
+          className="absolute inset-0 opacity-[0.04] pointer-events-none"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 20% 30%, #B89968 0%, transparent 50%), radial-gradient(circle at 80% 70%, #8B6F3E 0%, transparent 50%)",
+          }}
+        />
 
-          <div className="grid md:grid-cols-3 border-t border-l border-[#0A0A0A]/14">
+        <div className="relative mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="max-w-3xl mb-20"
+          >
+            <div className="flex items-center gap-4 mb-6">
+              <span className="h-px w-12 bg-[#B89968]" />
+              <span className="v9-eyebrow text-[#B89968]">Client Testimony</span>
+            </div>
+            <h2 className="v9-serif text-[40px] md:text-[56px] leading-[1.1] tracking-[-0.02em]">
+              A fiduciary record
+              <br />
+              <span className="italic font-light text-[#B89968]">of our client relationships.</span>
+            </h2>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-10 lg:gap-14">
             {testimonials.map((t, i) => (
-              <motion.div
+              <motion.figure
                 key={t.name}
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="group relative border-r border-b border-[#0A0A0A]/14 p-8 lg:p-10 flex flex-col min-h-[420px] hover:bg-[#0A0A0A] hover:text-[#F4F2EC] transition-colors"
+                transition={{ duration: 0.8, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
+                className="relative"
               >
-                <div className="flex items-start justify-between mb-6">
-                  <span className="v9-mono text-[10px] uppercase tracking-[0.3em] text-[#FF4D1F]">
-                    TRANS / {String(i + 1).padStart(3, "0")}
-                  </span>
-                  <div className="flex gap-0.5">
+                <Quote className="absolute -top-2 -left-1 h-12 w-12 text-[#8B6F3E]/50" strokeWidth={1} />
+
+                <blockquote className="relative pt-10">
+                  <p className="v9-serif text-[20px] lg:text-[22px] leading-[1.55] italic text-[#F7F1E8]/90">
+                    &ldquo;{t.text}&rdquo;
+                  </p>
+                </blockquote>
+
+                <figcaption className="mt-8">
+                  <div className="h-px w-12 v9-rule-brass mb-5" />
+                  <div className="v9-serif text-[17px] text-[#F7F1E8]">
+                    {t.name}
+                  </div>
+                  <div className="mt-1 text-[11px] uppercase tracking-[0.22em] text-[#B89968] font-semibold">
+                    {t.company}
+                  </div>
+                  <div className="mt-4 flex gap-1">
                     {Array.from({ length: 5 }).map((_, idx) => (
                       <Star
                         key={idx}
-                        className={`h-3 w-3 ${idx < t.rating ? "fill-[#FF4D1F] text-[#FF4D1F]" : "text-current opacity-30"}`}
+                        className={`h-3 w-3 ${idx < t.rating ? "fill-[#B89968] text-[#B89968]" : "text-[#F7F1E8]/20"}`}
+                        strokeWidth={0}
                       />
                     ))}
                   </div>
-                </div>
-
-                <Quote className="h-6 w-6 text-[#FF4D1F] mb-4 shrink-0" />
-                <p className="flex-1 text-base leading-relaxed opacity-90 italic">
-                  {t.text}
-                </p>
-
-                <div className="mt-8 pt-4 border-t border-dashed border-current/20 v9-mono text-[10px] uppercase tracking-[0.25em] space-y-1">
-                  <div className="font-semibold">{t.name}</div>
-                  <div className="opacity-60">{"↳ "}{t.company}</div>
-                </div>
-
-                <ShieldCheck className="absolute top-3 right-3 h-3 w-3 opacity-30 group-hover:text-[#FF4D1F] group-hover:opacity-100 transition-all" />
-              </motion.div>
+                </figcaption>
+              </motion.figure>
             ))}
           </div>
         </div>

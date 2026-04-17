@@ -52,29 +52,22 @@ export function Navbar() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const { version } = useDesignVersion();
 
-  // ── V9: Obsidian — Industrial brutalist / declassified terminal ──
+  // ── V9: Atrium — Executive editorial navbar ──
   if (version === "v9") {
     return (
-      <header className="fixed top-0 w-full z-50 bg-[#F4F2EC]/95 backdrop-blur-md border-b border-[#0A0A0A]/14">
-        {/* Thin black meta bar */}
-        <div className="bg-[#0A0A0A] text-[#F4F2EC]/80 border-b border-[#F4F2EC]/10">
-          <div className="mx-auto max-w-[1600px] px-6 md:px-10 flex items-center justify-between py-1.5 v9-mono text-[9px] uppercase tracking-[0.3em]">
-            <span>SYS · CLARITAS/OPS · v9</span>
-            <span className="hidden md:inline">KL 03:12 · SG 03:12 · JKT 02:12</span>
-            <span className="text-[#FF4D1F]">● ONLINE</span>
-          </div>
-        </div>
-
-        <nav className="mx-auto max-w-[1600px] px-6 md:px-10">
-          <div className="flex items-center justify-between h-16">
-            {/* Logo — wordmark */}
+      <header className="fixed top-0 w-full z-50 bg-[#F7F1E8]/90 backdrop-blur-xl border-b border-[#1C1A17]/[0.08]">
+        <nav className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16">
+          <div className="flex items-center justify-between h-20">
+            {/* Serif wordmark */}
             <Link href="/" className="flex items-baseline gap-2 transition-opacity hover:opacity-80">
-              <span className="text-xl font-black tracking-tighter text-[#0A0A0A]">CLARITAS</span>
-              <span className="v9-mono text-[9px] uppercase tracking-[0.3em] text-[#FF4D1F]">/CRM</span>
+              <span className="v9-serif text-[24px] tracking-[0.02em] text-[#1C1A17]">
+                Claritas
+              </span>
+              <span className="v9-eyebrow text-[#8B6F3E] text-[9px]">EST 2008</span>
             </Link>
 
             {/* Center nav */}
-            <div className="hidden lg:flex lg:items-center lg:gap-1">
+            <div className="hidden lg:flex lg:items-center lg:gap-10">
               {navLinks.map((link) => (
                 <div
                   key={link.name}
@@ -84,7 +77,7 @@ export function Navbar() {
                 >
                   <Link
                     href={link.href}
-                    className="flex items-center gap-1.5 px-4 py-2 v9-mono text-[11px] uppercase tracking-[0.22em] font-medium text-[#0A0A0A]/70 transition-colors hover:text-[#0A0A0A]"
+                    className="flex items-center gap-1.5 text-[11px] uppercase tracking-[0.22em] font-semibold text-[#1C1A17]/70 hover:text-[#1C1A17] transition-colors"
                   >
                     {link.name}
                     {link.children && <ChevronDown className="h-2.5 w-2.5 opacity-60" />}
@@ -96,22 +89,24 @@ export function Navbar() {
                         initial={{ opacity: 0, y: 4 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 4 }}
-                        transition={{ duration: 0.1 }}
-                        className="absolute left-0 top-full mt-1 w-64 bg-[#F4F2EC] border border-[#0A0A0A]/14 shadow-[6px_6px_0_rgba(10,10,10,0.08)]"
+                        transition={{ duration: 0.15 }}
+                        className="absolute left-1/2 -translate-x-1/2 top-full mt-6 w-72 bg-[#F7F1E8] border border-[#1C1A17]/[0.08] v9-paper-edge"
                       >
-                        <div className="border-b border-[#0A0A0A]/14 px-3 py-2 v9-mono text-[9px] uppercase tracking-[0.3em] text-[#FF4D1F]">
-                          ↳ {link.name}
+                        <div className="border-b border-[#1C1A17]/[0.08] px-5 py-3">
+                          <span className="v9-eyebrow text-[9px]">{link.name}</span>
                         </div>
-                        {link.children.map((child) => (
-                          <Link
-                            key={child.name}
-                            href={child.href}
-                            className="flex items-center justify-between px-3 py-2.5 v9-mono text-[11px] uppercase tracking-[0.18em] text-[#0A0A0A]/70 border-b border-[#0A0A0A]/8 last:border-b-0 transition-all hover:bg-[#0A0A0A] hover:text-[#F4F2EC]"
-                          >
-                            <span>{child.name}</span>
-                            <ArrowRight className="h-3 w-3 opacity-40" />
-                          </Link>
-                        ))}
+                        <div className="py-2">
+                          {link.children.map((child) => (
+                            <Link
+                              key={child.name}
+                              href={child.href}
+                              className="group flex items-center justify-between px-5 py-2.5 v9-serif text-[15px] text-[#1C1A17]/75 hover:text-[#8B6F3E] transition-colors"
+                            >
+                              <span>{child.name}</span>
+                              <ArrowRight className="h-3 w-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                            </Link>
+                          ))}
+                        </div>
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -119,26 +114,25 @@ export function Navbar() {
               ))}
             </div>
 
-            {/* Right CTA */}
-            <div className="hidden md:flex md:items-center md:gap-3">
+            {/* Right */}
+            <div className="hidden md:flex md:items-center md:gap-6">
               <Link
                 href="/contact"
-                className="v9-mono text-[11px] uppercase tracking-[0.22em] font-medium text-[#0A0A0A]/70 hover:text-[#0A0A0A]"
+                className="text-[11px] uppercase tracking-[0.22em] font-semibold text-[#1C1A17]/70 hover:text-[#1C1A17]"
               >
-                Sign in
+                Client Portal
               </Link>
               <Link
                 href="/contact?demo=true"
-                className="group flex items-center gap-2 bg-[#0A0A0A] text-[#F4F2EC] px-4 py-2 v9-mono text-[11px] uppercase tracking-[0.22em] font-semibold hover:bg-[#FF4D1F] transition-colors"
+                className="bg-[#1C1A17] text-[#F7F1E8] px-6 py-3 text-[11px] uppercase tracking-[0.22em] font-semibold hover:bg-[#8B6F3E] transition-colors duration-500"
               >
-                Request Demo
-                <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
+                Request Briefing
               </Link>
             </div>
 
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden p-2 text-[#0A0A0A]"
+              className="lg:hidden p-2 text-[#1C1A17]"
             >
               {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -150,29 +144,29 @@ export function Navbar() {
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: 0.25 }}
                 className="overflow-hidden lg:hidden"
               >
-                <div className="space-y-1 pb-6 pt-2 border-t border-[#0A0A0A]/14">
+                <div className="space-y-1 pb-6 pt-2 border-t border-[#1C1A17]/[0.08]">
                   {navLinks.map((link) => (
                     <div key={link.name}>
                       <Link
                         href={link.href}
                         onClick={() => !link.children && setMobileOpen(false)}
-                        className="block px-3 py-2.5 v9-mono text-[11px] uppercase tracking-[0.22em] font-semibold text-[#0A0A0A]"
+                        className="block px-3 py-3 v9-serif text-[17px] text-[#1C1A17]"
                       >
                         {link.name}
                       </Link>
                       {link.children && (
-                        <div className="ml-4 space-y-0.5 border-l border-[#0A0A0A]/14 pl-3">
+                        <div className="ml-4 space-y-0.5 border-l border-[#8B6F3E]/30 pl-4">
                           {link.children.map((child) => (
                             <Link
                               key={child.name}
                               href={child.href}
                               onClick={() => setMobileOpen(false)}
-                              className="block px-3 py-2 v9-mono text-[11px] uppercase tracking-[0.18em] text-[#0A0A0A]/60 hover:text-[#0A0A0A]"
+                              className="block px-3 py-2 text-[14px] text-[#1C1A17]/65 hover:text-[#8B6F3E]"
                             >
-                              · {child.name}
+                              {child.name}
                             </Link>
                           ))}
                         </div>
@@ -183,9 +177,9 @@ export function Navbar() {
                     <Link
                       href="/contact?demo=true"
                       onClick={() => setMobileOpen(false)}
-                      className="block w-full bg-[#0A0A0A] text-[#F4F2EC] py-3 text-center v9-mono text-[11px] uppercase tracking-[0.22em] font-semibold"
+                      className="block w-full bg-[#1C1A17] text-[#F7F1E8] py-3.5 text-center text-[11px] uppercase tracking-[0.22em] font-semibold"
                     >
-                      Request Demo
+                      Request Briefing
                     </Link>
                   </div>
                 </div>

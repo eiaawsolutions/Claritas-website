@@ -50,7 +50,7 @@ function LogoItem({ client, variant }: { client: Client; variant: "v1" | "v2" | 
     v6: { img: "opacity-20", text: "text-zinc-800/[0.08]" },
     v7: { img: "opacity-15 brightness-0 invert", text: "text-white/[0.06]" },
     v8: { img: "opacity-15", text: "text-luxury-ink/[0.06]" },
-    v9: { img: "opacity-60 grayscale contrast-125", text: "text-[#0A0A0A]" },
+    v9: { img: "opacity-50 grayscale", text: "text-[#1C1A17]/50" },
   }[variant];
 
   if (client.src) {
@@ -74,57 +74,50 @@ function LogoItem({ client, variant }: { client: Client; variant: "v1" | "v2" | 
 export function ClientLogos() {
   const { version } = useDesignVersion();
 
-  // ── V9: Obsidian — Industrial brutalist directory ──
+  // ── V9: Atrium — Editorial client register ──
   if (version === "v9") {
     return (
-      <section className="bg-[#F4F2EC] border-y border-[#0A0A0A]/14 py-20">
-        <div className="mx-auto max-w-[1600px] px-6 md:px-10">
-          <div className="grid grid-cols-12 gap-6 mb-12 items-end border-b border-[#0A0A0A]/14 pb-6">
-            <div className="col-span-12 md:col-span-4">
-              <div className="v9-mono text-[10px] uppercase tracking-[0.3em] text-[#FF4D1F] mb-3">
-                SECTION B · REGISTRY
-              </div>
-              <h2 className="v9-display text-5xl md:text-6xl text-[#0A0A0A]">
-                FIELD<br />INDEX / 23
-              </h2>
+      <section className="bg-[#F7F1E8] border-t border-[#1C1A17]/[0.08] py-24 lg:py-28">
+        <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <span className="h-px w-12 bg-[#8B6F3E]" />
+              <span className="v9-eyebrow">The Client Register</span>
+              <span className="h-px w-12 bg-[#8B6F3E]" />
             </div>
-            <div className="col-span-12 md:col-span-5 md:col-start-7">
-              <p className="text-base text-[#0A0A0A]/70 leading-relaxed">
-                Operators of record running Claritas across financial services, media, telecoms, and retail. Twenty-three brands, one shared operating system.
-              </p>
-            </div>
+            <h2 className="v9-serif text-[36px] md:text-[48px] leading-[1.1] tracking-[-0.02em] text-[#1C1A17]">
+              A partial list of those
+              <br />
+              <span className="italic font-light text-[#8B6F3E]">whose standards we serve.</span>
+            </h2>
           </div>
 
-          {/* Logos as a strict ledger grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 border-t border-l border-[#0A0A0A]/14">
+          {/* Soft ledger — warm dividers, no hover inversion */}
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
             {allClients.map((client, idx) => (
               <div
                 key={client.name}
-                className="relative group flex flex-col items-center justify-center border-r border-b border-[#0A0A0A]/14 aspect-[4/3] px-4 hover:bg-[#0A0A0A] hover:text-[#F4F2EC] transition-colors"
+                className={`group flex items-center justify-center aspect-[3/2] px-6 py-8 transition-opacity hover:opacity-100 ${
+                  idx % 6 !== 5 ? "md:border-r" : ""
+                } ${idx < allClients.length - 6 ? "border-b" : ""} border-[#1C1A17]/[0.08]`}
               >
-                <div className="absolute top-2 left-2 v9-mono text-[8px] uppercase tracking-[0.3em] text-[#0A0A0A]/40 group-hover:text-[#FF4D1F]">
-                  {String(idx + 1).padStart(3, "0")}
-                </div>
-                <div className="group-hover:brightness-0 group-hover:invert transition-all">
+                <div className="opacity-70 group-hover:opacity-100 transition-opacity">
                   <LogoItem client={client} variant="v9" />
-                </div>
-                <div className="absolute bottom-2 right-2 v9-mono text-[8px] uppercase tracking-[0.25em] text-[#0A0A0A]/30 group-hover:text-[#F4F2EC]/60">
-                  ACTIVE
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div className="v9-mono text-[10px] uppercase tracking-[0.3em] text-[#0A0A0A]/60">
-              ↳ 23 DEPLOYMENTS · 15 COUNTRIES · 12 SECTORS
+          <div className="mt-16 text-center">
+            <div className="v9-serif italic text-[17px] text-[#1C1A17]/60 mb-6">
+              Twenty-three institutions. Twelve industries. Fifteen countries.
             </div>
             <Link
               href="/case-studies"
-              className="group inline-flex items-center gap-2 border border-[#0A0A0A] px-5 py-2.5 v9-mono text-[11px] uppercase tracking-[0.22em] font-semibold text-[#0A0A0A] hover:bg-[#0A0A0A] hover:text-[#F4F2EC] transition-colors"
+              className="group inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.24em] font-semibold text-[#1C1A17] border-b border-[#1C1A17] pb-1 hover:text-[#8B6F3E] hover:border-[#8B6F3E] transition-colors"
             >
-              Read Dossiers
-              <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
+              Read the Case Studies
+              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
         </div>

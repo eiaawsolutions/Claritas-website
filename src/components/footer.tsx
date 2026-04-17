@@ -128,58 +128,65 @@ export function Footer() {
       socialBg: "border border-white/10 text-white/40 hover:text-[#D4B886] hover:border-[#B8965A]",
     },
     v9: {
-      wrapper: "border-t border-[#F4F2EC]/10 bg-[#0A0A0A]",
-      heading: "text-[#F4F2EC] v9-mono uppercase tracking-[0.3em] text-[10px] font-bold",
-      link: "text-[#F4F2EC]/50 hover:text-[#FF4D1F] transition-colors v9-mono text-[11px] uppercase tracking-[0.15em]",
-      border: "border-[#F4F2EC]/10",
-      copy: "text-[#F4F2EC]/40 v9-mono text-[10px] uppercase tracking-[0.25em]",
-      socialBg: "border border-[#F4F2EC]/20 text-[#F4F2EC]/50 hover:text-[#FF4D1F] hover:border-[#FF4D1F] rounded-none",
+      wrapper: "border-t border-[#1C1A17]/10 bg-[#1C1A17]",
+      heading: "text-[#F7F1E8] text-[11px] uppercase tracking-[0.28em] font-semibold",
+      link: "text-[#F7F1E8]/55 hover:text-[#B89968] transition-colors text-[14px]",
+      border: "border-[#F7F1E8]/10",
+      copy: "text-[#F7F1E8]/40 text-[11px] uppercase tracking-[0.22em]",
+      socialBg: "border border-[#F7F1E8]/20 text-[#F7F1E8]/55 hover:text-[#B89968] hover:border-[#B89968] rounded-full",
     },
   };
 
-  // ── V9: Obsidian — Declassified footer ──
+  // ── V9: Atrium — Executive editorial footer ──
   if (version === "v9") {
     return (
-      <footer className="bg-[#0A0A0A] text-[#F4F2EC] border-t border-[#F4F2EC]/10">
-        {/* Giant wordmark bar */}
-        <div className="border-b border-[#F4F2EC]/10 overflow-hidden">
-          <div className="mx-auto max-w-[1600px] px-6 md:px-10 py-10">
-            <div className="flex items-baseline justify-between gap-6 flex-wrap">
-              <span className="v9-display text-[18vw] lg:text-[14vw] leading-none text-[#F4F2EC]/95">
-                CLARITAS<span className="text-[#FF4D1F]">.</span>
-              </span>
+      <footer className="bg-[#1C1A17] text-[#F7F1E8]">
+        {/* Colophon line */}
+        <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16 pt-20 pb-8">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10 border-b border-[#F7F1E8]/10 pb-12">
+            <div className="max-w-md">
+              <Link href="/" className="inline-block">
+                <span className="v9-serif text-[40px] leading-none tracking-[0.01em] text-[#F7F1E8]">
+                  Claritas
+                </span>
+              </Link>
+              <div className="mt-4 flex items-center gap-4">
+                <span className="h-px w-10 bg-[#8B6F3E]" />
+                <span className="v9-eyebrow text-[#B89968] text-[10px]">Est. 2008 · Petaling Jaya</span>
+              </div>
+              <p className="mt-8 v9-serif italic text-[17px] leading-[1.6] text-[#F7F1E8]/70">
+                An operating system for customer relationships — built for organisations that measure success in decades, not quarters.
+              </p>
             </div>
-            <div className="mt-4 flex items-center justify-between v9-mono text-[10px] uppercase tracking-[0.3em] text-[#F4F2EC]/50">
-              <span>OPERATING SYSTEM FOR CUSTOMER REVENUE</span>
-              <span>FILE-09 / REV 2026.04</span>
+
+            <div className="md:text-right">
+              <div className="v9-eyebrow text-[#B89968] text-[10px] mb-3">Private Enquiries</div>
+              <div className="v9-serif text-[18px] text-[#F7F1E8] mb-1">
+                sales@claritascrm.com
+              </div>
+              <div className="v9-serif text-[18px] text-[#F7F1E8]/70">
+                03-7613 4824
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="mx-auto max-w-[1600px] px-6 md:px-10 py-16">
-          <div className="grid grid-cols-12 gap-6 mb-16">
-            <div className="col-span-12 lg:col-span-4">
-              <div className="v9-mono text-[10px] uppercase tracking-[0.3em] text-[#FF4D1F] mb-4">
-                ↳ TRANSMISSION
-              </div>
-              <p className="text-base text-[#F4F2EC]/70 leading-relaxed max-w-sm mb-6">
-                Engineered in Petaling Jaya. Deployed across APAC. Operated 24/7 by a small team of obsessive operators.
-              </p>
-              <div className="v9-mono text-[11px] uppercase tracking-[0.2em] text-[#F4F2EC]/50 space-y-1">
-                <div>SALES · <span className="text-[#F4F2EC]">sales@claritascrm.com</span></div>
-                <div>HOTLINE · <span className="text-[#F4F2EC]">03-7613 4824</span></div>
-              </div>
-            </div>
+        {/* Link columns */}
+        <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16 pb-16">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-16">
             {columns.map((col) => (
-              <div key={col.title} className="col-span-6 md:col-span-3 lg:col-span-2 lg:col-start-auto">
-                <h3 className="v9-mono text-[10px] uppercase tracking-[0.3em] text-[#F4F2EC] font-bold mb-5 pb-2 border-b border-[#F4F2EC]/15">
-                  ▸ {col.title}
+              <div key={col.title}>
+                <h3 className="v9-eyebrow text-[#B89968] text-[10px] mb-6 pb-3 border-b border-[#F7F1E8]/10">
+                  {col.title}
                 </h3>
-                <ul className="space-y-2.5">
+                <ul className="space-y-3">
                   {col.links.map((link) => (
                     <li key={link.name}>
-                      <Link href={link.href} className="v9-mono text-[11px] uppercase tracking-[0.12em] text-[#F4F2EC]/55 hover:text-[#FF4D1F] transition-colors">
-                        · {link.name}
+                      <Link
+                        href={link.href}
+                        className="v9-serif text-[15px] text-[#F7F1E8]/70 hover:text-[#B89968] transition-colors"
+                      >
+                        {link.name}
                       </Link>
                     </li>
                   ))}
@@ -188,16 +195,16 @@ export function Footer() {
             ))}
           </div>
 
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-8 border-t border-[#F4F2EC]/10">
-            <p className="v9-mono text-[10px] uppercase tracking-[0.25em] text-[#F4F2EC]/40">
-              © {new Date().getFullYear()} CLARITAS™ · NETSTER SDN BHD · ALL RIGHTS RESERVED
+          <div className="mt-20 pt-8 border-t border-[#F7F1E8]/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+            <p className="text-[11px] uppercase tracking-[0.22em] text-[#F7F1E8]/40">
+              © {new Date().getFullYear()} Claritas™ · a Netster Sdn Bhd company · all rights reserved
             </p>
             <div className="flex items-center gap-2">
               {socialIcons.map((icon) => (
                 <a
                   key={icon.label}
                   href="#"
-                  className="flex h-9 w-9 items-center justify-center border border-[#F4F2EC]/20 text-[#F4F2EC]/50 hover:text-[#FF4D1F] hover:border-[#FF4D1F] transition-colors"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-[#F7F1E8]/20 text-[#F7F1E8]/55 hover:text-[#B89968] hover:border-[#B89968] transition-colors"
                   aria-label={icon.label}
                 >
                   <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">

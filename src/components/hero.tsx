@@ -16,152 +16,132 @@ const stats = [
 export function Hero() {
   const { version } = useDesignVersion();
 
-  // ── V9: Obsidian — Industrial brutalist / declassified blueprint ──
+  // ── V9: Atrium — Executive editorial, warm parchment + aged brass ──
   if (version === "v9") {
+    // Real photography from Unsplash — executive boardroom with soft warm light
+    const heroPhoto = "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=2000&q=80";
+
     return (
-      <section className="relative pt-24 bg-[#F4F2EC] text-[#0A0A0A]">
-        {/* Classification header strip */}
-        <div className="border-y border-[#0A0A0A]/14">
-          <div className="mx-auto max-w-[1600px] px-6 md:px-10">
-            <div className="grid grid-cols-12 items-center gap-6 py-3 v9-mono text-[10px] uppercase tracking-[0.3em] text-[#0A0A0A]/70">
-              <span className="col-span-6 md:col-span-3">FILE 09 / OBSIDIAN</span>
-              <span className="hidden md:block md:col-span-3">CLASSIFICATION : EXTERNAL</span>
-              <span className="hidden md:block md:col-span-3">REV 2026.04 — ACTIVE</span>
-              <span className="col-span-6 md:col-span-3 text-right">
-                <span className="inline-flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#FF4D1F] animate-pulse" />
-                  LIVE OPS
+      <section className="relative pt-28 bg-[#F7F1E8] text-[#1C1A17] overflow-hidden">
+        {/* Main editorial hero */}
+        <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center pt-10 pb-16 lg:pb-20"
+          >
+            {/* LEFT — Copy column */}
+            <div className="lg:col-span-6 lg:pr-4">
+              <div className="flex items-center gap-4 mb-10">
+                <span className="h-px w-10 bg-[#8B6F3E]" />
+                <span className="v9-eyebrow">Enterprise CRM · Est. 2008</span>
+              </div>
+
+              <h1 className="v9-serif text-[44px] sm:text-[56px] lg:text-[72px] leading-[1.02] tracking-[-0.02em] text-[#1C1A17]">
+                Built for leaders
+                <br />
+                <span className="italic font-light text-[#8B6F3E]">
+                  who measure
                 </span>
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* Main hero grid */}
-        <div className="mx-auto max-w-[1600px] px-6 md:px-10 py-16 lg:py-24">
-          <div className="grid grid-cols-12 gap-6">
-            {/* LEFT — Index column */}
-            <div className="col-span-12 lg:col-span-2 border-r-0 lg:border-r border-[#0A0A0A]/14 lg:pr-6">
-              <div className="v9-mono text-[10px] uppercase tracking-[0.25em] text-[#0A0A0A]/50 space-y-3">
-                <div>[ A.01 ]</div>
-                <div className="h-px w-8 bg-[#0A0A0A]/30" />
-                <div>Sector</div>
-                <div className="text-[#0A0A0A]">Enterprise CRM</div>
-                <div className="pt-6">Issue</div>
-                <div className="text-[#0A0A0A]">N°09 · 2026</div>
-                <div className="pt-6">Region</div>
-                <div className="text-[#0A0A0A]">APAC / MY</div>
-              </div>
-            </div>
-
-            {/* CENTER — Display type */}
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="col-span-12 lg:col-span-7"
-            >
-              <div className="v9-mono text-[10px] uppercase tracking-[0.3em] text-[#FF4D1F] mb-6">
-                — Dossier / Growth Infrastructure
-              </div>
-              <h1 className="v9-display text-[16vw] md:text-[11vw] lg:text-[9.2vw] text-[#0A0A0A]">
-                BETTER<br />
-                SALES<sup className="v9-mono text-[#FF4D1F] text-[22%] align-top ml-2">01</sup>
+                <br />
+                in decades.
               </h1>
-              <div className="mt-4 flex items-baseline gap-3">
-                <span className="v9-mono text-[10px] uppercase tracking-[0.35em] text-[#0A0A0A]/60">/</span>
-                <span className="text-3xl md:text-5xl font-light italic text-[#0A0A0A]/80" style={{ fontFamily: 'var(--font-playfair), "Playfair Display", serif' }}>
-                  with effective marketing.
-                </span>
+
+              <p className="mt-8 max-w-md text-[17px] leading-[1.7] text-[#1C1A17]/70">
+                Claritas unifies marketing, sales, and service operations into a single instrument of record — trusted across Asia-Pacific by the organisations that set their industry&apos;s standard.
+              </p>
+
+              <div className="mt-10 flex flex-wrap items-center gap-6">
+                <Link
+                  href="/contact?demo=true"
+                  className="group inline-flex items-center gap-3 bg-[#1C1A17] text-[#F7F1E8] px-8 py-4 text-[12px] uppercase tracking-[0.24em] font-semibold hover:bg-[#8B6F3E] transition-colors duration-500"
+                >
+                  Request Private Briefing
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                </Link>
+                <Link
+                  href="/claritas/framework"
+                  className="group inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.24em] font-semibold text-[#1C1A17] border-b border-[#1C1A17] pb-0.5 hover:text-[#8B6F3E] hover:border-[#8B6F3E] transition-colors"
+                >
+                  Our Framework
+                </Link>
               </div>
 
-              <div className="mt-10 grid grid-cols-12 gap-6 items-end">
-                <p className="col-span-12 md:col-span-7 text-base text-[#0A0A0A]/70 leading-relaxed max-w-lg">
-                  A rigorously engineered customer operations platform. Marketing, sales, and service unified under a single event log — no seams, no silos, no latency.
-                </p>
-                <div className="col-span-12 md:col-span-5 flex flex-col gap-3">
-                  <Link
-                    href="/contact?demo=true"
-                    className="group inline-flex items-center justify-between border border-[#0A0A0A] bg-[#0A0A0A] px-5 py-3.5 text-[11px] v9-mono uppercase tracking-[0.25em] text-[#F4F2EC] hover:bg-[#FF4D1F] hover:border-[#FF4D1F] transition-colors"
-                  >
-                    <span>Request Demo</span>
-                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-                  </Link>
-                  <Link
-                    href="/pricing"
-                    className="group inline-flex items-center justify-between border border-[#0A0A0A]/30 px-5 py-3.5 text-[11px] v9-mono uppercase tracking-[0.25em] text-[#0A0A0A] hover:border-[#0A0A0A] transition-colors"
-                  >
-                    <span>View Pricing</span>
-                    <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* RIGHT — Telemetry column */}
-            <div className="col-span-12 lg:col-span-3 border-l-0 lg:border-l border-[#0A0A0A]/14 lg:pl-6 space-y-5">
-              <div className="v9-mono text-[10px] uppercase tracking-[0.25em] text-[#0A0A0A]/50 mb-2">{"// TELEMETRY"}</div>
-              {stats.map((s, i) => (
-                <div key={s.label} className="border-b border-dashed border-[#0A0A0A]/15 pb-3">
-                  <div className="v9-mono text-[9px] uppercase tracking-[0.3em] text-[#0A0A0A]/40">
-                    {String(i + 1).padStart(2, "0")} — {s.label}
+              {/* Credential bar */}
+              <div className="mt-14 pt-8 border-t border-[#1C1A17]/10 grid grid-cols-3 gap-6 max-w-lg">
+                {stats.slice(0, 3).map((s) => (
+                  <div key={s.label}>
+                    <div className="v9-serif text-[32px] font-semibold text-[#1C1A17] leading-none">
+                      {s.value}
+                    </div>
+                    <div className="mt-2 text-[11px] uppercase tracking-[0.2em] text-[#1C1A17]/55">
+                      {s.label}
+                    </div>
                   </div>
-                  <div className="mt-1 flex items-baseline gap-2">
-                    <span className="text-3xl font-black tracking-tight text-[#0A0A0A]">{s.value}</span>
-                    <ArrowUpRight className="h-3 w-3 text-[#FF4D1F]" />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Full-bleed product plate */}
-        <div className="border-t border-[#0A0A0A]/14 bg-[#0A0A0A] text-[#F4F2EC]">
-          <div className="mx-auto max-w-[1600px] px-6 md:px-10 py-8">
-            <div className="grid grid-cols-12 gap-6 items-center mb-6 v9-mono text-[10px] uppercase tracking-[0.3em] text-[#F4F2EC]/60">
-              <span className="col-span-6 md:col-span-3">PLATE / 09.A · DASHBOARD</span>
-              <span className="hidden md:block md:col-span-3">EXPOSURE · 1/60 F4.0</span>
-              <span className="hidden md:block md:col-span-3">RENDERED · KL-01</span>
-              <span className="col-span-6 md:col-span-3 text-right text-[#FF4D1F]">↳ LIVE FEED</span>
-            </div>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1.2 }}
-              className="relative border border-[#F4F2EC]/15 overflow-hidden"
-            >
-              <Image
-                src="/hero-crm.png"
-                alt="Claritas CRM Dashboard"
-                width={2400}
-                height={1200}
-                className="w-full h-auto object-cover"
-                priority
-              />
-              {/* Scan lines */}
-              <div className="absolute inset-0 v9-scan pointer-events-none" />
-              {/* Corner crosshairs */}
-              <div className="absolute top-3 left-3 h-4 w-4 border-t border-l border-[#FF4D1F]" />
-              <div className="absolute top-3 right-3 h-4 w-4 border-t border-r border-[#FF4D1F]" />
-              <div className="absolute bottom-3 left-3 h-4 w-4 border-b border-l border-[#FF4D1F]" />
-              <div className="absolute bottom-3 right-3 h-4 w-4 border-b border-r border-[#FF4D1F]" />
-            </motion.div>
-          </div>
-        </div>
-
-        {/* Trust strip */}
-        <div className="bg-[#0A0A0A] text-[#F4F2EC] border-t border-[#F4F2EC]/10">
-          <div className="mx-auto max-w-[1600px] px-6 md:px-10 py-6">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-10">
-              <span className="v9-mono text-[10px] uppercase tracking-[0.35em] text-[#F4F2EC]/50">
-                Field deployments ·
-              </span>
-              <div className="flex flex-wrap items-center gap-x-10 gap-y-2">
-                {["LUMINA", "AETHER", "SOUS", "VERTEX", "ORBIT", "HELIOS"].map((name) => (
-                  <span key={name} className="v9-mono text-xs font-semibold tracking-[0.3em] text-[#F4F2EC]/40">{name}</span>
                 ))}
               </div>
+            </div>
+
+            {/* RIGHT — Editorial photo */}
+            <motion.div
+              initial={{ opacity: 0, scale: 1.02 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+              className="lg:col-span-6 relative"
+            >
+              <div className="relative aspect-[4/5] lg:aspect-[5/6] v9-paper-edge overflow-hidden">
+                <Image
+                  src={heroPhoto}
+                  alt="Executive leadership meeting"
+                  fill
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="object-cover"
+                  priority
+                />
+                {/* Warm atmospheric overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-[#1C1A17]/25 pointer-events-none" />
+                <div className="absolute inset-0 bg-[#8B6F3E]/[0.04] mix-blend-multiply pointer-events-none" />
+              </div>
+
+              {/* Floating caption card — editorial magazine plate */}
+              <motion.div
+                initial={{ opacity: 0, x: -30, y: 20 }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                transition={{ duration: 1, delay: 0.6 }}
+                className="absolute -bottom-8 -left-4 lg:-left-12 bg-[#F7F1E8] border border-[#1C1A17]/10 p-6 pr-10 max-w-[280px] v9-paper-edge"
+              >
+                <div className="v9-eyebrow mb-3">Plate N° I</div>
+                <p className="v9-serif italic text-[15px] leading-snug text-[#1C1A17]/85">
+                  &ldquo;An instrument designed for those who view customer relationships as a multi-generational asset.&rdquo;
+                </p>
+                <div className="mt-4 h-px v9-rule-brass opacity-40" />
+                <div className="mt-3 text-[10px] uppercase tracking-[0.22em] text-[#8B6F3E] font-semibold">
+                  — From the Claritas Charter
+                </div>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        </div>
+
+        {/* Brass rule divider */}
+        <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16">
+          <div className="h-px v9-rule-brass opacity-50" />
+        </div>
+
+        {/* Trusted-by strip — editorial footer to hero */}
+        <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16 py-10">
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-14">
+            <div className="v9-eyebrow shrink-0">Entrusted By</div>
+            <div className="flex flex-wrap items-center gap-x-12 gap-y-4">
+              {["FGV HOLDINGS", "SINGTEL", "NANDO'S", "ESTATE 123", "INTEL", "PFIZER", "VISTAGE"].map((name) => (
+                <span
+                  key={name}
+                  className="v9-serif text-[13px] tracking-[0.22em] text-[#1C1A17]/45 hover:text-[#8B6F3E] transition-colors"
+                >
+                  {name}
+                </span>
+              ))}
             </div>
           </div>
         </div>

@@ -31,67 +31,106 @@ const cards = [
 export function ThreeCards() {
   const { version } = useDesignVersion();
 
-  // ── V9: Obsidian — Brutalist technical docket ──
+  // ── V9: Atrium — Three editorial pillars with photography ──
   if (version === "v9") {
     const v9Items = [
-      { code: "OPS-01", title: "Sales Pipeline", desc: "Forecast with event-log accuracy. Every touch, stage, and signal recorded in an immutable deal ledger.", href: cards[0].href },
-      { code: "OPS-02", title: "Marketing Ops", desc: "Real-time audience attribution and campaign mechanics built on warehouse-native data — no black boxes.", href: cards[1].href },
-      { code: "OPS-03", title: "Service Desk", desc: "SLA-bound incident flow with predictive escalation. Customer outcomes, measured in minutes, not weeks.", href: cards[2].href },
+      {
+        num: "I",
+        title: "Revenue",
+        subtitle: "The Sales Instrument",
+        desc: "Forecasts held to quarterly plan within 3%. Pipeline discipline codified for executive review. Every deal traceable from first touch to signature.",
+        href: cards[0].href,
+        photo: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1200&q=80",
+        alt: "Executive reviewing financial reports",
+      },
+      {
+        num: "II",
+        title: "Reach",
+        subtitle: "The Marketing Instrument",
+        desc: "Attribution modelled from first impression to signed contract. Audiences segmented by commercial value, not vanity metrics. Boardroom-ready reporting.",
+        href: cards[1].href,
+        photo: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?auto=format&fit=crop&w=1200&q=80",
+        alt: "Professional marketing strategy meeting",
+      },
+      {
+        num: "III",
+        title: "Retention",
+        subtitle: "The Service Instrument",
+        desc: "SLA discipline with predictive escalation. NPS movements tied to specific touchpoints. Customer outcomes reported with the gravity they deserve.",
+        href: cards[2].href,
+        photo: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=80",
+        alt: "Senior executives in formal discussion",
+      },
     ];
 
     return (
-      <section className="bg-[#F4F2EC] py-24 border-t border-[#0A0A0A]/14">
-        <div className="mx-auto max-w-[1600px] px-6 md:px-10">
-          <div className="grid grid-cols-12 gap-6 mb-14 items-end">
-            <div className="col-span-12 md:col-span-6">
-              <div className="v9-mono text-[10px] uppercase tracking-[0.3em] text-[#FF4D1F] mb-4">
-                SECTION A · CAPABILITIES MATRIX
-              </div>
-              <h2 className="v9-display text-5xl md:text-7xl text-[#0A0A0A]">
-                THREE<br />INSTRUMENTS<sup className="v9-mono text-[#FF4D1F] text-[20%] align-top ml-2">n=3</sup>
-              </h2>
+      <section className="bg-[#F7F1E8] py-24 lg:py-32 border-t border-[#1C1A17]/[0.08]">
+        <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center max-w-3xl mx-auto mb-20"
+          >
+            <div className="flex items-center justify-center gap-4 mb-8">
+              <span className="h-px w-12 bg-[#8B6F3E]" />
+              <span className="v9-eyebrow">The Claritas Discipline</span>
+              <span className="h-px w-12 bg-[#8B6F3E]" />
             </div>
-            <p className="col-span-12 md:col-span-4 md:col-start-8 text-base text-[#0A0A0A]/70 leading-relaxed">
-              One operating system. Three integrated modules. Deploy them independently or wire them as a single closed-loop revenue engine.
-            </p>
-          </div>
+            <h2 className="v9-serif text-[40px] md:text-[56px] leading-[1.08] tracking-[-0.02em] text-[#1C1A17]">
+              Three instruments.
+              <br />
+              <span className="italic font-light text-[#8B6F3E]">One standard of operation.</span>
+            </h2>
+          </motion.div>
 
-          <div className="grid lg:grid-cols-3 border-t border-l border-[#0A0A0A]/14">
+          <div className="grid md:grid-cols-3 gap-x-8 gap-y-16">
             {v9Items.map((item, i) => (
               <motion.div
-                key={item.code}
-                initial={{ opacity: 0, y: 20 }}
+                key={item.num}
+                initial={{ opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="group relative border-r border-b border-[#0A0A0A]/14 p-8 lg:p-10 bg-[#F4F2EC] hover:bg-[#0A0A0A] hover:text-[#F4F2EC] transition-colors duration-300 min-h-[380px] flex flex-col"
+                transition={{ duration: 0.7, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
+                className="group"
               >
-                <div className="flex items-start justify-between mb-10">
-                  <span className="v9-mono text-[10px] uppercase tracking-[0.3em] text-[#FF4D1F]">
-                    / {item.code}
-                  </span>
-                  <span className="v9-mono text-[9px] uppercase tracking-[0.25em] opacity-40">
-                    {String(i + 1).padStart(2, "0")} / 03
-                  </span>
+                {/* Photo — generous */}
+                <div className="relative aspect-[4/5] mb-8 overflow-hidden v9-paper-edge">
+                  <Image
+                    src={item.photo}
+                    alt={item.alt}
+                    fill
+                    sizes="(min-width: 768px) 33vw, 100vw"
+                    className="object-cover transition-transform duration-[1500ms] group-hover:scale-[1.04]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1C1A17]/30 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-[#8B6F3E]/[0.06] mix-blend-multiply" />
+
+                  {/* Roman numeral */}
+                  <div className="absolute top-6 left-6 v9-serif text-[48px] leading-none text-[#F7F1E8] italic">
+                    {item.num}
+                  </div>
                 </div>
 
-                <div className="flex-1 flex flex-col justify-end">
-                  <h3 className="v9-display text-4xl mb-6">
+                {/* Copy */}
+                <div className="px-1">
+                  <div className="v9-eyebrow mb-3">{item.subtitle}</div>
+                  <h3 className="v9-serif text-[36px] leading-tight tracking-[-0.02em] text-[#1C1A17] mb-4">
                     {item.title}
                   </h3>
-                  <p className="text-sm leading-relaxed opacity-80 mb-8">
+                  <div className="h-px w-10 bg-[#8B6F3E] mb-5" />
+                  <p className="text-[15px] leading-[1.7] text-[#1C1A17]/70 mb-6">
                     {item.desc}
                   </p>
                   <Link
                     href={item.href}
-                    className="inline-flex items-center gap-2 v9-mono text-[11px] uppercase tracking-[0.25em] font-semibold border-b border-current pb-1 w-fit hover:text-[#FF4D1F] transition-colors"
+                    className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] font-semibold text-[#1C1A17] border-b border-[#1C1A17] pb-0.5 hover:text-[#8B6F3E] hover:border-[#8B6F3E] transition-colors"
                   >
-                    Specification
+                    Further Reading
                     <ArrowUpRight className="h-3 w-3" />
                   </Link>
                 </div>
-
-                <div className="absolute top-3 right-3 h-2 w-2 bg-[#FF4D1F] group-hover:scale-150 transition-transform" />
               </motion.div>
             ))}
           </div>

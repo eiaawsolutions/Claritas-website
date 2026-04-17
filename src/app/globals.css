@@ -46,14 +46,17 @@
   --color-luxury-gold-light: #D4B886;
   --color-luxury-warm: #F5F2ED;
 
-  /* V9 Obsidian — Industrial brutalist / declassified blueprint */
-  --color-obsidian-paper: #F4F2EC;
-  --color-obsidian-ink: #0A0A0A;
-  --color-obsidian-signal: #FF4D1F;
-  --color-obsidian-muted: #6B6B6B;
-  --color-obsidian-line: rgba(10,10,10,0.12);
-  --color-obsidian-stone: #1C1C1C;
-  --color-obsidian-char: #E8E4D8;
+  /* V9 Atrium — Executive editorial, warm parchment + aged brass */
+  --color-atrium-paper: #F7F1E8;
+  --color-atrium-parchment: #EDE4D3;
+  --color-atrium-vellum: #E6DCC7;
+  --color-atrium-ink: #1C1A17;
+  --color-atrium-ink-soft: #2A2721;
+  --color-atrium-brass: #8B6F3E;
+  --color-atrium-brass-light: #B89968;
+  --color-atrium-brass-deep: #6F5830;
+  --color-atrium-line: rgba(28,26,23,0.12);
+  --color-atrium-muted: rgba(28,26,23,0.55);
 
   /* Neutral palette */
   --color-dark-900: #1a1a2e;
@@ -150,46 +153,51 @@ html[data-design="v8"] ::selection {
   color: #fff;
 }
 
-/* V9: Obsidian — Industrial brutalist / declassified blueprint */
+/* V9: Atrium — Executive editorial, warm parchment + aged brass */
 html[data-design="v9"] body {
-  background: #F4F2EC;
-  color: #0A0A0A;
+  background: #F7F1E8;
+  color: #1C1A17;
   font-family: var(--font-inter), system-ui, sans-serif;
-  /* Subtle halftone grain */
+  /* Paper fiber texture — very subtle warm noise */
   background-image:
-    radial-gradient(rgba(10,10,10,0.04) 1px, transparent 1px),
-    radial-gradient(rgba(10,10,10,0.03) 1px, transparent 1px);
-  background-size: 24px 24px, 7px 7px;
-  background-position: 0 0, 3px 3px;
+    radial-gradient(rgba(139,111,62,0.035) 1px, transparent 1px),
+    radial-gradient(rgba(28,26,23,0.02) 1px, transparent 1px);
+  background-size: 38px 38px, 11px 11px;
+  background-position: 0 0, 5px 5px;
 }
 
-html[data-design="v9"] .v9-mono {
-  font-family: ui-monospace, "JetBrains Mono", "Fira Code", Menlo, Consolas, monospace;
-  letter-spacing: 0.01em;
+html[data-design="v9"] .v9-serif {
+  font-family: var(--font-playfair), "Playfair Display", "Georgia", serif;
+  font-feature-settings: "liga", "kern";
 }
 
-html[data-design="v9"] .v9-display {
+html[data-design="v9"] .v9-eyebrow {
   font-family: var(--font-inter), system-ui, sans-serif;
-  font-weight: 900;
-  letter-spacing: -0.045em;
-  line-height: 0.9;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #8B6F3E;
 }
 
-html[data-design="v9"] .v9-rule {
-  border-color: rgba(10,10,10,0.14);
-}
-
-html[data-design="v9"] .v9-scan {
-  background-image: repeating-linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent 3px,
-    rgba(10,10,10,0.035) 3px,
-    rgba(10,10,10,0.035) 4px
+html[data-design="v9"] .v9-rule-brass {
+  background: linear-gradient(
+    to right,
+    rgba(139,111,62,0.15) 0%,
+    #8B6F3E 25%,
+    #8B6F3E 75%,
+    rgba(139,111,62,0.15) 100%
   );
 }
 
+html[data-design="v9"] .v9-paper-edge {
+  box-shadow:
+    0 1px 0 rgba(28,26,23,0.04),
+    0 18px 40px -22px rgba(28,26,23,0.18),
+    0 40px 80px -30px rgba(28,26,23,0.14);
+}
+
 html[data-design="v9"] ::selection {
-  background: #FF4D1F;
-  color: #F4F2EC;
+  background: #8B6F3E;
+  color: #F7F1E8;
 }

@@ -12,7 +12,7 @@ const versions: { id: DesignVersionId; label: string; color: string }[] = [
   { id: "v6", label: "V6", color: "bg-zinc-900" },
   { id: "v7", label: "V7", color: "bg-blue-500" },
   { id: "v8", label: "V8", color: "bg-luxury-gold" },
-  { id: "v9", label: "V9", color: "bg-[#FF4D1F]" },
+  { id: "v9", label: "V9", color: "bg-[#8B6F3E]" },
 ];
 
 export function VersionSwitcher() {

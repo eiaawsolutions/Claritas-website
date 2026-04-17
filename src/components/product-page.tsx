@@ -34,81 +34,93 @@ export function ProductPage({
 }: ProductPageProps) {
   const { version } = useDesignVersion();
 
-  // ── V9: Obsidian — Industrial brutalist / field manual ──
+  // ── V9: Atrium — Executive editorial product page ──
   if (version === "v9") {
     return (
       <>
-        <section className="relative bg-[#F4F2EC] text-[#0A0A0A] pt-28 border-b border-[#0A0A0A]/14">
-          <div className="mx-auto max-w-[1600px] px-6 md:px-10 py-16 lg:py-20">
-            <div className="v9-mono text-[10px] uppercase tracking-[0.3em] text-[#0A0A0A]/60 mb-6 flex items-center gap-3">
-              <span className="text-[#FF4D1F]">↳</span>
-              <span>MODULE / {category}</span>
-            </div>
-
+        <section className="relative bg-[#F7F1E8] text-[#1C1A17] pt-32 pb-16 lg:pb-20">
+          <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="grid grid-cols-12 gap-6 items-end"
+              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             >
-              <div className="col-span-12 lg:col-span-2">
-                <div className="flex h-16 w-16 items-center justify-center border-2 border-[#0A0A0A] bg-[#F4F2EC]">
-                  <Icon className="h-7 w-7 text-[#FF4D1F]" />
+              <div className="flex items-center gap-4 mb-8">
+                <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[#8B6F3E]/30 bg-[#8B6F3E]/10 text-[#8B6F3E]">
+                  <Icon className="h-6 w-6" />
+                </div>
+                <div>
+                  <div className="v9-eyebrow">{category}</div>
                 </div>
               </div>
-              <h1 className="col-span-12 lg:col-span-10 v9-display text-[11vw] md:text-[7vw] lg:text-[6vw] text-[#0A0A0A]">
+
+              <h1 className="v9-serif text-[48px] md:text-[72px] lg:text-[88px] leading-[1.02] tracking-[-0.025em] text-[#1C1A17] max-w-4xl">
                 {title}
               </h1>
-            </motion.div>
 
-            <div className="mt-10 grid grid-cols-12 gap-6 items-end">
-              <div className="col-span-12 lg:col-span-7">
-                <p className="text-xl italic text-[#0A0A0A]/75" style={{ fontFamily: 'var(--font-playfair), "Playfair Display", serif' }}>
-                  {tagline}
-                </p>
-                <p className="mt-4 text-base leading-relaxed text-[#0A0A0A]/65 max-w-xl">
-                  {description}
-                </p>
-              </div>
-              <div className="col-span-12 lg:col-span-4 lg:col-start-9 flex flex-col gap-3">
-                <Link href="/contact?demo=true" className="group flex items-center justify-between bg-[#0A0A0A] text-[#F4F2EC] px-5 py-3.5 v9-mono text-[11px] uppercase tracking-[0.22em] font-semibold hover:bg-[#FF4D1F] transition-colors">
-                  <span>Request a Demo</span>
+              <p className="mt-8 v9-serif italic text-[22px] md:text-[26px] leading-[1.4] text-[#8B6F3E] max-w-2xl">
+                {tagline}
+              </p>
+
+              <p className="mt-6 text-[17px] leading-[1.75] text-[#1C1A17]/70 max-w-2xl">
+                {description}
+              </p>
+
+              <div className="mt-12 flex flex-wrap items-center gap-6">
+                <Link
+                  href="/contact?demo=true"
+                  className="group inline-flex items-center gap-3 bg-[#1C1A17] text-[#F7F1E8] px-8 py-4 text-[12px] uppercase tracking-[0.24em] font-semibold hover:bg-[#8B6F3E] transition-colors duration-500"
+                >
+                  Request Private Briefing
                   <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                 </Link>
-                <Link href="/pricing" className="flex items-center justify-between border border-[#0A0A0A]/30 px-5 py-3.5 v9-mono text-[11px] uppercase tracking-[0.22em] text-[#0A0A0A] hover:border-[#0A0A0A] hover:bg-[#0A0A0A] hover:text-[#F4F2EC] transition-colors">
-                  <span>See Pricing</span>
-                  <ArrowRight className="h-3.5 w-3.5" />
+                <Link
+                  href="/pricing"
+                  className="text-[12px] uppercase tracking-[0.24em] font-semibold text-[#1C1A17] border-b border-[#1C1A17] pb-0.5 hover:text-[#8B6F3E] hover:border-[#8B6F3E] transition-colors"
+                >
+                  Review Pricing
                 </Link>
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
 
-        <section className="bg-[#F4F2EC] py-20">
-          <div className="mx-auto max-w-[1600px] px-6 md:px-10">
-            <div className="v9-mono text-[10px] uppercase tracking-[0.3em] text-[#FF4D1F] mb-8 border-b border-[#0A0A0A]/14 pb-3">
-              SPECIFICATION · {sections.length} ENTRIES
+        {/* Specification chapter */}
+        <section className="bg-[#EDE4D3] py-24 lg:py-32">
+          <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16">
+            <div className="text-center mb-16">
+              <div className="flex items-center justify-center gap-4 mb-6">
+                <span className="h-px w-10 bg-[#8B6F3E]" />
+                <span className="v9-eyebrow">The Specification</span>
+                <span className="h-px w-10 bg-[#8B6F3E]" />
+              </div>
+              <h2 className="v9-serif text-[32px] md:text-[44px] leading-[1.1] tracking-[-0.02em] text-[#1C1A17]">
+                What distinguishes the <span className="italic text-[#8B6F3E]">{title.toLowerCase()}</span> module.
+              </h2>
             </div>
-            <div className="grid md:grid-cols-2 border-t border-l border-[#0A0A0A]/14">
+
+            <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
               {sections.map((section, i) => (
                 <motion.div
                   key={section.title}
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.4, delay: i * 0.05 }}
-                  className="group border-r border-b border-[#0A0A0A]/14 p-8 lg:p-10 hover:bg-[#0A0A0A] hover:text-[#F4F2EC] transition-colors"
+                  transition={{ duration: 0.6, delay: i * 0.08 }}
+                  className="bg-[#F7F1E8] p-8 lg:p-10"
                 >
-                  <div className="flex items-center justify-between mb-6">
-                    <span className="v9-mono text-[10px] uppercase tracking-[0.3em] text-[#FF4D1F]">
-                      / {String(i + 1).padStart(2, "0")}
+                  <div className="flex items-center gap-4 mb-6">
+                    <span className="v9-serif italic text-[28px] text-[#8B6F3E] leading-none">
+                      {String(i + 1).padStart(2, "0")}
                     </span>
-                    <span className="v9-mono text-[9px] uppercase tracking-[0.25em] opacity-40">
-                      SPEC {String(i + 1).padStart(2, "0")} / {String(sections.length).padStart(2, "0")}
-                    </span>
+                    <span className="h-px flex-1 bg-[#1C1A17]/10" />
                   </div>
-                  <h3 className="v9-display text-2xl md:text-3xl mb-4">{section.title}</h3>
-                  <p className="text-base leading-relaxed opacity-80">{section.body}</p>
+                  <h3 className="v9-serif text-[22px] md:text-[26px] leading-tight tracking-[-0.01em] text-[#1C1A17]">
+                    {section.title}
+                  </h3>
+                  <p className="mt-4 text-[15px] leading-[1.7] text-[#1C1A17]/70">
+                    {section.body}
+                  </p>
                 </motion.div>
               ))}
             </div>

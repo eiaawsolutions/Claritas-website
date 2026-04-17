@@ -19,13 +19,13 @@ const VERSION_NAMES: Record<DesignVersionId, string> = {
   v6: "Precision",
   v7: "Enterprise",
   v8: "Atelier",
-  v9: "Obsidian",
+  v9: "Atrium",
 };
 
 const DesignContext = createContext<DesignContextValue>({
   version: "v9",
   setVersion: () => {},
-  cycleName: "Obsidian",
+  cycleName: "Atrium",
 });
 
 export function DesignVersionProvider({ children }: { children: ReactNode }) {

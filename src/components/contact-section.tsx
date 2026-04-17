@@ -144,16 +144,16 @@ export function ContactSection() {
       successBorder: "border-[#B8965A]/20 bg-[#B8965A]/[0.06]",
     },
     v9: {
-      section: "bg-[#0A0A0A] text-[#F4F2EC] border-t border-[#F4F2EC]/10",
-      heading: "text-[#F4F2EC]",
-      headingAccent: "text-[#FF4D1F]",
-      input: "border border-[#F4F2EC]/15 bg-transparent px-4 py-3.5 text-sm text-[#F4F2EC] placeholder:text-[#F4F2EC]/35 focus:border-[#FF4D1F] focus:outline-none focus:ring-0 v9-mono tracking-wider",
-      button: "bg-[#FF4D1F] px-10 py-4 v9-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#F4F2EC] hover:bg-[#F4F2EC] hover:text-[#0A0A0A] transition-colors",
-      ghost: "border border-[#F4F2EC]/20 px-6 py-2.5 v9-mono text-[10px] uppercase tracking-[0.22em] text-[#F4F2EC]/70 hover:border-[#FF4D1F] hover:text-[#FF4D1F]",
-      iconBg: "bg-[#FF4D1F]/15 text-[#FF4D1F] border border-[#FF4D1F]/30 rounded-none",
-      label: "text-[#F4F2EC]",
-      body: "text-[#F4F2EC]/60",
-      successBorder: "border-[#FF4D1F]/30 bg-[#FF4D1F]/[0.06]",
+      section: "bg-[#EDE4D3]",
+      heading: "text-[#1C1A17]",
+      headingAccent: "text-[#8B6F3E] italic font-light",
+      input: "border-0 border-b border-[#1C1A17]/25 bg-transparent px-0 py-4 text-[15px] text-[#1C1A17] placeholder:text-[#1C1A17]/40 focus:border-[#8B6F3E] focus:outline-none focus:ring-0",
+      button: "bg-[#1C1A17] px-10 py-4 text-[12px] font-semibold uppercase tracking-[0.24em] text-[#F7F1E8] hover:bg-[#8B6F3E] transition-colors duration-500",
+      ghost: "border border-[#1C1A17]/25 px-6 py-2.5 text-[11px] uppercase tracking-[0.22em] text-[#1C1A17]/70 hover:border-[#8B6F3E] hover:text-[#8B6F3E]",
+      iconBg: "bg-[#8B6F3E]/10 text-[#8B6F3E] border border-[#8B6F3E]/20 rounded-full",
+      label: "text-[#1C1A17] v9-serif",
+      body: "text-[#1C1A17]/65",
+      successBorder: "border-[#8B6F3E]/30 bg-[#8B6F3E]/[0.06]",
     },
   };
 
@@ -174,17 +174,16 @@ export function ContactSection() {
               <span className={s.headingAccent}>CONTACT</span> US
             </h2>
           ) : version === "v9" ? (
-            <div className="grid grid-cols-12 gap-6 items-end border-b border-[#F4F2EC]/15 pb-6">
-              <div className="col-span-12 md:col-span-7">
-                <span className="v9-mono text-[10px] uppercase tracking-[0.3em] text-[#FF4D1F]">
-                  SECTION E · TRANSMISSION
-                </span>
-                <h2 className="mt-4 v9-display text-5xl md:text-6xl text-[#F4F2EC]">
-                  OPEN<br />CHANNEL<span className={s.headingAccent}>.</span>
-                </h2>
+            <div>
+              <div className="flex items-center gap-4 mb-6">
+                <span className="h-px w-12 bg-[#8B6F3E]" />
+                <span className="v9-eyebrow">Open a Conversation</span>
               </div>
-              <p className="col-span-12 md:col-span-4 md:col-start-9 text-base text-[#F4F2EC]/70 leading-relaxed">
-                Direct line to deployment engineering. Responses routed within one business day — KL timezone.
+              <h2 className="v9-serif text-[40px] md:text-[56px] leading-[1.08] tracking-[-0.02em] text-[#1C1A17]">
+                We read every enquiry <span className={s.headingAccent}>personally.</span>
+              </h2>
+              <p className="mt-6 max-w-xl text-[16px] leading-[1.7] text-[#1C1A17]/65">
+                A senior member of our team will respond within one business day. For time-sensitive matters, our sales hotline remains the most direct channel.
               </p>
             </div>
           ) : version === "v8" ? (
