@@ -19,7 +19,7 @@ export function Hero() {
   // ── V9: Atrium — Executive editorial, warm parchment + aged brass ──
   if (version === "v9") {
     // Real photography from Unsplash — executive boardroom with soft warm light
-    const heroPhoto = "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=2000&q=80";
+    const heroPhoto = "/v9/hero-executive.jpg";
 
     return (
       <section className="relative pt-28 bg-[#F7F1E8] text-[#1C1A17] overflow-hidden">

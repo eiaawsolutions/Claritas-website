@@ -63,6 +63,163 @@ export function FintechContent() {
   const isV7 = version === "v7";
   const isDark = isV5 || isV7;
 
+  if (version === "v9") {
+    return (
+      <>
+        <section className="relative bg-[#F7F1E8] pt-32 pb-20">
+          <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+              className="max-w-4xl"
+            >
+              <div className="flex items-center gap-4 mb-8">
+                <span className="h-px w-12 bg-[#8B6F3E]" />
+                <span className="v9-eyebrow">Industry Solution</span>
+              </div>
+              <h1 className="v9-serif text-[44px] md:text-[68px] lg:text-[80px] leading-[1.02] tracking-[-0.02em] text-[#1C1A17]">
+                CRM for Banking &amp; <br /><span className="italic font-light text-[#8B6F3E]">Financial Services.</span>
+              </h1>
+              <p className="mt-8 text-[17px] leading-[1.75] text-[#1C1A17]/70 max-w-2xl">
+                In financial services, the distance between customer expectation and delivery is the market. Claritas&trade; closes that distance — a flexible, fully customisable platform calibrated to the regulatory and operational discipline the industry demands.
+              </p>
+              <div className="mt-10 flex flex-wrap gap-5">
+                <Link
+                  href="/contact?demo=true"
+                  className="group inline-flex items-center gap-3 bg-[#1C1A17] text-[#F7F1E8] px-8 py-4 text-[12px] uppercase tracking-[0.24em] font-semibold hover:bg-[#8B6F3E] transition-colors duration-500"
+                >
+                  Request Private Briefing
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        <section className="bg-[#EDE4D3] py-24">
+          <div className="mx-auto max-w-4xl px-6 md:px-12 lg:px-16">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="h-px w-10 bg-[#8B6F3E]" />
+              <span className="v9-eyebrow">The Platform</span>
+            </div>
+            <h2 className="v9-serif text-[32px] md:text-[44px] leading-[1.12] tracking-[-0.02em] text-[#1C1A17]">
+              What is Claritas&trade; <span className="italic text-[#8B6F3E]">CRM?</span>
+            </h2>
+            <p className="mt-8 text-[17px] leading-[1.75] text-[#1C1A17]/70">
+              An integrated, customer-centric platform that manages, tracks, and stores information on every existing customer and new prospect. Claritas&trade; helps financial institutions drive growth by orchestrating technology, data, process, and people &mdash; aligning marketing, sales, and service across every customer touchpoint under regulatory constraint.
+            </p>
+          </div>
+        </section>
+
+        <section className="bg-[#F7F1E8] py-24 lg:py-32">
+          <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <div className="flex items-center justify-center gap-4 mb-6">
+                <span className="h-px w-10 bg-[#8B6F3E]" />
+                <span className="v9-eyebrow">The Capabilities</span>
+                <span className="h-px w-10 bg-[#8B6F3E]" />
+              </div>
+              <h2 className="v9-serif text-[36px] md:text-[48px] leading-[1.1] tracking-[-0.02em] text-[#1C1A17]">
+                How Claritas&trade; serves <span className="italic text-[#8B6F3E]">the institution.</span>
+              </h2>
+            </div>
+            <div className="grid gap-6 lg:gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {capabilities.map((cap, i) => (
+                <motion.div
+                  key={cap.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08, duration: 0.6 }}
+                  className="bg-[#EDE4D3] p-8 lg:p-10 transition-shadow hover:v9-paper-edge"
+                >
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#8B6F3E]/10 text-[#8B6F3E] border border-[#8B6F3E]/20 mb-6">
+                    <cap.icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="v9-serif text-[22px] leading-tight text-[#1C1A17]">{cap.title}</h3>
+                  <p className="mt-4 text-[15px] leading-[1.7] text-[#1C1A17]/70">{cap.description}</p>
+                  <Link
+                    href={cap.href}
+                    className="mt-6 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] font-semibold text-[#1C1A17] border-b border-[#1C1A17] pb-0.5 hover:text-[#8B6F3E] hover:border-[#8B6F3E] transition-colors"
+                  >
+                    Further Reading
+                    <ArrowRight className="h-3 w-3" />
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-[#EDE4D3] py-24">
+          <div className="mx-auto max-w-4xl px-6 md:px-12 lg:px-16">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="h-px w-10 bg-[#8B6F3E]" />
+              <span className="v9-eyebrow">The Distinction</span>
+            </div>
+            <h2 className="v9-serif text-[32px] md:text-[44px] leading-[1.12] tracking-[-0.02em] text-[#1C1A17]">
+              What makes Claritas&trade; CRM <span className="italic text-[#8B6F3E]">different.</span>
+            </h2>
+            <ul className="mt-10 space-y-6">
+              {differentiators.map((d, i) => (
+                <li key={i} className="flex items-start gap-4 text-[16px] leading-[1.7] text-[#1C1A17]/75">
+                  <span className="v9-serif italic text-[22px] text-[#8B6F3E] leading-none shrink-0 mt-0.5">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span>{d}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section className="bg-[#F7F1E8] py-24" id="dashboard">
+          <div className="mx-auto max-w-4xl px-6 md:px-12 lg:px-16">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="h-px w-10 bg-[#8B6F3E]" />
+              <span className="v9-eyebrow">Customer Architecture</span>
+            </div>
+            <h2 className="v9-serif text-[32px] md:text-[44px] leading-[1.12] tracking-[-0.02em] text-[#1C1A17]">
+              A single, 360° view of every <span className="italic text-[#8B6F3E]">client.</span>
+            </h2>
+            <p className="mt-8 text-[17px] leading-[1.75] text-[#1C1A17]/70">
+              Inadequate knowledge of a customer creates a shortfall at every moment of truth. Claritas&trade; consolidates profiles, product holdings, service subscriptions, open cases, opportunities, service alerts, next best action, and full interaction history into a single platform &mdash; the complete picture, held to fiduciary standards.
+            </p>
+          </div>
+        </section>
+
+        <section className="bg-[#1C1A17] text-[#F7F1E8] py-24 lg:py-32">
+          <div className="mx-auto max-w-[1200px] px-6 md:px-12 lg:px-16 text-center">
+            <div className="flex items-center justify-center gap-4 mb-8">
+              <span className="h-px w-12 bg-[#B89968]" />
+              <span className="v9-eyebrow text-[#B89968]">By Private Appointment</span>
+              <span className="h-px w-12 bg-[#B89968]" />
+            </div>
+            <h2 className="v9-serif text-[44px] md:text-[60px] leading-[1.05] tracking-[-0.02em]">
+              Ready to transform your <br /><span className="italic font-light text-[#B89968]">financial services CRM?</span>
+            </h2>
+            <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-5">
+              <Link
+                href="/contact?demo=true"
+                className="group inline-flex items-center gap-3 bg-[#F7F1E8] text-[#1C1A17] px-10 py-4 text-[12px] uppercase tracking-[0.24em] font-semibold hover:bg-[#B89968] transition-colors duration-500"
+              >
+                Begin Trial
+                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+              </Link>
+              <Link
+                href="/contact"
+                className="text-[12px] uppercase tracking-[0.24em] font-semibold text-[#F7F1E8]/80 border-b border-[#F7F1E8]/60 pb-0.5 hover:text-[#B89968] hover:border-[#B89968] transition-colors"
+              >
+                Contact Sales
+              </Link>
+            </div>
+          </div>
+        </section>
+      </>
+    );
+  }
+
   return (
     <>
       {/* Hero */}

@@ -67,6 +67,89 @@ export default function PricingPage() {
   const isV7 = version === "v7";
   const isDark = isV5 || isV7;
 
+  if (version === "v9") {
+    return (
+      <>
+        <section className="relative bg-[#F7F1E8] pt-32 pb-16 text-center">
+          <div className="mx-auto max-w-[1200px] px-6 md:px-12 lg:px-16">
+            <div className="flex items-center justify-center gap-4 mb-8">
+              <span className="h-px w-12 bg-[#8B6F3E]" />
+              <span className="v9-eyebrow">Terms of Engagement</span>
+              <span className="h-px w-12 bg-[#8B6F3E]" />
+            </div>
+            <h1 className="v9-serif text-[44px] md:text-[68px] lg:text-[80px] leading-[1.02] tracking-[-0.02em] text-[#1C1A17] max-w-4xl mx-auto">
+              Transparent pricing, <span className="italic font-light text-[#8B6F3E]">considered partnership.</span>
+            </h1>
+            <p className="mt-8 max-w-2xl mx-auto text-[17px] leading-[1.75] text-[#1C1A17]/70">
+              Three tiers, each calibrated to a stage of organisational maturity. Every engagement begins with a fourteen-day trial and a private scoping session.
+            </p>
+          </div>
+        </section>
+
+        <section className="bg-[#EDE4D3] pb-28 pt-10">
+          <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16">
+            <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
+              {plans.map((plan, i) => (
+                <motion.div
+                  key={plan.name}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1, duration: 0.7 }}
+                  className={`relative bg-[#F7F1E8] p-8 lg:p-10 ${plan.popular ? "v9-paper-edge ring-1 ring-[#8B6F3E]/30" : ""}`}
+                >
+                  {plan.popular && (
+                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#1C1A17] text-[#F7F1E8] px-4 py-1 text-[10px] uppercase tracking-[0.28em] font-semibold">
+                      Most Chosen
+                    </span>
+                  )}
+
+                  <div className="v9-eyebrow mb-3">Tier {String(i + 1).padStart(2, "0")}</div>
+                  <h3 className="v9-serif text-[32px] leading-tight text-[#1C1A17]">
+                    {plan.name}
+                  </h3>
+                  <p className="mt-2 text-[14px] leading-[1.6] text-[#1C1A17]/60 italic v9-serif">
+                    {plan.audience}
+                  </p>
+
+                  <div className="mt-6 flex items-baseline gap-2">
+                    <span className="v9-serif text-[52px] leading-none text-[#1C1A17]">
+                      {plan.price}
+                    </span>
+                    {plan.period && <span className="text-[13px] text-[#1C1A17]/55">{plan.period}</span>}
+                  </div>
+
+                  <div className="mt-6 h-px v9-rule-brass opacity-50" />
+
+                  <Link
+                    href="/contact?demo=true"
+                    className={`mt-8 flex w-full items-center justify-center gap-2 px-5 py-3.5 text-[11px] uppercase tracking-[0.24em] font-semibold transition-colors duration-500 ${
+                      plan.popular
+                        ? "bg-[#1C1A17] text-[#F7F1E8] hover:bg-[#8B6F3E]"
+                        : "border border-[#1C1A17]/25 text-[#1C1A17] hover:border-[#8B6F3E] hover:text-[#8B6F3E]"
+                    }`}
+                  >
+                    {plan.price === "Custom" ? "Request Consultation" : "Begin Trial"}
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
+
+                  <ul className="mt-8 space-y-3">
+                    {plan.features.map((f) => (
+                      <li key={f} className="flex items-start gap-3">
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#8B6F3E]" strokeWidth={1.5} />
+                        <span className="text-[14px] leading-[1.6] text-[#1C1A17]/75">{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </>
+    );
+  }
+
   return (
     <>
       {/* Hero */}

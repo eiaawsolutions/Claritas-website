@@ -19,7 +19,7 @@ export function CtaBanner() {
         {/* Full-bleed editorial photo as backdrop */}
         <div className="absolute inset-0 overflow-hidden">
           <Image
-            src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?auto=format&fit=crop&w=2200&q=80"
+            src="/v9/cta-backdrop.jpg"
             alt=""
             fill
             sizes="100vw"

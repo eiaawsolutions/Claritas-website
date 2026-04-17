@@ -55,17 +55,17 @@ export function ProductsSection() {
   if (version === "v9") {
     const v9ProductPhotos: Record<string, { src: string; alt: string; caption: string }> = {
       Marketing: {
-        src: "https://images.unsplash.com/photo-1460794035143-7b3d287b415f?auto=format&fit=crop&w=1400&q=80",
+        src: "/v9/product-marketing.jpg",
         alt: "Marketing strategy session",
         caption: "A campaign calibrated to convert, not merely to be seen.",
       },
       Sales: {
-        src: "https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&w=1400&q=80",
+        src: "/v9/product-sales.jpg",
         alt: "Executive signing a contract",
         caption: "The pipeline as a fiduciary instrument — each stage a commitment.",
       },
       Support: {
-        src: "https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?auto=format&fit=crop&w=1400&q=80",
+        src: "/v9/product-support.jpg",
         alt: "Professional customer service conversation",
         caption: "Retention is the discipline of never making a client ask twice.",
       },

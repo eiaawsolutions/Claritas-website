@@ -52,6 +52,52 @@ export default function PrivacyPage() {
   const isV7 = version === "v7";
   const isDark = isV5 || isV7;
 
+  if (version === "v9") {
+    return (
+      <>
+        <section className="relative bg-[#F7F1E8] pt-32 pb-16">
+          <div className="mx-auto max-w-4xl px-6 md:px-12 lg:px-16">
+            <div className="flex items-center gap-4 mb-8">
+              <span className="h-px w-12 bg-[#8B6F3E]" />
+              <span className="v9-eyebrow">Legal Notice</span>
+            </div>
+            <h1 className="v9-serif text-[44px] md:text-[64px] leading-[1.05] tracking-[-0.02em] text-[#1C1A17]">
+              Privacy <span className="italic font-light text-[#8B6F3E]">Policy.</span>
+            </h1>
+            <p className="mt-6 text-[15px] text-[#1C1A17]/55">
+              Revised: 16 April 2026
+            </p>
+            <p className="mt-6 text-[17px] leading-[1.75] text-[#1C1A17]/70 max-w-2xl">
+              This policy explains how Netster Consulting Asia (&ldquo;Claritas&rdquo;) collects, uses, and safeguards personal information you provide through this website and our services.
+            </p>
+          </div>
+        </section>
+
+        <section className="bg-[#EDE4D3] py-20 lg:py-28">
+          <div className="mx-auto max-w-4xl px-6 md:px-12 lg:px-16">
+            <div className="space-y-16">
+              {sections.map((s, i) => (
+                <article key={s.title}>
+                  <div className="flex items-center gap-4 mb-4">
+                    <span className="v9-serif italic text-[26px] text-[#8B6F3E] leading-none">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h2 className="v9-serif text-[24px] md:text-[28px] leading-tight text-[#1C1A17]">
+                      {s.title}
+                    </h2>
+                  </div>
+                  <p className="text-[16px] leading-[1.7] text-[#1C1A17]/70 whitespace-pre-line">
+                    {s.body}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      </>
+    );
+  }
+
   return (
     <>
       <section className={`pt-16 ${isV6 ? "bg-zinc-950 relative" : isDark ? "bg-[#0b1121] relative" : "bg-gray-50"}`}>

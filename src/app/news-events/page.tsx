@@ -50,6 +50,61 @@ export default function NewsEventsPage() {
   const isV7 = version === "v7";
   const isDark = isV5 || isV7;
 
+  if (version === "v9") {
+    return (
+      <>
+        <section className="relative bg-[#F7F1E8] pt-32 pb-16">
+          <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16">
+            <div className="flex items-center gap-4 mb-8">
+              <span className="h-px w-12 bg-[#8B6F3E]" />
+              <span className="v9-eyebrow">Company Journal</span>
+            </div>
+            <h1 className="v9-serif text-[44px] md:text-[68px] leading-[1.02] tracking-[-0.02em] text-[#1C1A17] max-w-4xl">
+              Announcements <span className="italic font-light text-[#8B6F3E]">of record.</span>
+            </h1>
+            <p className="mt-8 max-w-2xl text-[17px] leading-[1.75] text-[#1C1A17]/70">
+              Milestones, product releases, and institutional updates from Claritas &mdash; curated in the order they occurred.
+            </p>
+          </div>
+        </section>
+
+        <section className="bg-[#EDE4D3] py-20 lg:py-28">
+          <div className="mx-auto max-w-[1200px] px-6 md:px-12 lg:px-16">
+            <div className="space-y-12">
+              {updates.map((u) => (
+                <article
+                  key={u.title}
+                  className="grid md:grid-cols-12 gap-6 items-start border-b border-[#1C1A17]/10 pb-12 last:border-b-0"
+                >
+                  <div className="md:col-span-2">
+                    <div className="v9-serif italic text-[36px] leading-none text-[#8B6F3E]">{u.date}</div>
+                    <div className="mt-2 v9-eyebrow text-[10px]">{u.tag}</div>
+                  </div>
+                  <div className="md:col-span-10">
+                    <h2 className="v9-serif text-[26px] md:text-[32px] leading-[1.15] tracking-[-0.01em] text-[#1C1A17]">
+                      {u.title}
+                    </h2>
+                    <p className="mt-4 text-[16px] leading-[1.7] text-[#1C1A17]/70 max-w-2xl">{u.body}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div className="mt-20 text-center">
+              <Link
+                href="/contact"
+                className="group inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.24em] font-semibold text-[#1C1A17] border-b border-[#1C1A17] pb-1 hover:text-[#8B6F3E] hover:border-[#8B6F3E] transition-colors"
+              >
+                Request Our Full Press Register
+                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
+          </div>
+        </section>
+      </>
+    );
+  }
+
   return (
     <>
       <section className={`pt-16 ${isV6 ? "bg-zinc-950 relative" : isDark ? "bg-[#0b1121] relative" : "bg-gray-50"}`}>

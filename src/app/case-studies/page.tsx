@@ -209,7 +209,212 @@ export default function CaseStudiesPage() {
   const isV6 = version === "v6";
   const isV7 = version === "v7";
   const isDark = isV5 || isV7;
+  const isV9 = version === "v9";
   const [activeCaseStudy, setActiveCaseStudy] = useState<CaseStudy | null>(null);
+
+  if (isV9) {
+    return (
+      <>
+        {/* Hero */}
+        <section className="relative bg-[#F7F1E8] pt-32 pb-20">
+          <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+              className="max-w-4xl"
+            >
+              <div className="flex items-center gap-4 mb-8">
+                <span className="h-px w-12 bg-[#8B6F3E]" />
+                <span className="v9-eyebrow">The Client Register</span>
+              </div>
+              <h1 className="v9-serif text-[44px] md:text-[68px] lg:text-[80px] leading-[1.02] tracking-[-0.02em] text-[#1C1A17]">
+                Success, <span className="italic font-light text-[#8B6F3E]">recorded.</span>
+              </h1>
+              <p className="mt-8 text-[17px] leading-[1.75] text-[#1C1A17]/70 max-w-2xl">
+                Long-term customer relationships are the measure we hold ourselves to. A selection of the institutions who have trusted Claritas&trade; as their instrument of record across Asia-Pacific.
+              </p>
+              <div className="mt-8 flex items-center gap-4">
+                <span className="v9-serif text-[48px] italic text-[#8B6F3E] leading-none">50+</span>
+                <span className="text-[14px] text-[#1C1A17]/60 max-w-xs">
+                  Institutions served across APAC, twelve industries, fifteen countries.
+                </span>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Industries */}
+        <section className="bg-[#EDE4D3] py-24 lg:py-32">
+          <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16 space-y-16">
+            {industries.map((industry, ii) => (
+              <motion.div
+                key={industry.name}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.5, delay: ii * 0.04 }}
+              >
+                <div className="flex items-center gap-4 mb-6">
+                  <span className="h-px w-10 bg-[#8B6F3E]" />
+                  <span className="v9-eyebrow">{industry.name}</span>
+                </div>
+                <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+                  {industry.clients.map((client) => {
+                    const hasCaseStudy = client.caseStudyId != null;
+                    const inner = (
+                      <div
+                        className={`group flex h-28 flex-col items-center justify-center bg-[#F7F1E8] px-4 py-3 text-center transition-all duration-500 ${
+                          hasCaseStudy ? "cursor-pointer hover:v9-paper-edge hover:-translate-y-0.5" : "hover:v9-paper-edge"
+                        }`}
+                      >
+                        {client.logo ? (
+                          <Image
+                            src={client.logo}
+                            alt={client.name}
+                            width={100}
+                            height={40}
+                            className="h-8 w-auto object-contain opacity-60 group-hover:opacity-100 transition-opacity"
+                          />
+                        ) : (
+                          <span className="v9-serif text-[14px] text-[#1C1A17]/70 group-hover:text-[#1C1A17] transition-colors">
+                            {client.name}
+                          </span>
+                        )}
+                        {hasCaseStudy && (
+                          <span className="mt-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#8B6F3E] opacity-0 group-hover:opacity-100 transition-opacity">
+                            Read Dossier
+                          </span>
+                        )}
+                      </div>
+                    );
+                    if (hasCaseStudy) {
+                      return (
+                        <button
+                          key={client.name}
+                          onClick={() => {
+                            const cs = caseStudies.find((c) => c.id === client.caseStudyId);
+                            if (cs) setActiveCaseStudy(cs);
+                          }}
+                          className="text-left"
+                        >
+                          {inner}
+                        </button>
+                      );
+                    }
+                    return <div key={client.name}>{inner}</div>;
+                  })}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="bg-[#1C1A17] text-[#F7F1E8] py-24 lg:py-32">
+          <div className="mx-auto max-w-[1200px] px-6 md:px-12 lg:px-16 text-center">
+            <div className="flex items-center justify-center gap-4 mb-8">
+              <span className="h-px w-12 bg-[#B89968]" />
+              <span className="v9-eyebrow text-[#B89968]">The Next Page</span>
+              <span className="h-px w-12 bg-[#B89968]" />
+            </div>
+            <h2 className="v9-serif text-[44px] md:text-[60px] leading-[1.05] tracking-[-0.02em]">
+              Ready to be our next <span className="italic font-light text-[#B89968]">success story?</span>
+            </h2>
+            <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-5">
+              <Link
+                href="/contact?demo=true"
+                className="group inline-flex items-center gap-3 bg-[#F7F1E8] text-[#1C1A17] px-10 py-4 text-[12px] uppercase tracking-[0.24em] font-semibold hover:bg-[#B89968] transition-colors duration-500"
+              >
+                Request Private Briefing
+                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+              </Link>
+              <Link
+                href="/pricing"
+                className="text-[12px] uppercase tracking-[0.24em] font-semibold text-[#F7F1E8]/80 border-b border-[#F7F1E8]/60 pb-0.5 hover:text-[#B89968] hover:border-[#B89968] transition-colors"
+              >
+                Review Pricing
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Modal */}
+        <AnimatePresence>
+          {activeCaseStudy && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 flex items-center justify-center bg-[#1C1A17]/70 p-4 backdrop-blur-sm"
+              onClick={() => setActiveCaseStudy(null)}
+            >
+              <motion.div
+                initial={{ opacity: 0, y: 24, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 24, scale: 0.96 }}
+                transition={{ duration: 0.3 }}
+                className="relative max-h-[85vh] w-full max-w-2xl overflow-y-auto bg-[#F7F1E8] p-8 sm:p-12 v9-paper-edge"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button
+                  onClick={() => setActiveCaseStudy(null)}
+                  className="absolute right-5 top-5 rounded-full p-1.5 text-[#1C1A17]/40 transition-colors hover:bg-[#EDE4D3] hover:text-[#1C1A17]"
+                  aria-label="Close"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+                <div className="v9-eyebrow mb-4">{activeCaseStudy.industry}</div>
+                <h2 className="v9-serif text-[32px] md:text-[44px] leading-[1.08] tracking-[-0.02em] text-[#1C1A17]">
+                  {activeCaseStudy.company}
+                </h2>
+                {[
+                  { label: "The Challenge", body: activeCaseStudy.challenge },
+                  { label: "The Solution", body: activeCaseStudy.solution },
+                  { label: "The Results", body: activeCaseStudy.results },
+                ].map((sect) => (
+                  <div key={sect.label} className="mt-8">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="h-px w-8 bg-[#8B6F3E]" />
+                      <span className="v9-eyebrow">{sect.label}</span>
+                    </div>
+                    <p className="text-[15px] leading-[1.7] text-[#1C1A17]/75">{sect.body}</p>
+                  </div>
+                ))}
+                <div className="mt-10 bg-[#EDE4D3] p-6">
+                  <Quote className="h-6 w-6 text-[#8B6F3E]" strokeWidth={1} />
+                  <p className="mt-4 v9-serif italic text-[17px] leading-[1.6] text-[#1C1A17]/85">
+                    &ldquo;{activeCaseStudy.quote}&rdquo;
+                  </p>
+                  <div className="mt-5 h-px w-10 v9-rule-brass" />
+                  <p className="mt-3 v9-serif text-[15px] text-[#1C1A17]">{activeCaseStudy.quoteAuthor}</p>
+                  <p className="text-[11px] uppercase tracking-[0.22em] text-[#8B6F3E] font-semibold">
+                    {activeCaseStudy.quoteRole}
+                  </p>
+                </div>
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                  <Link
+                    href="/contact?demo=true"
+                    className="group inline-flex items-center justify-center gap-2 bg-[#1C1A17] text-[#F7F1E8] px-8 py-3.5 text-[11px] uppercase tracking-[0.22em] font-semibold hover:bg-[#8B6F3E] transition-colors"
+                    onClick={() => setActiveCaseStudy(null)}
+                  >
+                    Request Briefing
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
+                  <button
+                    onClick={() => setActiveCaseStudy(null)}
+                    className="border border-[#1C1A17]/25 px-8 py-3.5 text-[11px] uppercase tracking-[0.22em] font-semibold text-[#1C1A17]/70 hover:border-[#8B6F3E] hover:text-[#8B6F3E]"
+                  >
+                    Close
+                  </button>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </>
+    );
+  }
 
   return (
     <>

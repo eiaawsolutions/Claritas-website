@@ -40,7 +40,7 @@ export function ThreeCards() {
         subtitle: "The Sales Instrument",
         desc: "Forecasts held to quarterly plan within 3%. Pipeline discipline codified for executive review. Every deal traceable from first touch to signature.",
         href: cards[0].href,
-        photo: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1200&q=80",
+        photo: "/v9/pillar-revenue.jpg",
         alt: "Executive reviewing financial reports",
       },
       {
@@ -49,7 +49,7 @@ export function ThreeCards() {
         subtitle: "The Marketing Instrument",
         desc: "Attribution modelled from first impression to signed contract. Audiences segmented by commercial value, not vanity metrics. Boardroom-ready reporting.",
         href: cards[1].href,
-        photo: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?auto=format&fit=crop&w=1200&q=80",
+        photo: "/v9/pillar-reach.jpg",
         alt: "Professional marketing strategy meeting",
       },
       {
@@ -58,7 +58,7 @@ export function ThreeCards() {
         subtitle: "The Service Instrument",
         desc: "SLA discipline with predictive escalation. NPS movements tied to specific touchpoints. Customer outcomes reported with the gravity they deserve.",
         href: cards[2].href,
-        photo: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=80",
+        photo: "/v9/pillar-retention.jpg",
         alt: "Senior executives in formal discussion",
       },
     ];

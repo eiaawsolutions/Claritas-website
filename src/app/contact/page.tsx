@@ -11,12 +11,15 @@ export default function ContactPage() {
   const isV6 = version === "v6";
   const isV7 = version === "v7";
   const isDark = isV5 || isV7;
+  const isV9 = version === "v9";
 
   const [form, setForm] = useState({ email: "", name: "", phone: "", subject: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
-  const inputClass = isV6
+  const inputClass = isV9
+    ? "border-0 border-b border-[#1C1A17]/25 bg-transparent px-0 py-4 text-[15px] text-[#1C1A17] placeholder:text-[#1C1A17]/40 focus:border-[#8B6F3E] focus:outline-none focus:ring-0"
+    : isV6
     ? "bg-white border border-zinc-200 rounded-lg px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
     : isV5
       ? "bg-white/[0.03] border border-white/[0.06] px-4 py-3 text-sm text-white placeholder:text-slate-600 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
@@ -52,6 +55,101 @@ export default function ContactPage() {
       setErrorMsg("Network error. Please try again or email us at sales@claritascrm.com");
     }
   };
+
+  if (isV9) {
+    const infoItems = [
+      { icon: MapPin, title: "Head Office — Malaysia", body: "9-7, Block A, Jaya One,\n72A Jalan Prof Diraja,\nJln Profesor Diraja Ungku Aziz,\n46200 Petaling Jaya,\nSelangor, Malaysia." },
+      { icon: Phone, title: "Sales Hotline", body: "03-7613 4824" },
+      { icon: Mail, title: "Sales Enquiry", body: "sales@claritascrm.com" },
+      { icon: Clock, title: "Business Hours", body: "Mon — Fri, 9AM — 6PM MYT" },
+    ];
+    return (
+      <>
+        <section className="relative bg-[#F7F1E8] pt-32 pb-16">
+          <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16 text-center">
+            <div className="flex items-center justify-center gap-4 mb-8">
+              <span className="h-px w-12 bg-[#8B6F3E]" />
+              <span className="v9-eyebrow">Open a Conversation</span>
+              <span className="h-px w-12 bg-[#8B6F3E]" />
+            </div>
+            <h1 className="v9-serif text-[44px] md:text-[72px] leading-[1.02] tracking-[-0.02em] text-[#1C1A17] max-w-4xl mx-auto">
+              We read every enquiry <span className="italic font-light text-[#8B6F3E]">personally.</span>
+            </h1>
+            <p className="mt-8 max-w-xl mx-auto text-[17px] leading-[1.7] text-[#1C1A17]/70">
+              A senior member of our team will respond within one business day. For time-sensitive matters, our sales hotline remains the most direct channel.
+            </p>
+          </div>
+        </section>
+
+        <section className="bg-[#EDE4D3] py-20 lg:py-28">
+          <div className="mx-auto max-w-[1200px] px-6 md:px-12 lg:px-16">
+            <div className="grid lg:grid-cols-2 gap-16 lg:gap-20">
+              <motion.div initial={{ opacity: 0, x: -16 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+                {status === "success" ? (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="flex flex-col items-center justify-center border border-[#8B6F3E]/30 bg-[#8B6F3E]/[0.06] px-6 py-16 text-center"
+                  >
+                    <CheckCircle2 className="h-12 w-12 text-[#8B6F3E]" />
+                    <h3 className="mt-4 v9-serif text-[24px] text-[#1C1A17]">Thank you.</h3>
+                    <p className="mt-2 text-[15px] leading-[1.7] text-[#1C1A17]/70 max-w-sm">
+                      Your message has been received. A senior member of our team will respond within one business day.
+                    </p>
+                    <button
+                      onClick={() => setStatus("idle")}
+                      className="mt-8 border border-[#1C1A17]/25 px-6 py-2.5 text-[11px] uppercase tracking-[0.22em] font-semibold text-[#1C1A17]/70 hover:border-[#8B6F3E] hover:text-[#8B6F3E]"
+                    >
+                      Send Another
+                    </button>
+                  </motion.div>
+                ) : (
+                  <form className="space-y-6" onSubmit={handleSubmit}>
+                    <div className="grid gap-6 sm:grid-cols-2">
+                      <input type="email" name="email" placeholder="Email" required maxLength={254} value={form.email} onChange={handleChange} className={inputClass} />
+                      <input type="text" name="name" placeholder="Full Name" required maxLength={100} value={form.name} onChange={handleChange} className={inputClass} />
+                    </div>
+                    <input type="tel" name="phone" placeholder="Mobile Phone Number" maxLength={20} pattern="[0-9+\-\s()]{7,20}" value={form.phone} onChange={handleChange} className={`w-full ${inputClass}`} />
+                    <input type="text" name="subject" placeholder="Subject" maxLength={200} value={form.subject} onChange={handleChange} className={`w-full ${inputClass}`} />
+                    <textarea name="message" rows={5} placeholder="Message" maxLength={5000} value={form.message} onChange={handleChange} className={`w-full ${inputClass} resize-none`} />
+                    {status === "error" && <p className="text-sm text-[#8B3A1F]">{errorMsg}</p>}
+                    <button
+                      type="submit"
+                      disabled={status === "sending"}
+                      className="inline-flex items-center gap-3 bg-[#1C1A17] text-[#F7F1E8] px-10 py-4 text-[12px] uppercase tracking-[0.24em] font-semibold hover:bg-[#8B6F3E] transition-colors duration-500 disabled:opacity-60 disabled:cursor-not-allowed"
+                    >
+                      {status === "sending" ? (<><Loader2 className="h-4 w-4 animate-spin" />Sending…</>) : "Send Enquiry"}
+                    </button>
+                  </form>
+                )}
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 16 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="space-y-8"
+              >
+                {infoItems.map((item) => (
+                  <div key={item.title} className="flex items-start gap-5">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#8B6F3E]/10 text-[#8B6F3E] border border-[#8B6F3E]/20">
+                      <item.icon className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h4 className="v9-eyebrow mb-2">{item.title}</h4>
+                      <p className="v9-serif text-[17px] leading-[1.6] text-[#1C1A17]/80 whitespace-pre-line">
+                        {item.body}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+          </div>
+        </section>
+      </>
+    );
+  }
 
   return (
     <>

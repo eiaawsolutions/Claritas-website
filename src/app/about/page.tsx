@@ -120,6 +120,263 @@ export default function AboutPage() {
   const isV7 = version === "v7";
   const isDark = isV5 || isV7;
 
+  // ── V9 Atrium — Executive editorial ──
+  if (version === "v9") {
+    return (
+      <>
+        {/* Hero */}
+        <section className="relative bg-[#F7F1E8] pt-32 pb-20">
+          <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+              className="max-w-4xl"
+            >
+              <div className="flex items-center gap-4 mb-8">
+                <span className="h-px w-12 bg-[#8B6F3E]" />
+                <span className="v9-eyebrow">Our Charter</span>
+              </div>
+              <h1 className="v9-serif text-[44px] md:text-[68px] lg:text-[80px] leading-[1.02] tracking-[-0.02em] text-[#1C1A17]">
+                Empowering businesses with
+                <br />
+                <span className="italic font-light text-[#8B6F3E]">smarter CRM.</span>
+              </h1>
+              <p className="mt-8 text-[17px] leading-[1.75] text-[#1C1A17]/70 max-w-2xl">
+                Claritas&trade; is a registered trademark of Netster &mdash; a Malaysian technology company dedicated to building enterprise-grade customer relationship management solutions for the APAC market.
+              </p>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* What is CRM */}
+        <section className="bg-[#EDE4D3] py-24">
+          <div className="mx-auto max-w-4xl px-6 md:px-12 lg:px-16">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+            >
+              <div className="flex items-center gap-4 mb-6">
+                <span className="h-px w-10 bg-[#8B6F3E]" />
+                <span className="v9-eyebrow">Our Definition</span>
+              </div>
+              <h2 className="v9-serif text-[36px] md:text-[48px] leading-[1.1] tracking-[-0.02em] text-[#1C1A17]">
+                What is Claritas&trade; <span className="italic text-[#8B6F3E]">CRM?</span>
+              </h2>
+              <p className="mt-8 text-[17px] leading-[1.75] text-[#1C1A17]/70">
+                Claritas&trade; CRM is an integrated and customer-centric solution that manages, tracks, and stores information related to existing customers and new prospects. It helps organisations enhance customer experience and drive measurable growth by integrating technology, data, process and people to orchestrate marketing, sales, and service engagements across every touchpoint.
+              </p>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Capabilities */}
+        <section className="bg-[#F7F1E8] py-24 lg:py-32">
+          <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <div className="flex items-center justify-center gap-4 mb-6">
+                <span className="h-px w-10 bg-[#8B6F3E]" />
+                <span className="v9-eyebrow">The Capabilities</span>
+                <span className="h-px w-10 bg-[#8B6F3E]" />
+              </div>
+              <h2 className="v9-serif text-[36px] md:text-[52px] leading-[1.08] tracking-[-0.02em] text-[#1C1A17]">
+                What Claritas&trade; <span className="italic text-[#8B6F3E]">CRM can do.</span>
+              </h2>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              {capabilities.map((cap, i) => (
+                <motion.div
+                  key={cap.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08, duration: 0.6 }}
+                  className="bg-[#EDE4D3] p-8 lg:p-10 transition-shadow hover:v9-paper-edge"
+                >
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#8B6F3E]/10 text-[#8B6F3E] border border-[#8B6F3E]/20 mb-6">
+                    <cap.icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="v9-serif text-[22px] md:text-[24px] leading-tight tracking-[-0.01em] text-[#1C1A17]">
+                    {cap.title}
+                  </h3>
+                  <p className="mt-4 text-[15px] leading-[1.7] text-[#1C1A17]/70">
+                    {cap.description}
+                  </p>
+                  <Link
+                    href={cap.href}
+                    className="mt-6 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] font-semibold text-[#1C1A17] border-b border-[#1C1A17] pb-0.5 hover:text-[#8B6F3E] hover:border-[#8B6F3E] transition-colors"
+                  >
+                    Further Reading
+                    <ArrowRight className="h-3 w-3" />
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Differentiators */}
+        <section className="bg-[#EDE4D3] py-24">
+          <div className="mx-auto max-w-4xl px-6 md:px-12 lg:px-16">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <div className="flex items-center gap-4 mb-6">
+                <span className="h-px w-10 bg-[#8B6F3E]" />
+                <span className="v9-eyebrow">The Distinction</span>
+              </div>
+              <h2 className="v9-serif text-[32px] md:text-[44px] leading-[1.12] tracking-[-0.02em] text-[#1C1A17]">
+                What makes Claritas&trade; CRM <span className="italic text-[#8B6F3E]">different.</span>
+              </h2>
+              <ul className="mt-10 space-y-6">
+                {[
+                  "Claritas\u2122 CRM domain knowledge and our consulting services guide clients toward best practices, rather than simply executing against a requirements document.",
+                  "The Claritas\u2122 CRM solution is continuously evolving, with new features and functionality released to clients as part of the product roadmap.",
+                  "Rapid time to market, a proven track record of implementation, and the adaptability to deliver more value for each ringgit invested.",
+                  "Established project management, implementation methodology, and governance to ensure the engagement runs smoothly and responds efficiently to change.",
+                ].map((d, i) => (
+                  <li key={i} className="flex items-start gap-4 text-[16px] leading-[1.7] text-[#1C1A17]/75">
+                    <span className="v9-serif italic text-[22px] text-[#8B6F3E] leading-none shrink-0 mt-0.5">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span>{d}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* 360 View */}
+        <section className="bg-[#F7F1E8] py-24">
+          <div className="mx-auto max-w-4xl px-6 md:px-12 lg:px-16">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <div className="flex items-center gap-4 mb-6">
+                <span className="h-px w-10 bg-[#8B6F3E]" />
+                <span className="v9-eyebrow">Architecture</span>
+              </div>
+              <h2 className="v9-serif text-[32px] md:text-[44px] leading-[1.12] tracking-[-0.02em] text-[#1C1A17]">
+                A single, 360° view of every <span className="italic text-[#8B6F3E]">customer.</span>
+              </h2>
+              <p className="mt-8 text-[17px] leading-[1.75] text-[#1C1A17]/70">
+                Inadequate knowledge about a customer creates a shortfall when serving them or closing a deal. Claritas&trade; CRM assembles a complete picture of every customer by consolidating all key data your organisation holds &ndash; profiles, product holdings, service subscriptions, open cases, opportunities, potential offers, service alerts, next best action, and the full interaction history &ndash; into one integrated platform.
+              </p>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Values */}
+        <section className="bg-[#EDE4D3] py-24 lg:py-32">
+          <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <div className="flex items-center justify-center gap-4 mb-6">
+                <span className="h-px w-10 bg-[#8B6F3E]" />
+                <span className="v9-eyebrow">Our Values</span>
+                <span className="h-px w-10 bg-[#8B6F3E]" />
+              </div>
+              <h2 className="v9-serif text-[36px] md:text-[52px] leading-[1.08] tracking-[-0.02em] text-[#1C1A17]">
+                What drives <span className="italic text-[#8B6F3E]">us.</span>
+              </h2>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+              {values.map((v, i) => (
+                <motion.div
+                  key={v.title}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="bg-[#F7F1E8] p-8 text-center"
+                >
+                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#8B6F3E]/10 text-[#8B6F3E] border border-[#8B6F3E]/20">
+                    <v.icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="mt-5 v9-serif text-[20px] leading-tight text-[#1C1A17]">
+                    {v.title}
+                  </h3>
+                  <p className="mt-3 text-[14px] leading-[1.65] text-[#1C1A17]/65">
+                    {v.desc}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Timeline */}
+        <section className="bg-[#F7F1E8] py-24 lg:py-32" id="case-studies">
+          <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <div className="flex items-center justify-center gap-4 mb-6">
+                <span className="h-px w-10 bg-[#8B6F3E]" />
+                <span className="v9-eyebrow">Our Journey</span>
+                <span className="h-px w-10 bg-[#8B6F3E]" />
+              </div>
+              <h2 className="v9-serif text-[36px] md:text-[52px] leading-[1.08] tracking-[-0.02em] text-[#1C1A17]">
+                Eighteen years of <span className="italic text-[#8B6F3E]">quiet conviction.</span>
+              </h2>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              {timeline.map((t, i) => (
+                <motion.div
+                  key={t.year}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08 }}
+                  className="bg-[#EDE4D3] p-8"
+                >
+                  <span className="v9-serif italic text-[40px] leading-none text-[#8B6F3E]">
+                    {t.year}
+                  </span>
+                  <h3 className="mt-4 v9-serif text-[20px] leading-tight text-[#1C1A17]">
+                    {t.title}
+                  </h3>
+                  <p className="mt-3 text-[14px] leading-[1.65] text-[#1C1A17]/65">{t.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Fintech CTA */}
+        <section className="bg-[#1C1A17] text-[#F7F1E8] py-24 lg:py-32">
+          <div className="mx-auto max-w-[1200px] px-6 md:px-12 lg:px-16 text-center">
+            <div className="flex items-center justify-center gap-4 mb-8">
+              <span className="h-px w-12 bg-[#B89968]" />
+              <span className="v9-eyebrow text-[#B89968]">Specialist Solution</span>
+              <span className="h-px w-12 bg-[#B89968]" />
+            </div>
+            <h2 className="v9-serif text-[44px] md:text-[60px] leading-[1.05] tracking-[-0.02em]">
+              CRM for Banking &amp; <span className="italic font-light text-[#B89968]">Financial Services.</span>
+            </h2>
+            <p className="mt-8 max-w-xl mx-auto text-[17px] leading-[1.7] text-[#F7F1E8]/70">
+              A flexible, fully customisable CRM suited to the regulatory and operational demands of banking and financial services.
+            </p>
+            <Link
+              href="/solutions/fintech"
+              className="mt-12 inline-flex items-center gap-3 bg-[#F7F1E8] text-[#1C1A17] px-10 py-4 text-[12px] uppercase tracking-[0.24em] font-semibold hover:bg-[#B89968] transition-colors duration-500 group"
+            >
+              View the Fintech Solution
+              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </div>
+        </section>
+
+        <ContactSection />
+      </>
+    );
+  }
+
   return (
     <>
       {/* Hero */}
