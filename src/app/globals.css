@@ -1,79 +1,52 @@
 @import "tailwindcss";
 
+/* ════════════════════════════════════════════════════════
+   CLARITAS BRAND TOKENS
+   Charcoal #3f3f3f · Deep Crimson #721011 · White
+   Gradient layering for depth (no flat blocks)
+   ════════════════════════════════════════════════════════ */
+
 @theme inline {
   --color-background: #ffffff;
-  --color-foreground: #1a1a2e;
-  --font-sans: var(--font-geist-sans);
+  --color-foreground: #3f3f3f;
+  --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
 
-  /* Claritas Brand — Coral/Salmon accent (V1) */
-  --color-coral-50: #fef2f0;
-  --color-coral-100: #fde8e4;
-  --color-coral-200: #fbc8bf;
-  --color-coral-300: #f5a699;
-  --color-coral-400: #ee8273;
-  --color-coral-500: #e8655a;
-  --color-coral-600: #d44d42;
-  --color-coral-700: #b83a31;
-  --color-coral-800: #99312a;
-  --color-coral-900: #7f2d28;
+  /* Primary — Charcoal */
+  --color-charcoal: #3f3f3f;
+  --color-charcoal-soft: #4a4a4a;
+  --color-charcoal-deep: #2a2a2a;
+  --color-charcoal-ink: #1f1f1f;
 
-  /* V2 Slate — Teal accent */
-  --color-teal-700: #0d7377;
-  --color-teal-800: #0a5f62;
-  --color-blue-400: #60a5fa;
-  --color-blue-500: #3b82f6;
-  --color-blue-600: #2563eb;
+  /* Accent — Deep Crimson */
+  --color-crimson: #721011;
+  --color-crimson-light: #8d1a1c;
+  --color-crimson-deep: #5a0c0d;
+  --color-crimson-glow: rgba(114, 16, 17, 0.18);
 
-  /* V4 Aurora — Violet + Emerald accents */
-  --color-teal-400: #2dd4bf;
-  --color-teal-500: #14b8a6;
-  --color-teal-600: #0d9488;
-  --color-violet-400: #a78bfa;
-  --color-violet-500: #8b5cf6;
-  --color-violet-600: #7c3aed;
-  --color-emerald-400: #34d399;
-  --color-emerald-500: #10b981;
+  /* Surfaces — White + warm tints for gradient layering */
+  --color-paper: #ffffff;
+  --color-paper-soft: #fafafa;
+  --color-paper-muted: #f5f5f5;
+  --color-paper-warm: #faf8f7;
 
-  /* V3 Executive — Amber/Gold accent */
-  --color-amber-500: #f59e0b;
-  --color-amber-600: #d97706;
+  /* Lines & muted text */
+  --color-line: rgba(63, 63, 63, 0.12);
+  --color-line-strong: rgba(63, 63, 63, 0.24);
+  --color-muted: rgba(63, 63, 63, 0.6);
+  --color-muted-soft: rgba(63, 63, 63, 0.45);
 
-  /* V8 Atelier — Luxury editorial */
-  --color-luxury-cream: #FAF8F4;
-  --color-luxury-ink: #1A1A1A;
-  --color-luxury-gold: #B8965A;
-  --color-luxury-gold-light: #D4B886;
-  --color-luxury-warm: #F5F2ED;
-
-  /* V9 Atrium — Executive editorial, warm parchment + aged brass */
-  --color-atrium-paper: #F7F1E8;
-  --color-atrium-parchment: #EDE4D3;
-  --color-atrium-vellum: #E6DCC7;
-  --color-atrium-ink: #1C1A17;
-  --color-atrium-ink-soft: #2A2721;
-  --color-atrium-brass: #8B6F3E;
-  --color-atrium-brass-light: #B89968;
-  --color-atrium-brass-deep: #6F5830;
-  --color-atrium-line: rgba(28,26,23,0.12);
-  --color-atrium-muted: rgba(28,26,23,0.55);
-
-  /* Neutral palette */
-  --color-dark-900: #1a1a2e;
-  --color-dark-800: #232340;
-  --color-dark-700: #2d2d50;
-  --color-dark-600: #3d3d60;
-
-  --color-gray-50: #f9fafb;
-  --color-gray-100: #f3f4f6;
-  --color-gray-200: #e5e7eb;
-  --color-gray-300: #d1d5db;
-  --color-gray-400: #9ca3af;
-  --color-gray-500: #6b7280;
-  --color-gray-600: #4b5563;
-  --color-gray-700: #374151;
-  --color-gray-800: #1f2937;
-  --color-gray-900: #111827;
+  /* Neutral scale */
+  --color-gray-50: #fafafa;
+  --color-gray-100: #f5f5f5;
+  --color-gray-200: #e5e5e5;
+  --color-gray-300: #d4d4d4;
+  --color-gray-400: #a3a3a3;
+  --color-gray-500: #737373;
+  --color-gray-600: #525252;
+  --color-gray-700: #404040;
+  --color-gray-800: #262626;
+  --color-gray-900: #171717;
 }
 
 html {
@@ -81,123 +54,95 @@ html {
 }
 
 body {
-  background: var(--color-background);
-  color: var(--color-foreground);
-  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
-}
+  background: var(--color-paper);
+  color: var(--color-charcoal);
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
 
-/* V2: Slate global overrides */
-html[data-design="v2"] body {
-  background: #f7f8fa;
-  color: #1e293b;
-}
-
-/* V3: Executive global overrides */
-html[data-design="v3"] body {
-  background: #faf9f7;
-  color: #1a2b4a;
-}
-
-/* V4: Aurora — gradient mesh + glassmorphism */
-html[data-design="v4"] body {
-  background: #0a0118;
-  color: #e2e8f0;
-  font-family: var(--font-inter), system-ui, sans-serif;
-}
-
-/* V5: Prestige global overrides */
-html[data-design="v5"] body {
-  background: #050b1a;
-  color: #e2e8f0;
-  font-family: var(--font-inter), system-ui, sans-serif;
-}
-
-html[data-design="v5"] h1,
-html[data-design="v5"] h2 {
-  font-family: var(--font-playfair), 'Playfair Display', serif;
-}
-
-html[data-design="v5"] h3,
-html[data-design="v5"] h4 {
-  font-family: var(--font-inter), system-ui, sans-serif;
-}
-
-/* V6: Precision — light engineering aesthetic */
-html[data-design="v6"] body {
-  background: #fafafa;
-  color: #09090b;
-  font-family: var(--font-inter), system-ui, sans-serif;
-}
-
-/* V7: Enterprise — dark navy + blue accent SaaS */
-html[data-design="v7"] body {
-  background: #0b1121;
-  color: #e2e8f0;
-  font-family: var(--font-inter), system-ui, sans-serif;
-}
-
-/* V8: Atelier — luxury editorial aesthetic */
-html[data-design="v8"] body {
-  background: #FAF8F4;
-  color: #1A1A1A;
-  font-family: var(--font-inter), system-ui, sans-serif;
-}
-
-html[data-design="v8"] h1,
-html[data-design="v8"] h2 {
-  font-family: var(--font-playfair), 'Playfair Display', serif;
-}
-
-html[data-design="v8"] ::selection {
-  background: #B8965A;
-  color: #fff;
-}
-
-/* V9: Atrium — Executive editorial, warm parchment + aged brass */
-html[data-design="v9"] body {
-  background: #F7F1E8;
-  color: #1C1A17;
-  font-family: var(--font-inter), system-ui, sans-serif;
-  /* Paper fiber texture — very subtle warm noise */
+  /* Subtle paper-fibre texture — gradient layering */
   background-image:
-    radial-gradient(rgba(139,111,62,0.035) 1px, transparent 1px),
-    radial-gradient(rgba(28,26,23,0.02) 1px, transparent 1px);
+    radial-gradient(rgba(114, 16, 17, 0.02) 1px, transparent 1px),
+    radial-gradient(rgba(63, 63, 63, 0.018) 1px, transparent 1px);
   background-size: 38px 38px, 11px 11px;
   background-position: 0 0, 5px 5px;
 }
 
-html[data-design="v9"] .v9-serif {
+/* ── Type helpers ────────────────────────────────── */
+
+.cl-serif {
   font-family: var(--font-playfair), "Playfair Display", "Georgia", serif;
   font-feature-settings: "liga", "kern";
 }
 
-html[data-design="v9"] .v9-eyebrow {
+.cl-eyebrow {
   font-family: var(--font-inter), system-ui, sans-serif;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: #8B6F3E;
+  color: #721011;
 }
 
-html[data-design="v9"] .v9-rule-brass {
+/* ── Gradient layering primitives ────────────────── */
+
+.cl-rule-crimson {
   background: linear-gradient(
     to right,
-    rgba(139,111,62,0.15) 0%,
-    #8B6F3E 25%,
-    #8B6F3E 75%,
-    rgba(139,111,62,0.15) 100%
+    rgba(114, 16, 17, 0.12) 0%,
+    #721011 25%,
+    #721011 75%,
+    rgba(114, 16, 17, 0.12) 100%
   );
 }
 
-html[data-design="v9"] .v9-paper-edge {
-  box-shadow:
-    0 1px 0 rgba(28,26,23,0.04),
-    0 18px 40px -22px rgba(28,26,23,0.18),
-    0 40px 80px -30px rgba(28,26,23,0.14);
+.cl-gradient-hero {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(114, 16, 17, 0.045), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 100% 100%, rgba(63, 63, 63, 0.04), transparent 70%),
+    linear-gradient(180deg, #ffffff 0%, #faf8f7 100%);
 }
 
-html[data-design="v9"] ::selection {
-  background: #8B6F3E;
-  color: #F7F1E8;
+.cl-gradient-card {
+  background: linear-gradient(
+    155deg,
+    #ffffff 0%,
+    #fafafa 60%,
+    rgba(114, 16, 17, 0.025) 100%
+  );
+}
+
+.cl-gradient-dark {
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 0%, rgba(114, 16, 17, 0.18), transparent 70%),
+    linear-gradient(180deg, #2a2a2a 0%, #3f3f3f 50%, #2a2a2a 100%);
+}
+
+.cl-gradient-accent-sweep {
+  background: linear-gradient(
+    135deg,
+    rgba(114, 16, 17, 0.08) 0%,
+    transparent 40%,
+    transparent 60%,
+    rgba(63, 63, 63, 0.06) 100%
+  );
+}
+
+/* ── Surface depth (soft drop) ────────────────────── */
+
+.cl-paper-edge {
+  box-shadow:
+    0 1px 0 rgba(63, 63, 63, 0.04),
+    0 18px 40px -22px rgba(63, 63, 63, 0.18),
+    0 40px 80px -30px rgba(63, 63, 63, 0.14);
+}
+
+.cl-paper-edge-crimson {
+  box-shadow:
+    0 1px 0 rgba(114, 16, 17, 0.06),
+    0 18px 40px -22px rgba(114, 16, 17, 0.18),
+    0 40px 80px -30px rgba(63, 63, 63, 0.14);
+}
+
+::selection {
+  background: #721011;
+  color: #ffffff;
 }
