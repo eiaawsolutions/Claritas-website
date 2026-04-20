@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
 
@@ -53,12 +54,17 @@ export function Navbar() {
     <header className="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-xl border-b border-[#3f3f3f]/[0.08]">
       <nav className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16">
         <div className="flex items-center justify-between h-20">
-          {/* Serif wordmark */}
-          <Link href="/" className="flex items-baseline gap-2 transition-opacity hover:opacity-80">
-            <span className="cl-serif text-[24px] tracking-[0.02em] text-[#3f3f3f]">
-              Claritas
-            </span>
-            <span className="cl-eyebrow text-[9px]">EST 2008</span>
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-3 transition-opacity hover:opacity-80" aria-label="Claritas — home">
+            <Image
+              src="/claritas-logo.svg"
+              alt="Claritas"
+              width={158}
+              height={42}
+              priority
+              className="h-9 w-auto"
+            />
+            <span className="cl-eyebrow text-[9px] hidden xl:inline">EST 2008</span>
           </Link>
 
           {/* Center nav */}

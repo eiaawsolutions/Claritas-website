@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const columns = [
   {
@@ -58,31 +59,46 @@ const socialIcons = [
 
 export function Footer() {
   return (
-    <footer className="cl-gradient-dark text-white">
+    <footer className="bg-white text-[#3f3f3f] border-t border-[#3f3f3f]/[0.08] relative overflow-hidden">
+      {/* Subtle warm gradient wash */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden>
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 60% 50% at 0% 0%, rgba(114, 16, 17, 0.035), transparent 60%), radial-gradient(ellipse 50% 40% at 100% 100%, rgba(63, 63, 63, 0.04), transparent 70%), linear-gradient(180deg, #ffffff 0%, #fafafa 100%)",
+          }}
+        />
+      </div>
+
       {/* Colophon line */}
-      <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16 pt-20 pb-8">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10 border-b border-white/10 pb-12">
+      <div className="relative mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16 pt-20 pb-8">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10 border-b border-[#3f3f3f]/10 pb-12">
           <div className="max-w-md">
-            <Link href="/" className="inline-block">
-              <span className="cl-serif text-[40px] leading-none tracking-[0.01em] text-white">
-                Claritas
-              </span>
+            <Link href="/" className="inline-block" aria-label="Claritas — home">
+              <Image
+                src="/claritas-logo.svg"
+                alt="Claritas"
+                width={260}
+                height={70}
+                className="h-14 w-auto"
+              />
             </Link>
-            <div className="mt-4 flex items-center gap-4">
+            <div className="mt-5 flex items-center gap-4">
               <span className="h-px w-10 bg-[#721011]" />
-              <span className="cl-eyebrow text-[#d4696a] text-[10px]">Est. 2008 · Petaling Jaya</span>
+              <span className="cl-eyebrow text-[10px]">Est. 2008 · Petaling Jaya</span>
             </div>
-            <p className="mt-8 cl-serif italic text-[17px] leading-[1.6] text-white/70">
+            <p className="mt-8 cl-serif italic text-[17px] leading-[1.6] text-[#3f3f3f]/70">
               An operating system for customer relationships — built for organisations that measure success in decades, not quarters.
             </p>
           </div>
 
           <div className="md:text-right">
-            <div className="cl-eyebrow text-[#d4696a] text-[10px] mb-3">Private Enquiries</div>
-            <div className="cl-serif text-[18px] text-white mb-1">
+            <div className="cl-eyebrow text-[10px] mb-3">Private Enquiries</div>
+            <div className="cl-serif text-[18px] text-[#3f3f3f] mb-1">
               sales@claritascrm.com
             </div>
-            <div className="cl-serif text-[18px] text-white/70">
+            <div className="cl-serif text-[18px] text-[#3f3f3f]/70">
               03-7613 4824
             </div>
           </div>
@@ -90,11 +106,11 @@ export function Footer() {
       </div>
 
       {/* Link columns */}
-      <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16 pb-16">
+      <div className="relative mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16 pb-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-16">
           {columns.map((col) => (
             <div key={col.title}>
-              <h3 className="cl-eyebrow text-[#d4696a] text-[10px] mb-6 pb-3 border-b border-white/10">
+              <h3 className="cl-eyebrow text-[10px] mb-6 pb-3 border-b border-[#3f3f3f]/10">
                 {col.title}
               </h3>
               <ul className="space-y-3">
@@ -102,7 +118,7 @@ export function Footer() {
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="cl-serif text-[15px] text-white/70 hover:text-[#d4696a] transition-colors"
+                      className="cl-serif text-[15px] text-[#3f3f3f]/70 hover:text-[#721011] transition-colors"
                     >
                       {link.name}
                     </Link>
@@ -113,8 +129,8 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="mt-20 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-          <p className="text-[11px] uppercase tracking-[0.22em] text-white/40">
+        <div className="mt-20 pt-8 border-t border-[#3f3f3f]/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <p className="text-[11px] uppercase tracking-[0.22em] text-[#3f3f3f]/50">
             © {new Date().getFullYear()} Claritas™ · a Netster Sdn Bhd company · all rights reserved
           </p>
           <div className="flex items-center gap-2">
@@ -122,7 +138,7 @@ export function Footer() {
               <a
                 key={icon.label}
                 href="#"
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 text-white/55 hover:text-[#d4696a] hover:border-[#d4696a] transition-colors"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-[#3f3f3f]/20 text-[#3f3f3f]/55 hover:text-[#721011] hover:border-[#721011] transition-colors"
                 aria-label={icon.label}
               >
                 <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">
