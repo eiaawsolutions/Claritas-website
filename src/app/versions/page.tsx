@@ -20,6 +20,12 @@ const VERSIONS = [
   { n: 17, name: "Manifesto", tag: "Horizontal Scroll Essay", desc: "Scroll sideways through giant declarative panels. The site is a thesis.", swatch: ["#fafaf5", "#0a0a0a", "#dc2626"] },
   { n: 18, name: "Diff", tag: "Before/After Sync Pane", desc: "Left: your CRM today. Right: with Claritas. Synchronized scroll comparison.", swatch: ["#fef2f2", "#ecfdf5", "#1f2937"] },
   { n: 19, name: "Spreadsheet", tag: "The Page IS the Sheet", desc: "Pricing in columns, stats in cells, logos in rows. Click cells to interact.", swatch: ["#ffffff", "#1f2937", "#16a34a"] },
+  { n: 20, name: "Cinema", tag: "Film-Grade Editorial", desc: "Dark editorial site. Cinematic hero, oversized type, single white CTA. Stripe Sessions energy.", swatch: ["#0a0a0a", "#fafafa", "#d4af37"] },
+  { n: 21, name: "Atelier+", tag: "Boutique Consultancy v2", desc: "Proper magazine-grade boutique consultancy with editorial photography and asymmetric type.", swatch: ["#f5efe6", "#1a1a1a", "#a8401a"] },
+  { n: 22, name: "Bento", tag: "Apple iPad Format", desc: "Big hero, then a precise bento grid. Familiar architecture, agency-grade execution.", swatch: ["#fbfbfd", "#1d1d1f", "#0066cc"] },
+  { n: 23, name: "Newsroom", tag: "Customer-Led Proof First", desc: "Hero IS a customer quote at 9vw. Three case study cards with logos, metrics, photos.", swatch: ["#ffffff", "#0a0a0a", "#dc2626"] },
+  { n: 24, name: "Atrium Dark", tag: "Agency-Tier Dark", desc: "Proper Linear/Framer-tier dark site. Tasteful motion, scroll choreography, premium polish.", swatch: ["#08080c", "#a78bfa", "#22d3ee"] },
+  { n: 25, name: "Trust", tag: "Security-First Enterprise", desc: "For IT/legal buyers. Compliance badges, capabilities, pricing, comparison. No drama.", swatch: ["#ffffff", "#0f172a", "#0ea5e9"] },
 ];
 
 export default function VersionsIndexPage() {

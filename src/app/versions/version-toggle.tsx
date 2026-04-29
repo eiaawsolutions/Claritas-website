@@ -24,6 +24,12 @@ const VERSIONS = [
   { n: 17, name: "Manifesto", tag: "Horizontal Scroll Essay" },
   { n: 18, name: "Diff", tag: "Before/After Sync Pane" },
   { n: 19, name: "Spreadsheet", tag: "The Page IS the Sheet" },
+  { n: 20, name: "Cinema", tag: "Film-Grade Editorial" },
+  { n: 21, name: "Atelier+", tag: "Boutique Consultancy v2" },
+  { n: 22, name: "Bento", tag: "Apple iPad Format" },
+  { n: 23, name: "Newsroom", tag: "Customer-Led, Photo-Rich" },
+  { n: 24, name: "Atrium Dark", tag: "Agency-Tier Dark" },
+  { n: 25, name: "Trust", tag: "Security-First Enterprise" },
 ];
 
 export function VersionToggle() {
