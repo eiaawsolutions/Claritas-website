@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/navbar";
-import { Footer } from "@/components/footer";
-import { Chatbot } from "@/components/chatbot";
+import { ChromeGate } from "@/components/chrome-gate";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -62,10 +60,7 @@ export default function RootLayout({
       className={`${inter.variable} ${playfair.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-[family-name:var(--font-inter)]">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <Chatbot />
+        <ChromeGate>{children}</ChromeGate>
       </body>
     </html>
   );
