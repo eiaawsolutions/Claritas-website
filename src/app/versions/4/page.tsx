@@ -39,7 +39,7 @@ function Grid() {
 
 function Nav() {
   return (
-    <header className="border-b border-white/10 backdrop-blur bg-black/40 sticky top-12 z-40">
+    <header className="border-b border-white/10 backdrop-blur bg-black/40 sticky top-14 z-40">
       <div className="mx-auto max-w-[1500px] px-6 h-16 flex items-center justify-between">
         <Link href="/versions/4" className="flex items-center gap-3">
           <div className="h-7 w-7 grid place-items-center bg-[#ff1f3d] text-black font-mono font-bold text-sm">C</div>

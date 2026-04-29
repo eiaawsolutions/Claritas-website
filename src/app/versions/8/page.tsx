@@ -41,7 +41,7 @@ function Bg() {
 
 function Nav() {
   return (
-    <header className="sticky top-12 z-40 px-4 pt-3">
+    <header className="sticky top-14 z-40 px-4 pt-3">
       <div className="mx-auto max-w-[1400px] flex items-center justify-between bg-white/[0.04] backdrop-blur-xl border border-white/10 rounded-full px-6 py-2.5">
         <Link href="/versions/8" className="flex items-center gap-2.5">
           <div className="relative h-8 w-8">

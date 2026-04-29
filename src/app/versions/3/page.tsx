@@ -42,7 +42,7 @@ function Aurora() {
 
 function Nav() {
   return (
-    <header className="sticky top-12 z-50 px-4 pt-4">
+    <header className="sticky top-14 z-50 px-4 pt-4">
       <div className="mx-auto max-w-[1400px] backdrop-blur-xl bg-white/60 border border-white/80 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.04)]">
         <div className="px-6 h-16 flex items-center justify-between">
           <Link href="/versions/3" className="flex items-center gap-2">

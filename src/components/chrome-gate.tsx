@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { Chatbot } from "@/components/chatbot";
+import { DesignReviewFAB } from "@/components/design-review-fab";
 
 export function ChromeGate({ children }: { children: React.ReactNode }) {
   const pathname = usePathname() ?? "";
@@ -20,6 +21,7 @@ export function ChromeGate({ children }: { children: React.ReactNode }) {
       <main className="flex-1">{children}</main>
       <Footer />
       <Chatbot />
+      <DesignReviewFAB />
     </>
   );
 }

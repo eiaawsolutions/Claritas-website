@@ -31,7 +31,7 @@ export default function KineticPage() {
 
 function Nav() {
   return (
-    <header className="sticky top-12 z-40 px-4 pt-3">
+    <header className="sticky top-14 z-40 px-4 pt-3">
       <div className="mx-auto max-w-[1500px] flex items-center justify-between bg-white/90 backdrop-blur border border-black/10 rounded-full px-6 py-2.5">
         <Link href="/versions/6" className="flex items-center gap-2">
           <motion.div animate={{ rotate: 360 }} transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
@@ -62,7 +62,7 @@ function Hero() {
 
   return (
     <section ref={ref} className="relative h-[140vh]">
-      <motion.div style={{ y, scale, opacity }} className="sticky top-12 h-[88vh] flex flex-col items-center justify-center px-6">
+      <motion.div style={{ y, scale, opacity }} className="sticky top-14 h-[88vh] flex flex-col items-center justify-center px-6">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}
           className="text-xs uppercase tracking-[0.4em] mb-8" style={{ color: FLAME }}>
           ⌘ The CRM, Redrawn
@@ -122,7 +122,7 @@ function PinnedNumbers() {
 
   return (
     <section ref={ref} className="relative" style={{ height: `${stages.length * 100}vh` }}>
-      <div className="sticky top-12 h-[88vh] grid place-items-center px-6">
+      <div className="sticky top-14 h-[88vh] grid place-items-center px-6">
         {stages.map((s, i) => (
           <PinnedStat
             key={s.v}
@@ -174,7 +174,7 @@ function Stack() {
   return (
     <section className="relative" style={{ height: `${cards.length * 90}vh` }}>
       {cards.map((c, i) => (
-        <div key={i} className="sticky top-12 h-[88vh] flex items-center justify-center px-6"
+        <div key={i} className="sticky top-14 h-[88vh] flex items-center justify-center px-6"
           style={{ zIndex: i + 1 }}>
           <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false, margin: "-200px" }}
             className="rounded-3xl w-full max-w-5xl aspect-[16/10] grid grid-cols-1 md:grid-cols-2 overflow-hidden shadow-[0_40px_100px_-30px_rgba(0,0,0,0.4)]"

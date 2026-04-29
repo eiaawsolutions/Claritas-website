@@ -28,37 +28,37 @@ export function VersionToggle() {
 
   return (
     <>
-      {/* Persistent rail */}
-      <div className="fixed top-0 left-0 right-0 z-[100] bg-black/85 backdrop-blur-md border-b border-white/10 text-white">
-        <div className="mx-auto max-w-[1600px] px-4 md:px-6 h-12 flex items-center gap-3 md:gap-5">
+      {/* Persistent bright rail */}
+      <div className="fixed top-0 left-0 right-0 z-[9999] bg-gradient-to-r from-[#721011] via-[#8d1a1c] to-[#721011] shadow-[0_4px_20px_rgba(114,16,17,0.4)] text-white">
+        <div className="mx-auto max-w-[1700px] px-4 md:px-6 h-14 flex items-center gap-3 md:gap-5">
           <Link
             href="/"
-            className="text-[10px] uppercase tracking-[0.2em] font-semibold text-white/60 hover:text-white transition shrink-0"
+            className="text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-bold text-white/90 hover:text-white transition shrink-0 inline-flex items-center gap-1.5"
           >
             ← Live Site
           </Link>
-          <div className="h-3 w-px bg-white/20 shrink-0" />
-          <span className="text-[10px] uppercase tracking-[0.2em] text-white/50 shrink-0 hidden md:inline">
-            Design Review
+          <div className="h-4 w-px bg-white/30 shrink-0" />
+          <span className="text-[10px] md:text-[11px] uppercase tracking-[0.22em] font-bold text-white shrink-0 hidden sm:inline">
+            ⚡ Click to switch design ↓
           </span>
-          <div className="h-3 w-px bg-white/20 shrink-0 hidden md:block" />
+          <div className="h-4 w-px bg-white/30 shrink-0 hidden sm:block" />
 
           {/* Chips */}
-          <div className="flex items-center gap-1 overflow-x-auto scrollbar-none flex-1">
+          <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none flex-1 py-1">
             {VERSIONS.map((v) => {
               const isActive = String(v.n) === current;
               return (
                 <Link
                   key={v.n}
                   href={`/versions/${v.n}`}
-                  className={`shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-sm text-[10px] uppercase tracking-[0.16em] font-semibold transition border ${
+                  className={`shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[10px] md:text-[11px] uppercase tracking-[0.14em] font-bold transition border ${
                     isActive
-                      ? "bg-white text-black border-white"
-                      : "bg-transparent text-white/70 border-white/15 hover:bg-white/5 hover:text-white hover:border-white/30"
+                      ? "bg-white text-[#721011] border-white shadow-[0_2px_8px_rgba(0,0,0,0.2)]"
+                      : "bg-white/10 text-white border-white/30 hover:bg-white hover:text-[#721011] hover:border-white"
                   }`}
                   title={v.tag}
                 >
-                  <span className="opacity-60">V{v.n}</span>
+                  <span className={isActive ? "opacity-70" : "opacity-80"}>V{v.n}</span>
                   <span>{v.name}</span>
                 </Link>
               );
@@ -69,18 +69,18 @@ export function VersionToggle() {
           {active && (
             <button
               onClick={() => setOpen((s) => !s)}
-              className="hidden lg:inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-white/60 hover:text-white shrink-0"
+              className="hidden lg:inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] font-bold text-white/90 hover:text-white shrink-0 border border-white/30 px-3 py-1.5 rounded-md hover:bg-white/10"
             >
               <span>{active.tag}</span>
-              <span className="opacity-50">{open ? "▴" : "▾"}</span>
+              <span className="opacity-80">{open ? "▴" : "▾"}</span>
             </button>
           )}
         </div>
 
         {/* Expanded drawer */}
         {open && active && (
-          <div className="border-t border-white/10 bg-black/95 px-4 md:px-6 py-4 text-[12px] text-white/70">
-            <div className="mx-auto max-w-[1600px] grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="border-t border-white/20 bg-[#5a0c0d] px-4 md:px-6 py-4 text-[12px] text-white/80">
+            <div className="mx-auto max-w-[1700px] grid grid-cols-2 md:grid-cols-4 gap-4">
               {VERSIONS.map((v) => (
                 <Link
                   key={v.n}
@@ -88,11 +88,11 @@ export function VersionToggle() {
                   onClick={() => setOpen(false)}
                   className="block hover:text-white transition"
                 >
-                  <div className="text-[9px] uppercase tracking-[0.24em] text-white/40">
+                  <div className="text-[9px] uppercase tracking-[0.24em] text-white/50">
                     Version {v.n}
                   </div>
-                  <div className="text-sm font-medium text-white mt-0.5">{v.name}</div>
-                  <div className="text-[10px] uppercase tracking-[0.18em] text-white/50 mt-0.5">
+                  <div className="text-sm font-bold text-white mt-0.5">{v.name}</div>
+                  <div className="text-[10px] uppercase tracking-[0.18em] text-white/70 mt-0.5">
                     {v.tag}
                   </div>
                 </Link>
@@ -103,7 +103,7 @@ export function VersionToggle() {
       </div>
 
       {/* Spacer so content sits below the bar */}
-      <div className="h-12" aria-hidden />
+      <div className="h-14" aria-hidden />
     </>
   );
 }
