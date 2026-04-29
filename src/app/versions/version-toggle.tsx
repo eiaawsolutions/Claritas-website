@@ -18,6 +18,12 @@ const VERSIONS = [
   { n: 11, name: "Ledger", tag: "Newspaper Editorial" },
   { n: 12, name: "Origami", tag: "Paper-Craft Tilted" },
   { n: 13, name: "Prism", tag: "Linear Light Engineering" },
+  { n: 14, name: "Cartograph", tag: "Zoomable Relationship Map" },
+  { n: 15, name: "Console", tag: "Live Operator Dashboard" },
+  { n: 16, name: "Reel", tag: "Full-Screen Vertical Stories" },
+  { n: 17, name: "Manifesto", tag: "Horizontal Scroll Essay" },
+  { n: 18, name: "Diff", tag: "Before/After Sync Pane" },
+  { n: 19, name: "Spreadsheet", tag: "The Page IS the Sheet" },
 ];
 
 export function VersionToggle() {

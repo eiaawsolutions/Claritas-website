@@ -14,6 +14,12 @@ const VERSIONS = [
   { n: 11, name: "Ledger", tag: "Newspaper Editorial", desc: "Multi-column, drop caps, footnotes. Wall Street Journal weight.", swatch: ["#ffffff", "#1a1a1a", "#a02828"] },
   { n: 12, name: "Origami", tag: "Paper-Craft Tilted", desc: "Tilted cards, soft drop-shadows, asymmetric. Premium playful.", swatch: ["#ffffff", "#0f172a", "#f59e0b"] },
   { n: 13, name: "Prism", tag: "Linear Light Engineering", desc: "Bold sans display, single subtle gradient text, engineering-clean.", swatch: ["#ffffff", "#0f0f0f", "#7c3aed"] },
+  { n: 14, name: "Cartograph", tag: "Zoomable Relationship Map", desc: "The homepage IS an interactive map of customer relationships. Pan, zoom, click nodes.", swatch: ["#0a0e1a", "#22d3ee", "#fbbf24"] },
+  { n: 15, name: "Console", tag: "Live Operator Dashboard", desc: "No scroll. Looks like the CRM running live. You're already inside the product.", swatch: ["#0d0d10", "#10b981", "#a855f7"] },
+  { n: 16, name: "Reel", tag: "Full-Screen Vertical Stories", desc: "Scroll-snapped full-screen slides. TikTok grammar applied to enterprise CRM.", swatch: ["#000000", "#ffffff", "#f43f5e"] },
+  { n: 17, name: "Manifesto", tag: "Horizontal Scroll Essay", desc: "Scroll sideways through giant declarative panels. The site is a thesis.", swatch: ["#fafaf5", "#0a0a0a", "#dc2626"] },
+  { n: 18, name: "Diff", tag: "Before/After Sync Pane", desc: "Left: your CRM today. Right: with Claritas. Synchronized scroll comparison.", swatch: ["#fef2f2", "#ecfdf5", "#1f2937"] },
+  { n: 19, name: "Spreadsheet", tag: "The Page IS the Sheet", desc: "Pricing in columns, stats in cells, logos in rows. Click cells to interact.", swatch: ["#ffffff", "#1f2937", "#16a34a"] },
 ];
 
 export default function VersionsIndexPage() {
