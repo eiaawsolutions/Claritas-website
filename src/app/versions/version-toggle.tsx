@@ -13,6 +13,11 @@ const VERSIONS = [
   { n: 6, name: "Kinetic", tag: "Motion Showcase" },
   { n: 7, name: "Dossier", tag: "Swiss Analyst Grid" },
   { n: 8, name: "Aurora", tag: "Modern Enterprise" },
+  { n: 9, name: "Linen", tag: "Hermès Ultra-Airy" },
+  { n: 10, name: "Helix", tag: "Apple Minimal" },
+  { n: 11, name: "Ledger", tag: "Newspaper Editorial" },
+  { n: 12, name: "Origami", tag: "Paper-Craft Tilted" },
+  { n: 13, name: "Prism", tag: "Linear Light Engineering" },
 ];
 
 export function VersionToggle() {

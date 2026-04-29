@@ -9,6 +9,11 @@ const VERSIONS = [
   { n: 6, name: "Kinetic", tag: "Motion Showcase", desc: "Pinned sections, oversized numerics, scroll-driven choreography. Awwwards bait.", swatch: ["#ffffff", "#000000", "#ff5722"] },
   { n: 7, name: "Dossier", tag: "Swiss Analyst Grid", desc: "Mono + serif, footnotes, data density. Bloomberg / FT for buyers who read.", swatch: ["#fafaf7", "#1a1a1a", "#dc2626"] },
   { n: 8, name: "Aurora", tag: "Modern Enterprise", desc: "Bold sans display, vibrant gradients, glassy cards. Vercel / Framer scale.", swatch: ["#0f172a", "#a855f7", "#06b6d4"] },
+  { n: 9, name: "Linen", tag: "Hermès Ultra-Airy", desc: "All white, ultra-airy editorial serif, single sage thread. Aesop / Hermès.", swatch: ["#ffffff", "#1a1a1a", "#7a8866"] },
+  { n: 10, name: "Helix", tag: "Apple Minimal", desc: "Massive type, perfect grid, single product hero, depth from shadow only.", swatch: ["#ffffff", "#1d1d1f", "#0066cc"] },
+  { n: 11, name: "Ledger", tag: "Newspaper Editorial", desc: "Multi-column, drop caps, footnotes. Wall Street Journal weight.", swatch: ["#ffffff", "#1a1a1a", "#a02828"] },
+  { n: 12, name: "Origami", tag: "Paper-Craft Tilted", desc: "Tilted cards, soft drop-shadows, asymmetric. Premium playful.", swatch: ["#ffffff", "#0f172a", "#f59e0b"] },
+  { n: 13, name: "Prism", tag: "Linear Light Engineering", desc: "Bold sans display, single subtle gradient text, engineering-clean.", swatch: ["#ffffff", "#0f0f0f", "#7c3aed"] },
 ];
 
 export default function VersionsIndexPage() {
