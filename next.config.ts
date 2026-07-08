@@ -3,6 +3,8 @@ import type { NextConfig } from "next";
 const isDev = process.env.NODE_ENV === "development";
 
 const nextConfig: NextConfig = {
+  // Emit a self-contained server bundle for a lean production container image.
+  output: "standalone",
   async headers() {
     return [
       {
