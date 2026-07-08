@@ -12,13 +12,24 @@ import {
   Send,
   Sparkles,
 } from "lucide-react";
-import { Lead, DraftChannel, NextBestAction } from "@/lib/bmmb-demo-data";
+import {
+  Lead,
+  DraftChannel,
+  DraftLanguage,
+  NextBestAction,
+  draftContent,
+} from "@/lib/bmmb-demo-data";
 import { PanelLabel, useTypewriter } from "./atoms";
 
 const CHANNELS: { key: DraftChannel; label: string; icon: typeof Mail }[] = [
   { key: "WhatsApp", label: "WhatsApp", icon: MessageCircle },
   { key: "Email", label: "Email", icon: Mail },
   { key: "Call Script", label: "Call Script", icon: PhoneCall },
+];
+
+const LANGUAGES: { key: DraftLanguage; label: string; full: string }[] = [
+  { key: "BM", label: "BM", full: "Bahasa Malaysia" },
+  { key: "EN", label: "ENG", full: "English" },
 ];
 
 type Phase = "idle" | "thinking" | "typing" | "ready" | "sent";
@@ -31,12 +42,15 @@ export function OutreachComposer({
   nba: NextBestAction | undefined;
 }) {
   const [channel, setChannel] = useState<DraftChannel>("WhatsApp");
+  const [language, setLanguage] = useState<DraftLanguage>("EN");
   const [phase, setPhase] = useState<Phase>("idle");
   const [regenKey, setRegenKey] = useState(0);
 
-  const draft = lead.drafts[channel];
+  // Resolve the draft's copy for the chosen language (falls back to EN).
+  const draft = draftContent(lead.drafts[channel], language);
 
-  // Re-run the "thinking → typing" sequence whenever the target changes.
+  // Re-run the "thinking → typing" sequence whenever the target changes —
+  // including a language switch, so the new-language draft re-types.
   useEffect(() => {
     setPhase("thinking");
     const reduce =
@@ -44,7 +58,7 @@ export function OutreachComposer({
       window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
     const t = setTimeout(() => setPhase("typing"), reduce ? 120 : 950);
     return () => clearTimeout(t);
-  }, [lead.id, channel, nba?.id, regenKey]);
+  }, [lead.id, channel, language, nba?.id, regenKey]);
 
   const typing = phase === "typing";
   const { out, done } = useTypewriter(draft.body, typing, 140);
@@ -62,7 +76,40 @@ export function OutreachComposer({
     <div className="flex h-full flex-col">
       {/* header */}
       <div className="border-b border-[#3f3f3f]/[0.08] px-5 py-4">
-        <PanelLabel step="02" title="Generative · Engage" />
+        <div className="flex items-center justify-between gap-3">
+          <PanelLabel step="02" title="Generative · Engage" />
+          {/* Language selector — draft the outreach in Bahasa Malaysia or English */}
+          <div
+            className="flex shrink-0 items-center rounded-lg bg-[#3f3f3f]/[0.05] p-0.5"
+            role="group"
+            aria-label="Draft language"
+          >
+            {LANGUAGES.map((l) => {
+              const on = l.key === language;
+              return (
+                <button
+                  key={l.key}
+                  type="button"
+                  onClick={() => setLanguage(l.key)}
+                  aria-pressed={on}
+                  title={`Draft in ${l.full}`}
+                  className={`relative rounded-[6px] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] transition-colors ${
+                    on ? "text-white" : "text-[#3f3f3f]/50 hover:text-[#3f3f3f]/75"
+                  }`}
+                >
+                  {on && (
+                    <motion.span
+                      layoutId="lang-toggle"
+                      className="absolute inset-0 rounded-[6px] bg-[#721011]"
+                      transition={{ duration: 0.22 }}
+                    />
+                  )}
+                  <span className="relative">{l.label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
         <p className="mt-2 flex items-center gap-1.5 text-[12px] leading-snug text-[#3f3f3f]/60">
           <Sparkles className="h-3 w-3 shrink-0 text-[#721011]" />
           {contextLine}
