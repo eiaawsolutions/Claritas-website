@@ -146,6 +146,60 @@ export function FintechContent() {
         </div>
       </section>
 
+      <section className="bg-white py-24 lg:py-28" id="intelligent-sales-engine">
+        <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-16">
+          <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
+            <div>
+              <div className="flex items-center gap-4 mb-6">
+                <span className="h-px w-10 bg-[#721011]" />
+                <span className="cl-eyebrow">Horizon 4 · AI-Powered CRM</span>
+              </div>
+              <h2 className="cl-serif text-[34px] md:text-[48px] leading-[1.08] tracking-[-0.02em] text-[#3f3f3f]">
+                The Intelligent <span className="italic text-[#721011]">Sales Engine.</span>
+              </h2>
+              <p className="mt-7 text-[17px] leading-[1.75] text-[#3f3f3f]/70 max-w-xl">
+                Predictive scoring on years of behaviour, generative outreach drafted in a click, and autonomous agents keeping the pipeline clean &mdash; the AI Sales Triad, working inside the Relationship Manager&apos;s CRM. Step into a live, interactive preview.
+              </p>
+              <div className="mt-9 flex flex-wrap items-center gap-6">
+                <Link
+                  href="/demo/bmmb"
+                  className="group inline-flex items-center gap-3 bg-[#3f3f3f] text-white px-8 py-4 text-[12px] uppercase tracking-[0.24em] font-semibold hover:bg-[#721011] transition-colors duration-500"
+                >
+                  Open the Live Demo
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                </Link>
+                <span className="text-[11px] uppercase tracking-[0.2em] font-semibold text-[#3f3f3f]/45">
+                  Interactive · No sign-in
+                </span>
+              </div>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-3">
+              {[
+                { k: "Predict", d: "Score & rank every lead on behaviour, with the reasoning shown." },
+                { k: "Generate", d: "Personalised WhatsApp, email & call scripts — Shariah-guardrailed." },
+                { k: "Automate", d: "Agents route, watch SLAs, and prevent duplicates in real time." },
+              ].map((item, i) => (
+                <motion.div
+                  key={item.k}
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1, duration: 0.6 }}
+                  className="cl-gradient-card p-6 border border-[#3f3f3f]/[0.06]"
+                >
+                  <span className="cl-serif italic text-[24px] text-[#721011] leading-none">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mt-4 cl-serif text-[19px] leading-tight text-[#3f3f3f]">{item.k}</h3>
+                  <p className="mt-2 text-[13px] leading-[1.6] text-[#3f3f3f]/65">{item.d}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="cl-gradient-dark text-white py-24 lg:py-32">
         <div className="mx-auto max-w-[1200px] px-6 md:px-12 lg:px-16 text-center">
           <div className="flex items-center justify-center gap-4 mb-8">

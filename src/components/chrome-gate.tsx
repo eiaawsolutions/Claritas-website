@@ -9,9 +9,10 @@ import { DesignReviewFAB } from "@/components/design-review-fab";
 export function ChromeGate({ children }: { children: React.ReactNode }) {
   const pathname = usePathname() ?? "";
   const isVersions = pathname.startsWith("/versions");
+  const isDemo = pathname.startsWith("/demo");
 
-  if (isVersions) {
-    // /versions/* routes supply their own nav + footer per design brief.
+  if (isVersions || isDemo) {
+    // /versions/* and /demo/* are immersive surfaces that supply their own chrome.
     return <main className="flex-1">{children}</main>;
   }
 
